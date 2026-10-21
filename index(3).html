@@ -1,0 +1,1354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Clued</title>
+<meta name="description" content="Important world news, geography and economics in short narrated swipes, with quizzes.">
+<meta name="theme-color" content="#07080c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Clued">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Familjen+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+/* One dark "screen" world like a video app. Accent: electric lime for learning moments, coral for likes. */
+:root{
+  --bg:#07080c; --ink:#f4f5f7; --ink-dim:rgba(244,245,247,.74); --ink-faint:rgba(244,245,247,.5);
+  --glass:rgba(16,18,26,.55); --line:rgba(255,255,255,.16);
+  --lime:#c8f560; --lime-ink:#141a05; --coral:#ff5d6c; --sky:#7cc4ff; --amber:#ffc65c;
+  --ok:#4fe39a; --bad:#ff6b6b;
+  --f-display:"Unbounded",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Familjen Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:16px/1.4 var(--f-body);overflow:hidden;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+a{color:inherit}
+
+/* feed */
+#feed{position:fixed;inset:0;overflow-y:scroll;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none}
+#feed::-webkit-scrollbar{display:none}
+.slide{content-visibility:auto;contain-intrinsic-size:auto 100vh;position:relative;height:100%;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;isolation:isolate}
+.bg{position:absolute;inset:0;z-index:-2;background:#111}
+.bg .blur{position:absolute;inset:-40px;background-size:cover;background-position:center;filter:blur(28px) brightness(.55) saturate(1.2);transform:scale(1.1)}
+.bg .pic{position:absolute;inset:0;background-size:cover;background-position:center;transform-origin:var(--ox,50%) var(--oy,40%)}
+.bg .pic.contain{background-size:contain;background-repeat:no-repeat;background-position:center 34%}
+.bg .grad{position:absolute;inset:0;background:var(--g)}
+canvas.vis{position:absolute;inset:0}
+.vis-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
+.vis-video.on{opacity:1}
+.bg .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 40%,rgba(0,0,0,.82) 78%,rgba(0,0,0,.92) 100%)}
+.bigword{position:absolute;left:max(18px,env(safe-area-inset-left,0px));right:80px;top:22%;font:800 clamp(34px,10vw,64px)/1.02 var(--f-display);letter-spacing:-.03em;color:rgba(255,255,255,.92);text-wrap:balance;overflow-wrap:anywhere}
+.bigword small{display:block;font:600 14px var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:10px}
+
+/* text overlay */
+.meta{position:absolute;left:0;right:76px;bottom:0;padding:0 0 calc(env(safe-area-inset-bottom,0px) + 26px) max(18px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:8px}
+.tag{align-self:flex-start;font:700 12px var(--f-body);letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border-radius:7px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.tag.news{color:var(--coral)} .tag.history{color:var(--amber)} .tag.trend{color:var(--sky)} .tag.deep,.tag.fact,.tag.photo{color:var(--lime)} .tag.geo{color:var(--sky)} .tag.econ{color:var(--amber)}
+.meta h2{margin:0;font:700 25px/1.12 var(--f-body);letter-spacing:-.01em;text-wrap:balance;text-shadow:0 1px 12px rgba(0,0,0,.5)}
+.cap{margin:0;font-size:16px;line-height:1.42;color:var(--ink-dim);text-shadow:0 1px 8px rgba(0,0,0,.6);display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.slide.open .cap{-webkit-line-clamp:unset;max-height:42vh;overflow-y:auto}
+.cap .w.on{color:var(--ink);background:rgba(200,245,96,.22);border-radius:3px}
+.more{align-self:flex-start;font-weight:700;color:var(--ink);font-size:14px}
+.src{font-size:12px;color:var(--ink-faint)}
+.src a{text-decoration:underline}
+.bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.12)}
+.bar i{display:block;height:100%;width:0;background:var(--lime)}
+
+/* side actions */
+.side{position:absolute;right:max(8px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 28px);display:flex;flex-direction:column;align-items:center;gap:18px;width:60px}
+.act{display:flex;flex-direction:column;align-items:center;gap:3px;font:600 12px var(--f-body);color:var(--ink);text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.act .ic{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.28);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.act svg{width:28px;height:28px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.5))}
+.act.liked svg{fill:var(--coral);stroke:var(--coral)}
+.act.saved svg{fill:var(--lime);stroke:var(--lime)}
+.act.pop .ic{animation:pop .35s ease}
+@keyframes pop{50%{transform:scale(1.3)}}
+.heart-burst{position:absolute;width:110px;height:110px;margin:-55px 0 0 -55px;pointer-events:none;animation:burst .8s ease forwards;z-index:5}
+.heart-burst svg{width:100%;height:100%;fill:var(--coral)}
+@keyframes burst{0%{transform:scale(.3);opacity:0}30%{transform:scale(1.1);opacity:1}100%{transform:scale(1) translateY(-60px);opacity:0}}
+
+/* quiz */
+.slide.quiz .bg{background:radial-gradient(120% 80% at 80% 0%,#2a3a10 0%,#0b0e06 55%,#07080c 100%)}
+.qwrap{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:16px;padding:calc(env(safe-area-inset-top,0px) + 70px) max(20px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 40px) max(20px,env(safe-area-inset-left,0px));max-width:560px;margin:0 auto}
+.qlabel{font:800 13px var(--f-display);letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+.qtext{font:700 23px/1.25 var(--f-body);text-wrap:balance}
+.qimg{width:100%;max-height:26vh;object-fit:cover;border-radius:16px}
+.opts{display:grid;gap:10px}
+.opt{width:100%;text-align:left;padding:15px 16px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid var(--line);font-size:16px;font-weight:600;transition:background .2s,border-color .2s}
+.opt:active{transform:scale(.99)}
+.opt.right{background:rgba(79,227,154,.18);border-color:var(--ok)}
+.opt.wrong{background:rgba(255,107,107,.16);border-color:var(--bad)}
+.qres{min-height:48px;font-size:15px;color:var(--ink-dim)}
+.qres b{color:var(--ink)}
+.qhint{font-size:13px;color:var(--ink-faint);text-align:center}
+
+/* top bar */
+.top{position:fixed;left:0;right:0;top:0;z-index:20;padding:calc(env(safe-area-inset-top,0px) + 10px) max(14px,env(safe-area-inset-right,0px)) 10px max(14px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:10px;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,0))}
+.top > *{pointer-events:auto}
+.tabs{flex:1;display:flex;justify-content:center;gap:18px}
+.tabs button{font:700 16px var(--f-body);color:var(--ink-faint);padding:6px 0;position:relative;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.tabs button[aria-selected="true"]{color:var(--ink)}
+.tabs button[aria-selected="true"]::after{content:"";position:absolute;left:25%;right:25%;bottom:0;height:3px;border-radius:2px;background:var(--ink)}
+.pill{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font:700 13px var(--f-body);min-width:0}
+.pill svg{width:16px;height:16px;flex:none}
+#sound{width:38px;height:38px;justify-content:center;padding:0}
+
+/* sheets & overlays */
+.screen{position:fixed;inset:0;z-index:40;background:var(--bg);overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 64px) max(18px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 30px) max(18px,env(safe-area-inset-left,0px))}
+.screen .in{max-width:560px;margin:0 auto}
+.screen h1{font:800 26px/1.1 var(--f-display);letter-spacing:-.02em;margin:0 0 6px}
+.screen p.lead{color:var(--ink-dim);margin:0 0 18px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:20px}
+.stat{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:14px;padding:12px}
+.stat b{display:block;font:800 24px var(--f-display);font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--ink-faint)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.tile{position:relative;aspect-ratio:3/4;max-width:100%;border-radius:14px;overflow:hidden;background:#1a1c24 center/cover;text-align:left}
+.tile span{position:absolute;left:0;right:0;bottom:0;padding:30px 10px 10px;font-weight:700;font-size:14px;line-height:1.2;background:linear-gradient(transparent,rgba(0,0,0,.85))}
+.empty{color:var(--ink-faint);text-align:center;padding:40px 0}
+.set{display:grid;gap:10px;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:22px}
+.set label{font-size:13px;font-weight:700;color:var(--ink-dim)}
+.set select{width:100%;padding:11px;border-radius:10px;background:#141720;border:1px solid var(--line);color:var(--ink);font:inherit}
+.set input[type=range]{width:100%;accent-color:var(--lime)}
+.testv{justify-self:start;padding:9px 14px;border-radius:10px;background:var(--lime);color:var(--lime-ink);font-weight:800}
+.set .hint{margin:0;font-size:13px;color:var(--ink-faint)}
+
+#start{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;justify-content:flex-end;gap:16px;padding:0 max(22px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 36px) max(22px,env(safe-area-inset-left,0px));
+  background:radial-gradient(90% 60% at 20% 15%,rgba(200,245,96,.28),transparent 60%),radial-gradient(80% 50% at 90% 40%,rgba(124,196,255,.22),transparent 60%),var(--bg)}
+#start h1{font:800 clamp(40px,12vw,72px)/.98 var(--f-display);letter-spacing:-.04em;margin:0}
+#start h1 em{font-style:normal;color:var(--lime)}
+#start p{color:var(--ink-dim);font-size:17px;margin:0;max-width:34ch}
+.cta{width:100%;max-width:520px;padding:17px;border-radius:16px;background:var(--lime);color:var(--lime-ink);font:800 17px var(--f-body)}
+.ghost{width:100%;max-width:520px;padding:12px;border-radius:14px;color:var(--ink-dim);font-weight:600}
+.langrow{display:flex;align-items:center;gap:8px;color:var(--ink-dim);align-self:center}
+.langrow select,.set select{appearance:none;-webkit-appearance:none}
+.langrow select{background:transparent;border:1px solid var(--line);border-radius:10px;color:var(--ink);padding:8px 12px;font:600 15px var(--f-body)}
+.postimg{display:block;width:100%;max-width:340px;margin:0 auto 14px;border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.postbtns{display:grid;gap:8px;max-width:520px;margin:0 auto}
+.loading{position:fixed;inset:0;display:grid;place-items:center;z-index:1;color:var(--ink-faint)}
+.toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 64px);transform:translateX(-50%);z-index:70;background:rgba(20,22,30,.92);border:1px solid var(--line);padding:10px 16px;border-radius:12px;font-weight:600;font-size:14px;max-width:calc(100% - 32px);text-align:center}
+.close{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);left:max(14px,env(safe-area-inset-left,0px));z-index:45;width:40px;height:40px;border-radius:50%;background:var(--glass);border:1px solid var(--line);display:grid;place-items:center}
+@media (min-width:700px){.slide .meta{right:auto;width:min(560px,calc(100% - 100px))}.side{right:max(24px,calc(50% - 330px))}.slide .meta{left:max(24px,calc(50% - 330px));padding-left:0}.bigword{left:max(24px,calc(50% - 330px))}}
+@media (prefers-reduced-motion: reduce){.heart-burst{animation-duration:.01s}}
+</style>
+</head>
+<body>
+<div id="feed" aria-label="Feed"></div>
+<div class="loading" id="loading">Loading today's world…</div>
+
+<div class="top">
+  <button class="pill" id="streakBtn" aria-label="Your progress"><svg viewBox="0 0 24 24" fill="#ffc65c" aria-hidden="true"><path d="M12 2c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3-1-3 0-6 1-9z"/></svg><span id="streak">0</span></button>
+  <nav class="tabs" role="tablist" aria-label="Feeds">
+    <button role="tab" data-feed="all" aria-selected="true">For you</button>
+    <button role="tab" data-feed="news" aria-selected="false">News</button>
+    <button role="tab" data-feed="saved" aria-selected="false">Saved</button>
+  </nav>
+  <button class="pill" id="sound" aria-label="Narration on" aria-pressed="true"></button>
+</div>
+
+<div class="screen" id="screen" hidden></div>
+<button class="close" id="closeScreen" hidden aria-label="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+
+<div id="start" hidden>
+  <h1>Clued<em>.</em></h1>
+  <p>The world news that matters, plus geography and economics, in short swipes read to you. Every few swipes, a quick quiz.</p>
+  <button class="cta" id="go">Start with sound</button>
+  <button class="ghost" id="goMuted">Start muted</button>
+  <label class="langrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><select id="langStart" aria-label="Language"></select></label>
+</div>
+<div class="toast" id="toast" hidden role="status" aria-live="polite"></div>
+
+<script src="d3-array.min.js"></script>
+<script src="d3-geo.min.js"></script>
+<script>
+"use strict";
+/* ---------- languages ---------- */
+const LANGS = {
+  en: { name: "English", voice: "en", t: {
+    c_eu: "Europe", c_as: "Asia", c_af: "Africa", c_na: "North America", c_sa: "South America", c_oc: "Oceania", c_an: "Antarctica", o_pac: "Pacific Ocean", o_atl: "Atlantic Ocean", o_ind: "Indian Ocean", o_arc: "Arctic Ocean", o_sou: "Southern Ocean",
+    euro_area: "euro area", world: "World", data_src: "Data: World Bank", video_src: "Video: Wikimedia Commons",
+    tap_sound: "Tap anywhere to turn on the voice",
+    start_p: "The world news that matters, plus geography and economics, in short swipes read to you. Every few swipes, a quick quiz.",
+    start_sound: "Start with sound", start_muted: "Start muted", cont_sound: "Continue with sound", cont_muted: "Continue muted",
+    tab_all: "For you", tab_news: "News", tab_saved: "Saved", loading: "Loading today's world…",
+    offline: "Couldn't reach the news. Check your connection and tap to retry.",
+    news: "World news", geo: "Geography", econ: "Economics", photo: "Picture of the day", history: "On this day", trend: "Trending", deep: "Deep dive", fact: "Did you know",
+    like: "Like", liked: "Liked", save: "Save", saved: "Saved", share: "Share", read: "Read", post: "Post", more: "more", less: "less",
+    quick_quiz: "Quick quiz", skip: "Swipe up to skip", correct: "Correct!", wrong: "Not quite.",
+    q_capital: "What is the capital of {x}?", ex_capital: "The capital of {x} is {y}.", q_desc: "Which one is “{x}”?",
+    q_news: "Today's news: “{x}” Which topic is this story about?", q_year: "In which year did this happen? “{x}”", ex_year: "It happened in {x}.",
+    t_saved: "Saved", t_removed: "Removed from saved", t_copied: "Copied", t_paused: "Paused",
+    you: "You", you_lead: "Small daily swipes add up.", streak: "day streak", learned: "learned today", score: "quiz score",
+    language: "Language", voice: "Voice", narrator: "Narrator", speed: "Speed", test: "Test voice", default_voice: "Default voice",
+    voice_hint: "For the most natural voice on iPhone: Settings → Accessibility → Spoken Content → Voices, pick your language and download a calm voice marked <b>Enhanced</b> or <b>Premium</b>, for example <b>Evan</b> or <b>Nathan</b>. Then choose it here.",
+    sample: "This is how your daily news will sound.", saved_h: "Saved", saved_empty: "Tap the bookmark on any card to keep it here.", nothing_saved: "Nothing saved yet.",
+    credits: "Content from Wikipedia and Wikimedia Commons under CC BY-SA. Tap “Read” on any card for the full article and its sources.",
+    en_news: "English",
+    post_h: "Your post", post_making: "Making your post…", post_hint: "Share it to TikTok or Instagram, or press and hold the image to save it.",
+    post_share: "Share image", post_caption: "Copy caption", post_fail: "Couldn't make the image. Try another card.",
+    post_tag: "Learn something new every day", hashtags: "#learnontiktok #didyouknow #news #geography #economics #clued",
+  } },
+  sl: { name: "Slovenščina", voice: "sl", t: {
+    c_eu: "Evropa", c_as: "Azija", c_af: "Afrika", c_na: "Severna Amerika", c_sa: "Južna Amerika", c_oc: "Oceanija", c_an: "Antarktika", o_pac: "Tihi ocean", o_atl: "Atlantski ocean", o_ind: "Indijski ocean", o_arc: "Arktični ocean", o_sou: "Južni ocean",
+    euro_area: "evroobmočje", world: "Svet", data_src: "Podatki: Svetovna banka", video_src: "Video: Wikimedia Commons",
+    tap_sound: "Tapni kjerkoli za vklop glasu",
+    start_p: "Svetovne novice, ki štejejo, ter geografija in ekonomija v kratkih potegih, ki ti jih prebere glas. Vsakih nekaj potegov hiter kviz.",
+    start_sound: "Začni z zvokom", start_muted: "Začni brez zvoka", cont_sound: "Nadaljuj z zvokom", cont_muted: "Nadaljuj brez zvoka",
+    tab_all: "Zate", tab_news: "Novice", tab_saved: "Shranjeno", loading: "Nalagam današnji svet…",
+    offline: "Novic ni bilo mogoče naložiti. Preveri povezavo in tapni za ponovni poskus.",
+    news: "Svetovne novice", geo: "Geografija", econ: "Ekonomija", photo: "Slika dneva", history: "Na današnji dan", trend: "Trendi", deep: "Poglobljeno", fact: "Ali veš",
+    like: "Všeč", liked: "Všeč mi je", save: "Shrani", saved: "Shranjeno", share: "Deli", read: "Beri", post: "Objava", more: "več", less: "manj",
+    quick_quiz: "Hitri kviz", skip: "Povleci gor za preskok", correct: "Pravilno!", wrong: "Ne čisto.",
+    q_capital: "Katera je prestolnica države {x}?", ex_capital: "Prestolnica države {x} je {y}.", q_desc: "Kaj od tega je »{x}«?",
+    q_news: "Današnja novica: »{x}« O kateri temi govori?", q_year: "V katerem letu se je to zgodilo? »{x}«", ex_year: "Zgodilo se je leta {x}.",
+    t_saved: "Shranjeno", t_removed: "Odstranjeno iz shranjenih", t_copied: "Kopirano", t_paused: "Ustavljeno",
+    you: "Ti", you_lead: "Majhni dnevni potegi se seštevajo.", streak: "dni zapored", learned: "naučeno danes", score: "uspeh v kvizih",
+    language: "Jezik", voice: "Glas", narrator: "Bralec", speed: "Hitrost", test: "Preizkusi glas", default_voice: "Privzeti glas",
+    voice_hint: "Za najbolj naraven glas na iPhonu: Nastavitve → Dostopnost → Izgovorjena vsebina → Glasovi, izberi jezik in prenesi miren glas z oznako <b>Izboljšano</b> ali <b>Premium</b>, npr. <b>Evan</b> ali <b>Nathan</b> za angleščino. Nato ga izberi tukaj.",
+    sample: "Tako bodo zvenele tvoje dnevne novice.", saved_h: "Shranjeno", saved_empty: "Tapni zaznamek na kartici, da jo shraniš sem.", nothing_saved: "Nič še ni shranjeno.",
+    credits: "Vsebina z Wikipedije in Wikimedie Commons pod licenco CC BY-SA. Tapni »Beri« za cel članek in vire.",
+    en_news: "angleško",
+    post_h: "Tvoja objava", post_making: "Pripravljam objavo…", post_hint: "Deli jo na TikTok ali Instagram, ali pa pritisni in drži sliko, da jo shraniš.",
+    post_share: "Deli sliko", post_caption: "Kopiraj opis", post_fail: "Slike ni bilo mogoče narediti. Poskusi z drugo kartico.",
+    post_tag: "Vsak dan nekaj novega", hashtags: "#alivedel #zanimivosti #novice #geografija #ekonomija #clued",
+  } },
+  de: { name: "Deutsch", voice: "de", t: {
+    c_eu: "Europa", c_as: "Asien", c_af: "Afrika", c_na: "Nordamerika", c_sa: "Südamerika", c_oc: "Ozeanien", c_an: "Antarktika", o_pac: "Pazifik", o_atl: "Atlantik", o_ind: "Indischer Ozean", o_arc: "Arktischer Ozean", o_sou: "Südlicher Ozean",
+    euro_area: "Euroraum", world: "Welt", data_src: "Daten: Weltbank", video_src: "Video: Wikimedia Commons",
+    tap_sound: "Tippe irgendwo, um die Stimme einzuschalten",
+    start_p: "Die wichtigsten Weltnachrichten, dazu Geografie und Wirtschaft, in kurzen Swipes vorgelesen. Alle paar Swipes ein schnelles Quiz.",
+    start_sound: "Mit Ton starten", start_muted: "Ohne Ton starten", cont_sound: "Mit Ton weiter", cont_muted: "Ohne Ton weiter",
+    tab_all: "Für dich", tab_news: "Nachrichten", tab_saved: "Gespeichert", loading: "Die Welt von heute wird geladen…",
+    offline: "Nachrichten konnten nicht geladen werden. Prüfe die Verbindung und tippe zum Wiederholen.",
+    news: "Weltnachrichten", geo: "Geografie", econ: "Wirtschaft", photo: "Bild des Tages", history: "An diesem Tag", trend: "Im Trend", deep: "Im Detail", fact: "Wusstest du",
+    like: "Gefällt", liked: "Gefällt mir", save: "Merken", saved: "Gemerkt", share: "Teilen", read: "Lesen", post: "Post", more: "mehr", less: "weniger",
+    quick_quiz: "Schnelles Quiz", skip: "Nach oben wischen zum Überspringen", correct: "Richtig!", wrong: "Nicht ganz.",
+    q_capital: "Was ist die Hauptstadt von {x}?", ex_capital: "Die Hauptstadt von {x} ist {y}.", q_desc: "Was davon ist „{x}“?",
+    q_news: "Heutige Nachricht: „{x}“ Um welches Thema geht es?", q_year: "In welchem Jahr geschah das? „{x}“", ex_year: "Es geschah {x}.",
+    t_saved: "Gemerkt", t_removed: "Entfernt", t_copied: "Kopiert", t_paused: "Pausiert",
+    you: "Du", you_lead: "Kleine tägliche Swipes summieren sich.", streak: "Tage in Folge", learned: "heute gelernt", score: "Quiz-Quote",
+    language: "Sprache", voice: "Stimme", narrator: "Sprecher", speed: "Tempo", test: "Stimme testen", default_voice: "Standardstimme",
+    voice_hint: "Für die natürlichste Stimme am iPhone: Einstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimmen, Sprache wählen und eine Stimme mit <b>Erweitert</b> oder <b>Premium</b> laden. Dann hier auswählen.",
+    sample: "So klingen deine täglichen Nachrichten.", saved_h: "Gemerkt", saved_empty: "Tippe auf das Lesezeichen, um eine Karte hier zu speichern.", nothing_saved: "Noch nichts gemerkt.",
+    credits: "Inhalte von Wikipedia und Wikimedia Commons unter CC BY-SA. Tippe auf „Lesen“ für den ganzen Artikel und die Quellen.",
+    en_news: "Englisch",
+    post_h: "Dein Post", post_making: "Post wird erstellt…", post_hint: "Teile ihn auf TikTok oder Instagram oder halte das Bild gedrückt, um es zu speichern.",
+    post_share: "Bild teilen", post_caption: "Text kopieren", post_fail: "Bild konnte nicht erstellt werden. Versuche eine andere Karte.",
+    post_tag: "Jeden Tag etwas Neues lernen", hashtags: "#wissen #lernen #nachrichten #geografie #wirtschaft #clued",
+  } },
+  es: { name: "Español", voice: "es", t: {
+    c_eu: "Europa", c_as: "Asia", c_af: "África", c_na: "América del Norte", c_sa: "América del Sur", c_oc: "Oceanía", c_an: "Antártida", o_pac: "Océano Pacífico", o_atl: "Océano Atlántico", o_ind: "Océano Índico", o_arc: "Océano Ártico", o_sou: "Océano Antártico",
+    euro_area: "zona euro", world: "Mundo", data_src: "Datos: Banco Mundial", video_src: "Vídeo: Wikimedia Commons",
+    tap_sound: "Toca en cualquier lugar para activar la voz",
+    start_p: "Las noticias del mundo que importan, más geografía y economía, en deslizamientos cortos que se leen solos. Cada pocos, un quiz rápido.",
+    start_sound: "Empezar con sonido", start_muted: "Empezar sin sonido", cont_sound: "Seguir con sonido", cont_muted: "Seguir sin sonido",
+    tab_all: "Para ti", tab_news: "Noticias", tab_saved: "Guardado", loading: "Cargando el mundo de hoy…",
+    offline: "No se pudieron cargar las noticias. Revisa tu conexión y toca para reintentar.",
+    news: "Noticias del mundo", geo: "Geografía", econ: "Economía", photo: "Imagen del día", history: "Un día como hoy", trend: "Tendencia", deep: "En profundidad", fact: "Sabías que",
+    like: "Me gusta", liked: "Te gusta", save: "Guardar", saved: "Guardado", share: "Compartir", read: "Leer", post: "Post", more: "más", less: "menos",
+    quick_quiz: "Quiz rápido", skip: "Desliza hacia arriba para saltar", correct: "¡Correcto!", wrong: "Casi.",
+    q_capital: "¿Cuál es la capital de {x}?", ex_capital: "La capital de {x} es {y}.", q_desc: "¿Cuál de estos es «{x}»?",
+    q_news: "Noticia de hoy: «{x}» ¿De qué tema trata?", q_year: "¿En qué año ocurrió esto? «{x}»", ex_year: "Ocurrió en {x}.",
+    t_saved: "Guardado", t_removed: "Eliminado de guardados", t_copied: "Copiado", t_paused: "En pausa",
+    you: "Tú", you_lead: "Pequeños deslizamientos diarios suman.", streak: "días seguidos", learned: "aprendido hoy", score: "aciertos",
+    language: "Idioma", voice: "Voz", narrator: "Narrador", speed: "Velocidad", test: "Probar voz", default_voice: "Voz predeterminada",
+    voice_hint: "Para la voz más natural en iPhone: Ajustes → Accesibilidad → Contenido leído → Voces, elige tu idioma y descarga una voz marcada como <b>Mejorada</b> o <b>Premium</b>. Luego elígela aquí.",
+    sample: "Así sonarán tus noticias diarias.", saved_h: "Guardado", saved_empty: "Toca el marcador de una tarjeta para guardarla aquí.", nothing_saved: "Aún no hay nada guardado.",
+    credits: "Contenido de Wikipedia y Wikimedia Commons bajo CC BY-SA. Toca «Leer» para ver el artículo completo y sus fuentes.",
+    en_news: "inglés",
+    post_h: "Tu post", post_making: "Creando tu post…", post_hint: "Compártelo en TikTok o Instagram, o mantén pulsada la imagen para guardarla.",
+    post_share: "Compartir imagen", post_caption: "Copiar texto", post_fail: "No se pudo crear la imagen. Prueba con otra tarjeta.",
+    post_tag: "Aprende algo nuevo cada día", hashtags: "#sabiasque #aprende #noticias #geografia #economia #clued",
+  } },
+  fr: { name: "Français", voice: "fr", t: {
+    c_eu: "Europe", c_as: "Asie", c_af: "Afrique", c_na: "Amérique du Nord", c_sa: "Amérique du Sud", c_oc: "Océanie", c_an: "Antarctique", o_pac: "Océan Pacifique", o_atl: "Océan Atlantique", o_ind: "Océan Indien", o_arc: "Océan Arctique", o_sou: "Océan Austral",
+    euro_area: "zone euro", world: "Monde", data_src: "Données : Banque mondiale", video_src: "Vidéo : Wikimedia Commons",
+    tap_sound: "Touche n'importe où pour activer la voix",
+    start_p: "L'actualité mondiale qui compte, plus la géographie et l'économie, en courts swipes lus à voix haute. Un quiz rapide tous les quelques swipes.",
+    start_sound: "Commencer avec le son", start_muted: "Commencer sans son", cont_sound: "Continuer avec le son", cont_muted: "Continuer sans son",
+    tab_all: "Pour toi", tab_news: "Actu", tab_saved: "Enregistrés", loading: "Chargement du monde d'aujourd'hui…",
+    offline: "Impossible de charger l'actualité. Vérifie ta connexion et touche pour réessayer.",
+    news: "Actualité mondiale", geo: "Géographie", econ: "Économie", photo: "Image du jour", history: "Ce jour-là", trend: "Tendance", deep: "En détail", fact: "Le savais-tu",
+    like: "J'aime", liked: "Aimé", save: "Garder", saved: "Gardé", share: "Partager", read: "Lire", post: "Post", more: "plus", less: "moins",
+    quick_quiz: "Quiz rapide", skip: "Glisse vers le haut pour passer", correct: "Correct !", wrong: "Pas tout à fait.",
+    q_capital: "Quelle est la capitale de {x} ?", ex_capital: "La capitale de {x} est {y}.", q_desc: "Lequel est « {x} » ?",
+    q_news: "Actu du jour : « {x} » De quel sujet parle-t-elle ?", q_year: "En quelle année est-ce arrivé ? « {x} »", ex_year: "C'est arrivé en {x}.",
+    t_saved: "Gardé", t_removed: "Retiré", t_copied: "Copié", t_paused: "En pause",
+    you: "Toi", you_lead: "Les petits swipes quotidiens s'additionnent.", streak: "jours d'affilée", learned: "appris aujourd'hui", score: "réussite aux quiz",
+    language: "Langue", voice: "Voix", narrator: "Narrateur", speed: "Vitesse", test: "Tester la voix", default_voice: "Voix par défaut",
+    voice_hint: "Pour la voix la plus naturelle sur iPhone : Réglages → Accessibilité → Contenu énoncé → Voix, choisis ta langue et télécharge une voix <b>Améliorée</b> ou <b>Premium</b>. Puis choisis-la ici.",
+    sample: "Voici comment sonnera ton actu du jour.", saved_h: "Gardés", saved_empty: "Touche le signet d'une carte pour la garder ici.", nothing_saved: "Rien de gardé pour l'instant.",
+    credits: "Contenu de Wikipédia et Wikimedia Commons sous CC BY-SA. Touche « Lire » pour l'article complet et ses sources.",
+    en_news: "anglais",
+    post_h: "Ton post", post_making: "Création du post…", post_hint: "Partage-le sur TikTok ou Instagram, ou appuie longuement sur l'image pour l'enregistrer.",
+    post_share: "Partager l'image", post_caption: "Copier le texte", post_fail: "Impossible de créer l'image. Essaie une autre carte.",
+    post_tag: "Apprends quelque chose chaque jour", hashtags: "#lesaviezvous #apprendre #actu #geographie #economie #clued",
+  } },
+  it: { name: "Italiano", voice: "it", t: {
+    c_eu: "Europa", c_as: "Asia", c_af: "Africa", c_na: "America del Nord", c_sa: "America del Sud", c_oc: "Oceania", c_an: "Antartide", o_pac: "Oceano Pacifico", o_atl: "Oceano Atlantico", o_ind: "Oceano Indiano", o_arc: "Oceano Artico", o_sou: "Oceano Antartico",
+    euro_area: "area euro", world: "Mondo", data_src: "Dati: Banca Mondiale", video_src: "Video: Wikimedia Commons",
+    tap_sound: "Tocca ovunque per attivare la voce",
+    start_p: "Le notizie dal mondo che contano, più geografia ed economia, in brevi swipe letti ad alta voce. Ogni pochi swipe, un quiz veloce.",
+    start_sound: "Inizia con l'audio", start_muted: "Inizia senza audio", cont_sound: "Continua con l'audio", cont_muted: "Continua senza audio",
+    tab_all: "Per te", tab_news: "Notizie", tab_saved: "Salvati", loading: "Carico il mondo di oggi…",
+    offline: "Impossibile caricare le notizie. Controlla la connessione e tocca per riprovare.",
+    news: "Notizie dal mondo", geo: "Geografia", econ: "Economia", photo: "Immagine del giorno", history: "Accadde oggi", trend: "Di tendenza", deep: "Approfondimento", fact: "Lo sapevi",
+    like: "Mi piace", liked: "Ti piace", save: "Salva", saved: "Salvato", share: "Condividi", read: "Leggi", post: "Post", more: "altro", less: "meno",
+    quick_quiz: "Quiz veloce", skip: "Scorri in su per saltare", correct: "Giusto!", wrong: "Non proprio.",
+    q_capital: "Qual è la capitale di {x}?", ex_capital: "La capitale di {x} è {y}.", q_desc: "Quale di questi è «{x}»?",
+    q_news: "Notizia di oggi: «{x}» Di quale argomento parla?", q_year: "In che anno è successo? «{x}»", ex_year: "È successo nel {x}.",
+    t_saved: "Salvato", t_removed: "Rimosso dai salvati", t_copied: "Copiato", t_paused: "In pausa",
+    you: "Tu", you_lead: "Piccoli swipe quotidiani fanno la differenza.", streak: "giorni di fila", learned: "imparato oggi", score: "risposte giuste",
+    language: "Lingua", voice: "Voce", narrator: "Narratore", speed: "Velocità", test: "Prova voce", default_voice: "Voce predefinita",
+    voice_hint: "Per la voce più naturale su iPhone: Impostazioni → Accessibilità → Contenuto letto → Voci, scegli la lingua e scarica una voce <b>Migliorata</b> o <b>Premium</b>. Poi sceglila qui.",
+    sample: "Ecco come suoneranno le tue notizie quotidiane.", saved_h: "Salvati", saved_empty: "Tocca il segnalibro su una scheda per salvarla qui.", nothing_saved: "Ancora niente di salvato.",
+    credits: "Contenuti da Wikipedia e Wikimedia Commons con licenza CC BY-SA. Tocca «Leggi» per l'articolo completo e le fonti.",
+    en_news: "inglese",
+    post_h: "Il tuo post", post_making: "Creo il tuo post…", post_hint: "Condividilo su TikTok o Instagram, oppure tieni premuta l'immagine per salvarla.",
+    post_share: "Condividi immagine", post_caption: "Copia testo", post_fail: "Impossibile creare l'immagine. Prova un'altra scheda.",
+    post_tag: "Impara qualcosa di nuovo ogni giorno", hashtags: "#losapevi #imparare #notizie #geografia #economia #clued",
+  } },
+};
+const detectLang = () => { const l = (navigator.language || "en").slice(0, 2).toLowerCase(); return LANGS[l] ? l : "en"; };
+let LANG = (() => { try { const v = JSON.parse(localStorage.getItem("ss.lang") || "null"); return LANGS[v] ? v : detectLang(); } catch { return detectLang(); } })();
+const t = (k, x, y) => String((LANGS[LANG].t[k] ?? LANGS.en.t[k] ?? k)).replace("{x}", x ?? "").replace("{y}", y ?? "");
+const apiFor = l => `https://${l}.wikipedia.org/api/rest_v1`;
+
+const API = apiFor(LANG);
+const QUIZ_EVERY = 5;
+const MAX_CHARS = 420;
+const BLOCK = /porn|onlyfans|hentai|\bsex(ual|y)?\b|\bnud(e|ity|ism|ist)\b|erotic|fetish|\bbdsm\b|\bescort\b|\bstripper|\brape\b|incest|camgirl/i;
+const SKIP_TITLES = /^(Main_Page|Special:|Wikipedia:|File:|Portal:|Help:|Template:|Category:)/;
+
+/* ---------- helpers ---------- */
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("ss." + k); return v ? JSON.parse(v) : d; } catch { return d; } },
+  set(k, v) { try { localStorage.setItem("ss." + k, JSON.stringify(v)); } catch {} },
+};
+// DOMParser: inert document, so <img onerror> etc. in the HTML never run or load (a detached div would)
+const stripHtml = h => (new DOMParser().parseFromString(String(h || ""), "text/html").body.textContent || "").replace(/\s+/g, " ").trim();
+// safe inside style="background-image:url('...')": entity-escaping alone is undone by the HTML parser before CSS sees it
+const cssUrl = u => esc(/^https:\/\//.test(u || "") ? String(u).replace(/["'()\\\s]/g, c => "%" + c.charCodeAt(0).toString(16).padStart(2, "0")) : "");
+// originals can be huge (tens of MP); iOS kills tabs that decode many of them. Use a 1280px thumbnail instead.
+function sizedImg(o, t) {
+  if (!o?.source) return t?.source || "";
+  if ((o.width || 0) <= 1280 && /\.(jpe?g|png|gif|webp)$/i.test(o.source)) return o.source;
+  const src = t?.source || "", cut = src.lastIndexOf("/");
+  if (cut > 0 && /\d+px-/.test(src.slice(cut))) return src.slice(0, cut + 1) + src.slice(cut + 1).replace(/\d+px-/, "1280px-");
+  return o.source;
+}
+const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+function trimText(t, max = MAX_CHARS) {
+  t = (t || "").replace(/\s+/g, " ").trim();
+  if (t.length <= max) return t;
+  const cut = t.slice(0, max), dot = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("! "), cut.lastIndexOf("? "));
+  return dot > max * 0.45 ? cut.slice(0, dot + 1) : cut.replace(/\s+\S*$/, "") + "…";
+}
+const fmtNum = n => n >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M" : n >= 1e3 ? Math.round(n / 1e3) + "K" : String(n);
+const dayKey = d => d.toISOString().slice(0, 10);
+const ymd = d => `${d.getUTCFullYear()}/${String(d.getUTCMonth() + 1).padStart(2, "0")}/${String(d.getUTCDate()).padStart(2, "0")}`;
+const GRADS = [
+  "linear-gradient(160deg,#1b2a6b,#0b0f24 60%,#3a0f3f)", "linear-gradient(160deg,#0f4c45,#07161b 60%,#21340b)",
+  "linear-gradient(160deg,#5a1f12,#140808 60%,#3d2a07)", "linear-gradient(160deg,#30115e,#0b0716 60%,#0f3550)",
+];
+async function getJSON(url) {
+  const c = new AbortController(), t = setTimeout(() => c.abort(), 12000);
+  try { const r = await fetch(url, { signal: c.signal }); if (!r.ok) { const e = new Error("HTTP " + r.status); e.status = r.status; throw e; } return await r.json(); }
+  finally { clearTimeout(t); }
+}
+
+/* ---------- state ---------- */
+const S = {
+  cards: [], seen: new Set(), filter: "all", loadingMore: false, dayCursor: null, sinceQuiz: 0,
+  liked: store.get("liked", {}), saved: store.get("saved", {}), sound: store.get("sound", true), started: false,
+  progress: store.get("progress", { days: {}, streak: 0, last: "", answered: 0, correct: 0, learned: 0 }),
+  active: null, quizPool: [],
+};
+
+/* ---------- curated topics: geography + economics (no crypto) ---------- */
+const CAPITALS = {"Slovenia":"Ljubljana","Croatia":"Zagreb","Austria":"Vienna","Italy":"Rome","Hungary":"Budapest","Germany":"Berlin","France":"Paris","Spain":"Madrid","Portugal":"Lisbon","Poland":"Warsaw","Czech Republic":"Prague","Slovakia":"Bratislava","Romania":"Bucharest","Bulgaria":"Sofia","Greece":"Athens","Serbia":"Belgrade","Bosnia and Herzegovina":"Sarajevo","Montenegro":"Podgorica","Albania":"Tirana","North Macedonia":"Skopje","Ukraine":"Kyiv","Norway":"Oslo","Sweden":"Stockholm","Finland":"Helsinki","Denmark":"Copenhagen","Iceland":"Reykjavík","Ireland":"Dublin","Netherlands":"Amsterdam","Belgium":"Brussels","Switzerland":"Bern","Turkey":"Ankara","Egypt":"Cairo","Morocco":"Rabat","Nigeria":"Abuja","Kenya":"Nairobi","Ethiopia":"Addis Ababa","South Africa":"Pretoria","Ghana":"Accra","Tanzania":"Dodoma","Saudi Arabia":"Riyadh","Iran":"Tehran","Israel":"Jerusalem","United Arab Emirates":"Abu Dhabi","Pakistan":"Islamabad","India":"New Delhi","Bangladesh":"Dhaka","China":"Beijing","Japan":"Tokyo","South Korea":"Seoul","Vietnam":"Hanoi","Thailand":"Bangkok","Indonesia":"Jakarta","Philippines":"Manila","Malaysia":"Kuala Lumpur","Australia":"Canberra","New Zealand":"Wellington","Canada":"Ottawa","United States":"Washington, D.C.","Mexico":"Mexico City","Brazil":"Brasília","Argentina":"Buenos Aires","Chile":"Santiago","Peru":"Lima","Colombia":"Bogotá","Kazakhstan":"Astana","Mongolia":"Ulaanbaatar","Myanmar":"Naypyidaw","Nepal":"Kathmandu","Qatar":"Doha","Cuba":"Havana","Venezuela":"Caracas","Bolivia":"Sucre"};
+const GEO_TOPICS = ["Mount Everest","Himalayas","Alps","Andes","Rocky Mountains","Ural Mountains","Mount Kilimanjaro","Mount Fuji","Amazon River","Nile","Danube","Yangtze","Ganges","Mississippi River","Congo River","Mekong","Sahara","Gobi Desert","Atacama Desert","Namib","Mariana Trench","Great Rift Valley","Ring of Fire","Plate tectonics","Pangaea","Gulf Stream","El Niño–Southern Oscillation","Monsoon","Köppen climate classification","Tundra","Taiga","Amazon rainforest","Great Barrier Reef","Fjord","Karst","Postojna Cave","Lake Bled","Triglav","River delta","Mediterranean Sea","Caspian Sea","Dead Sea","Lake Baikal","Aral Sea","Antarctica","Arctic","Greenland","Bosporus","Strait of Gibraltar","Strait of Hormuz","Strait of Malacca","Panama Canal","Suez Canal","Equator","Prime meridian","International Date Line","Time zone","Megacity","Urbanization","Demographic transition","Tokyo","Lagos","Mumbai","São Paulo","Istanbul","Singapore","Patagonia","Siberia","Sahel","Horn of Africa","Balkans","Scandinavia","Caucasus","Central Asia","Landlocked country","Enclave and exclave","Microstate","Vatican City","Monaco","South China Sea","Pacific Ocean","Indian Ocean","Atlantic Ocean","Arctic Ocean","Continental shelf","Volcano","Earthquake","Tsunami","Glacier","Permafrost","Desertification","Deforestation","Sea level rise","Yellowstone National Park","Grand Canyon","Iceland","Madagascar","Galápagos Islands","Svalbard","Adriatic Sea","Ljubljana","Maribor"];
+const ECON_TOPICS = ["Inflation","Gross domestic product","Supply and demand","Interest rate","Central bank","European Central Bank","Federal Reserve","Recession","Unemployment","Globalization","Comparative advantage","Balance of trade","Tariff","Opportunity cost","Compound interest","Stock market","Bond (finance)","Exchange rate","Euro","Eurozone","International Monetary Fund","World Bank","World Trade Organization","OPEC","Great Depression","2008 financial crisis","Bretton Woods system","Gold standard","Adam Smith","John Maynard Keynes","Milton Friedman","Game theory","Monopoly","Oligopoly","Externality","Tragedy of the commons","Public good (economics)","Value-added tax","Progressive tax","Welfare state","Minimum wage","Human capital","Productivity","Industrial Revolution","Silk Road","Supply chain","Containerization","Petroleum","Rare-earth element","Lithium","Semiconductor industry","Belt and Road Initiative","European Union","European single market","Schengen Area","BRICS","G7","G20","Mercosur","ASEAN","African Union","Government debt","Hyperinflation","Hyperinflation in Zimbabwe","Hyperinflation in the Weimar Republic","Economy of China","Economy of the United States","Economy of Germany","Economy of Japan","Economy of India","Economy of Slovenia","Gini coefficient","Human Development Index","Purchasing power parity","Big Mac Index","Behavioral economics","Nash equilibrium","Keynesian economics","Monetarism","Quantitative easing","Fiscal policy","Monetary policy","Austerity","Stagflation","Deflation","Phillips curve","Laffer curve","Index fund","S&P 500","Dot-com bubble","Tulip mania","Black Monday (1987)","Marshall Plan","Common Agricultural Policy","Free trade agreement","Sanctions (law)","Foreign direct investment","Remittance","Tourism","Port of Rotterdam","Shipping container","Brent Crude","Natural gas","Renewable energy","Carbon tax","Emissions trading","Circular economy","Sharing economy","Gig economy","Universal basic income","Price elasticity of demand","Economies of scale","Division of labour","Invisible hand","Creative destruction","Microfinance","Poverty","Middle class","Population ageing"];
+const TOPICS = shuffle([...GEO_TOPICS.map(t => ({ t, k: "geo" })), ...ECON_TOPICS.map(t => ({ t, k: "econ" })), ...Object.keys(CAPITALS).map(t => ({ t, k: "geo" }))]);
+let topicCursor = 0;
+// news that is not "important": sport, entertainment, celebrity (judged by the linked articles' descriptions)
+const MINOR = /nogomet|košark|fußball|fussball|fútbol|calcio|baloncesto|pallacanestro|schauspieler|attore|(^|\s)acteur|igral(ec|ka)|pev(ec|ka)|sänger|cantante|chanteu|football|soccer|basketball|tennis|cricket|\bracing|cyclist|\bgolf\b|rugby|baseball|ice hockey|athlete|footballer|\bsports?\b|tournament|championship|formula one|grand prix|olympic|\bfilm\b|album|singer|\bactor|\bactress|rapper|\bband\b|television series|video game|beauty pageant|music festival|award ceremony/i;
+
+/* ---------- turning Wikipedia into cards ---------- */
+function okPage(p) {
+  if (!p || !p.titles) return false;
+  const t = p.titles.canonical || p.title || "";
+  if (SKIP_TITLES.test(t) || BLOCK.test(t) || BLOCK.test(p.extract || "") || BLOCK.test(p.description || "")) return false;
+  return p.type !== "disambiguation" && (p.extract || "").length > 80;
+}
+function fromPage(p, kind, extra = {}) {
+  const title = p.titles?.normalized || p.title;
+  return {
+    id: kind + ":" + (p.titles?.canonical || title) + (extra.idSuffix || ""),
+    kind, title, name: title, desc: p.description || "",
+    text: trimText(p.extract), img: sizedImg(p.originalimage, p.thumbnail),
+    thumb: p.thumbnail?.source || "", url: p.content_urls?.mobile?.page || p.content_urls?.desktop?.page || "",
+    imgW: p.originalimage?.width || p.thumbnail?.width || 0, imgH: p.originalimage?.height || p.thumbnail?.height || 0,
+    coords: p.coordinates && isFinite(p.coordinates.lon) && isFinite(p.coordinates.lat) ? [+p.coordinates.lon, +p.coordinates.lat] : null,
+    ...extra,
+  };
+}
+const LABEL = { news: "World news", history: "On this day", trend: "Trending", deep: "Deep dive", fact: "Did you know", photo: "Picture of the day", geo: "Geography", econ: "Economics" };
+
+function buildDay(feed, date, isToday) {
+  const news = [], extra = [];
+  (feed.news || []).forEach((n, i) => {
+    const story = stripHtml(n.story);
+    const all = n.links || [];
+    const pages = all.filter(okPage);
+    if (!story || !pages.length || BLOCK.test(story)) return;
+    if (all.some(p => MINOR.test(p.description || ""))) return; // sport, entertainment
+    const main = pages.slice(0, 4).sort((a, b) => (b.extract || "").length - (a.extract || "").length)[0];
+    const c = fromPage(main, "news", { idSuffix: "@" + story.slice(0, 80) });
+    c.title = story.length > 140 ? trimText(story, 140) : story;
+    c.headline = story;
+    c.text = trimText(story + " " + (main.extract || ""));
+    c.topic = main.titles?.normalized || main.title;
+    c.links = pages.map(p => p.titles?.normalized || p.title);
+    news.push(c);
+  });
+  if (feed.image?.image?.source) {
+    const im = feed.image, d = stripHtml(im.description?.html || im.description?.text || "");
+    if (d && !BLOCK.test(d)) extra.push({
+      id: "photo:" + im.title, kind: "photo", title: trimText(d, 120), text: trimText(d),
+      img: sizedImg(im.image, im.thumbnail), thumb: im.thumbnail?.source || im.image.source, imgW: im.image.width, imgH: im.image.height,
+      url: im.file_page || "https://commons.wikimedia.org/wiki/" + encodeURIComponent(im.title || ""),
+      credit: stripHtml(im.artist?.html || im.artist?.text || ""),
+    });
+  }
+  return { news, extra };
+}
+
+async function loadDay(depth = 0, api = API, key = "dayCursor") {
+  const d = S[key];
+  try {
+    const feed = await getJSON(`${api}/feed/featured/${ymd(d)}`);
+    const isToday = !S.cards.length;
+    S[key] = new Date(d.getTime() - 864e5);
+    const out = buildDay(feed, d, isToday);
+    if (!out.news.length && isToday && depth < (api === apiFor("en") ? 3 : 1)) { const more = await loadDay(depth + 1, api, key).catch(() => ({ news: [], extra: [] })); return { news: more.news, extra: [...out.extra, ...more.extra] }; }
+    return out;
+  } catch (e) {
+    if (e.status || S.cards.length) S[key] = new Date(d.getTime() - 864e5); // keep today on a network error at boot so a retry gets it
+    if (e.status === 404 && !S.cards.length && depth < (api === apiFor("en") ? 3 : 1)) return loadDay(depth + 1, api, key); // today's feed not published yet
+    throw e;
+  }
+}
+async function mapTitles(from) {
+  if (LANG === "en") return;
+  if (TOPICS[from] && TOPICS[from].lt !== undefined) return; // this window was already mapped: don't refetch for every 3 new tail titles
+  const need = TOPICS.slice(from, from + 50).filter(x => x.lt === undefined);
+  if (!need.length) return;
+  try {
+    const r = await getJSON(`https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&redirects=1&prop=langlinks&lllang=${LANG}&lllimit=max&titles=${encodeURIComponent(need.map(x => x.t).join("|"))}`);
+    const q = r.query || {}, alias = {}, ll = {};
+    [...(q.normalized || []), ...(q.redirects || [])].forEach(a => { alias[a.from] = a.to; });
+    (q.pages || []).forEach(p => { const l = (p.langlinks || [])[0]; if (l) ll[p.title] = l.title; });
+    need.forEach(x => { let k = x.t; for (let i = 0; i < 3 && alias[k]; i++) k = alias[k]; x.lt = ll[k] || null; });
+  } catch { need.forEach(x => { x.lt = null; }); }
+}
+async function loadTopics(n = 6) {
+  const out = [];
+  if (TOPICS.every(x => VIEWED_T.has(x.t))) { VIEWED_T.clear(); store.set("viewedT", []); } // seen everything: start a new round
+  while (out.length < n && topicCursor < TOPICS.length) {
+    await mapTitles(topicCursor);
+    const batch = TOPICS.slice(topicCursor, topicCursor + 3); topicCursor += batch.length;
+    const res = await Promise.all(batch.map(item => {
+      const title = LANG === "en" ? item.t : item.lt;
+      if (!title || VIEWED_T.has(item.t)) return null;
+      return getJSON(`${API}/page/summary/${encodeURIComponent(title.replace(/ /g, "_"))}`).then(p => { if (!okPage(p)) return null; const c = fromPage(p, item.k, { en: item.t }); c.vis = visFor(c, item.t); return c; }).catch(() => null);
+    }));
+    res.forEach(c => { if (c && !S.seen.has(c.id)) out.push(c); });
+  }
+  if (topicCursor >= TOPICS.length) { shuffle(TOPICS); topicCursor = 0; }
+  return out;
+}
+
+/* ---------- what this person has already seen (so the feed never starts over) ---------- */
+const VIEWED = new Set(store.get("viewed", [])), VIEWED_T = new Set(store.get("viewedT", []));
+let viewedTimer = 0;
+function markViewed(c) {
+  if (!c || c.kind === "quiz" || c.fromSaved) return;
+  VIEWED.add(c.id); if (c.en) VIEWED_T.add(c.en);
+  clearTimeout(viewedTimer);
+  viewedTimer = setTimeout(() => { store.set("viewed", [...VIEWED].slice(-2500)); store.set("viewedT", [...VIEWED_T].slice(-800)); }, 400);
+}
+
+/* ---------- visuals: animated globe (places), animated charts (economics), real clips (Commons) ---------- */
+const REDUCED = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+const HAS_GEO = !!(window.d3 && d3.geoOrthographic);
+
+// World Bank indicator for each economics topic: [indicator, region, unit, years]
+const CHARTS = {
+  "Inflation": ["FP.CPI.TOTL.ZG", "EMU", "%"], "Euro": ["FP.CPI.TOTL.ZG", "EMU", "%"], "Eurozone": ["NY.GDP.MKTP.KD.ZG", "EMU", "%"],
+  "European Central Bank": ["FP.CPI.TOTL.ZG", "EMU", "%"], "Monetary policy": ["FP.CPI.TOTL.ZG", "EMU", "%"],
+  "Deflation": ["FP.CPI.TOTL.ZG", "JPN", "%", "1990:2025"], "Stagflation": ["FP.CPI.TOTL.ZG", "USA", "%", "1960:1995"],
+  "Gross domestic product": ["NY.GDP.MKTP.CD", "WLD", "$"], "Recession": ["NY.GDP.MKTP.KD.ZG", "WLD", "%", "1990:2025"],
+  "Unemployment": ["SL.UEM.TOTL.ZS", "EMU", "%"], "Globalization": ["NE.TRD.GNFS.ZS", "WLD", "%", "1970:2025"],
+  "Balance of trade": ["NE.TRD.GNFS.ZS", "WLD", "%", "1970:2025"], "Free trade agreement": ["NE.TRD.GNFS.ZS", "WLD", "%", "1970:2025"],
+  "Tourism": ["ST.INT.ARVL", "WLD", "n", "1995:2025"], "Remittance": ["BX.TRF.PWKR.CD.DT", "WLD", "$", "1990:2025"],
+  "Foreign direct investment": ["BX.KLT.DINV.CD.WD", "WLD", "$", "1990:2025"], "Population ageing": ["SP.POP.65UP.TO.ZS", "WLD", "%", "1960:2025"],
+  "Renewable energy": ["EG.FEC.RNEW.ZS", "WLD", "%", "1990:2025"], "Urbanization": ["SP.URB.TOTL.IN.ZS", "WLD", "%", "1960:2025"],
+  "Megacity": ["SP.URB.TOTL.IN.ZS", "WLD", "%", "1960:2025"], "Demographic transition": ["SP.DYN.TFRT.IN", "WLD", "n", "1960:2025"],
+  "Poverty": ["SI.POV.DDAY", "WLD", "%", "1990:2025"], "Productivity": ["SL.GDP.PCAP.EM.KD", "WLD", "$", "1991:2025"],
+  "Interest rate": ["FR.INR.LEND", "USA", "%", "1980:2025"], "Government debt": ["GC.DOD.TOTL.GD.ZS", "USA", "%", "1990:2025"],
+  "Gini coefficient": ["SI.POV.GINI", "SVN", "n", "1990:2025"], "Stock market": ["CM.MKT.LCAP.GD.ZS", "USA", "%", "1975:2025"],
+  "Economy of China": ["NY.GDP.MKTP.CD", "CHN", "$", "1980:2025"], "Economy of the United States": ["NY.GDP.MKTP.CD", "USA", "$", "1980:2025"],
+  "Economy of Germany": ["NY.GDP.MKTP.CD", "DEU", "$", "1980:2025"], "Economy of Japan": ["NY.GDP.MKTP.CD", "JPN", "$", "1980:2025"],
+  "Economy of India": ["NY.GDP.MKTP.CD", "IND", "$", "1980:2025"], "Economy of Slovenia": ["NY.GDP.MKTP.CD", "SVN", "$", "1995:2025"],
+};
+const ISO2 = { CHN: "CN", USA: "US", DEU: "DE", JPN: "JP", IND: "IN", SVN: "SI" };
+function regionName(code) {
+  if (code === "EMU") return t("euro_area");
+  if (code === "WLD") return t("world");
+  try { return new Intl.DisplayNames([LANG], { type: "region" }).of(ISO2[code] || code); } catch { return code; }
+}
+function fmtVal(v, unit) {
+  if (unit === "%") return (Math.abs(v) < 10 ? v.toFixed(1) : Math.round(v)) + "%";
+  const nf = new Intl.NumberFormat(LANG, { notation: "compact", maximumFractionDigits: 1 });
+  return (unit === "$" ? "$" : "") + nf.format(v);
+}
+function visFor(c, topic) {
+  if (c.kind === "geo" && HAS_GEO && (c.coords || (topic && CAPITALS[topic]))) return "globe"; // countries without coordinates get their centre from the map
+  if (topic && CHARTS[topic]) return "chart";
+  return null;
+}
+
+/* world map: precise countries from the CDN, simplified outline as a fallback */
+const COUNTRY_ALIAS = { "United States": "United States of America", "Czech Republic": "Czechia", "Bosnia and Herzegovina": "Bosnia and Herz.", "North Macedonia": "Macedonia", "Democratic Republic of the Congo": "Dem. Rep. Congo" };
+const CONTINENT_AT = { c_eu: [15, 52], c_as: [90, 45], c_af: [20, 5], c_na: [-100, 45], c_sa: [-60, -15], c_oc: [134, -25], c_an: [0, -80] };
+const OCEAN_AT = [["o_pac", [-150, 5]], ["o_pac", [165, 12]], ["o_atl", [-38, 28]], ["o_atl", [-18, -22]], ["o_ind", [78, -22]], ["o_arc", [0, 84]], ["o_sou", [30, -62]], ["o_sou", [-120, -64]]];
+// continent of each country in the feed (transcontinental ones by where most people live)
+const COUNTRY_CONT = (() => {
+  const m = {}, add = (k, list) => list.split("|").forEach(n => { m[n] = k; });
+  add("c_eu", "Slovenia|Croatia|Austria|Italy|Hungary|Germany|France|Spain|Portugal|Poland|Czech Republic|Slovakia|Romania|Bulgaria|Greece|Serbia|Bosnia and Herzegovina|Montenegro|Albania|North Macedonia|Ukraine|Norway|Sweden|Finland|Denmark|Iceland|Ireland|Netherlands|Belgium|Switzerland|Vatican City|Monaco|Ljubljana|Maribor|Lake Bled|Triglav|Postojna Cave|Svalbard|Alps|Balkans|Scandinavia|Danube");
+  add("c_as", "Turkey|Saudi Arabia|Iran|Israel|United Arab Emirates|Pakistan|India|Bangladesh|China|Japan|South Korea|Vietnam|Thailand|Indonesia|Philippines|Malaysia|Kazakhstan|Mongolia|Myanmar|Nepal|Qatar|Singapore|Tokyo|Mumbai|Istanbul|Himalayas|Mount Everest|Gobi Desert|Lake Baikal|Siberia|Mount Fuji|Yangtze|Ganges|Mekong|Central Asia|Caucasus|Dead Sea|Aral Sea");
+  add("c_af", "Egypt|Morocco|Nigeria|Kenya|Ethiopia|South Africa|Ghana|Tanzania|Lagos|Sahara|Namib|Nile|Congo River|Mount Kilimanjaro|Great Rift Valley|Madagascar|Sahel|Horn of Africa");
+  add("c_na", "Canada|United States|Mexico|Cuba|Mexico City|Rocky Mountains|Mississippi River|Grand Canyon|Yellowstone National Park|Greenland|Panama Canal");
+  add("c_sa", "Brazil|Argentina|Chile|Peru|Colombia|Venezuela|Bolivia|São Paulo|Andes|Amazon River|Amazon rainforest|Atacama Desert|Patagonia|Galápagos Islands");
+  add("c_oc", "Australia|New Zealand|Great Barrier Reef");
+  add("c_an", "Antarctica");
+  return m;
+})();
+function continentOf(c) {
+  const k = COUNTRY_CONT[c.en || c.name];
+  if (k) return k;
+  if (!c.coords || !window.d3?.geoDistance) return null;
+  let best = null, bd = 1e9;
+  for (const [ck, ll] of Object.entries(CONTINENT_AT)) { const d = d3.geoDistance(c.coords, ll); if (d < bd) { bd = d; best = ck; } }
+  return bd < 40 * Math.PI / 180 ? best : null;
+}
+// TopoJSON decoding; arcs are decoded lazily so one country can be read from a big file cheaply
+function topoIndex(topo, name) {
+  const tf = topo.transform, done = new Map();
+  const dec = i => {
+    let a = done.get(i);
+    if (!a) { let x = 0, y = 0; a = topo.arcs[i].map(p => tf ? (x += p[0], y += p[1], [x * tf.scale[0] + tf.translate[0], y * tf.scale[1] + tf.translate[1]]) : p); done.set(i, a); }
+    return a;
+  };
+  const arc = i => (i < 0 ? dec(~i).slice().reverse() : dec(i));
+  const ring = ids => { const pts = []; ids.forEach((i, k) => { const a = arc(i); pts.push(...(k ? a.slice(1) : a)); }); return pts; };
+  const toFeature = g => ({ type: "Feature", properties: g.properties || {},
+    geometry: g.type === "Polygon" ? { type: "Polygon", coordinates: g.arcs.map(ring) } : g.type === "MultiPolygon" ? { type: "MultiPolygon", coordinates: g.arcs.map(p => p.map(ring)) } : null });
+  const geoms = topo.objects[name].geometries;
+  return { all: () => geoms.map(toFeature).filter(f => f.geometry), byName: n => { const g = geoms.find(x => (x.properties || {}).name === n); return g ? toFeature(g) : null; } };
+}
+function topoFeatures(topo, name) { return topoIndex(topo, name).all(); }
+const worldP = {};
+function fixWinding(f) { // a ring wound the wrong way would cover the whole sphere
+  if (d3.geoArea(f) > 2 * Math.PI) { const g = f.geometry; if (g.type === "Polygon") g.coordinates.forEach(r => r.reverse()); else g.coordinates.forEach(p => p.forEach(r => r.reverse())); }
+}
+// 110m = light map for the spinning intro; 50m = detailed real shapes, swapped in once the globe settles
+function loadWorld(res = "110m") {
+  if (!worldP[res]) {
+    worldP[res] = getJSON(`https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-${res}.json`)
+      .then(topo => { const countries = topoFeatures(topo, "countries"); countries.forEach(fixWinding); return { countries, precise: true }; });
+    worldP[res] = res !== "110m" ? worldP[res].catch(() => null)
+      : worldP[res].catch(() => getJSON("land-simple.json").then(fc => { fc.features.forEach(fixWinding); return { countries: fc.features, precise: false }; }))
+                   .catch(() => ({ countries: [], precise: false }));
+  }
+  return worldP[res];
+}
+
+// 1:10m outlines, only for the country on screen and its neighbours (sharp borders when zoomed in)
+let world10P = null;
+function loadWorld10() {
+  if (!world10P) world10P = getJSON("https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-10m.json").then(topo => {
+    const idx = topoIndex(topo, "countries"), memo = new Map();
+    return { get: n => { if (!memo.has(n)) { const f = idx.byName(n); if (f) fixWinding(f); memo.set(n, f); } return memo.get(n); } };
+  }).catch(() => null);
+  return world10P;
+}
+let visRun = 0;
+function stopVisual() {
+  visRun++;
+  document.querySelectorAll(".vis-video").forEach(v => { try { v.pause(); } catch {} });
+}
+// full-screen canvases/videos cost ~5 MB each on iOS: keep only the last few, free the rest (recreated on revisit)
+const visLive = [];
+function keepVis(el) {
+  const k = visLive.indexOf(el); if (k >= 0) visLive.splice(k, 1);
+  visLive.push(el);
+  while (visLive.length > 3) {
+    const old = visLive.shift();
+    if (old.tagName === "VIDEO") { try { old.pause(); old.removeAttribute("src"); old.load(); } catch {} }
+    else { old.width = old.height = 0; }
+    old.remove();
+  }
+}
+function makeCanvas(slide, maxDpr = 2) {
+  let cv = slide.querySelector("canvas.vis");
+  const w = slide.clientWidth || innerWidth, h = slide.clientHeight || innerHeight, dpr = Math.min(maxDpr, devicePixelRatio || 1);
+  if (!cv) { cv = document.createElement("canvas"); cv.className = "vis"; slide.querySelector(".bg").insertBefore(cv, slide.querySelector(".bg .shade")); }
+  keepVis(cv);
+  cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); cv.style.width = w + "px"; cv.style.height = h + "px";
+  const x = cv.getContext("2d"); x.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return { cv, x, w, h };
+}
+function startVisual(slide, c) {
+  const run = ++visRun;
+  if (c.vis === "globe" && HAS_GEO) return runGlobe(slide, c, run);
+  if (c.vis === "chart") return runChart(slide, c, run);
+  if ((c.kind === "geo" || c.kind === "econ") && !c.vis) return runVideo(slide, c, run);
+}
+
+async function runGlobe(slide, c, run) {
+  const world = await loadWorld("110m"); if (run !== visRun) return;
+  const name = c.en || c.name, findIn = wd => wd.countries.find(f => f.properties.name === name || f.properties.name === COUNTRY_ALIAS[name]) || null;
+  const hit = findIn(world);
+  const target = c.coords || (hit && world.precise ? d3.geoCentroid(hit) : null);
+  if (!target) { c.vis = null; return runVideo(slide, c, run); } // no position known: try a clip instead
+  const { cv, x, w, h } = makeCanvas(slide, 3); // full screen resolution so borders stay crisp
+  let fine = null, fineHit = null, cache = null, w10 = null, w10state = hit && world.precise ? "loading" : "none";
+  if (world.precise) loadWorld("50m").then(wd => { if (wd && run === visRun) { fine = wd; fineHit = findIn(wd); } });
+  if (w10state === "loading") loadWorld10().then(z => { w10 = z; w10state = z ? "ready" : "none"; });
+  const get10 = f => (w10 && (w10.get(f.properties.name) || null)) || f;
+  const start = [target[0] - 70, 12];
+  let zoomK = 1.9;
+  if (hit) { const b = d3.geoBounds(hit), span = Math.max(Math.abs(b[1][0] - b[0][0]) * Math.cos(target[1] * Math.PI / 180), Math.abs(b[1][1] - b[0][1])); zoomK = Math.max(1.4, Math.min(2.5, 24 / Math.max(span, 1))); }
+  const base = Math.min(w, h) * 0.42, proj = d3.geoOrthographic().clipAngle(90).precision(0.4), grat = d3.geoGraticule10();
+  const stars = Array.from({ length: 70 }, (_, i) => [((i * 97) % 100) / 100 * w, ((i * 53) % 100) / 100 * h * 0.6, (i % 3) * 0.5 + 0.5]);
+  const label = c.name, contName = continentOf({ ...c, coords: c.coords || target }), coordTxt = (contName ? t(contName) + "  ·  " : "") + `${Math.abs(target[1]).toFixed(0)}°${target[1] >= 0 ? "N" : "S"}  ${Math.abs(target[0]).toFixed(0)}°${target[0] >= 0 ? "E" : "W"}`;
+  const ease = t => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  // everything except the pulsing marker
+  const cont = continentOf({ ...c, coords: c.coords || target });
+  const visible = ll => d3.geoDistance(ll, [-proj.rotate()[0], -proj.rotate()[1]]) < 1.25; // front side of the globe, away from the rim
+  const drawLabels = (g, a) => {
+    if (a <= 0.02) return;
+    g.save(); g.textAlign = "center"; g.textBaseline = "middle";
+    g.font = '600 12.5px "Familjen Grotesk", system-ui, sans-serif';
+    for (const [k, ll] of OCEAN_AT) {
+      if (!visible(ll)) continue; const p = proj(ll); if (!p || p[1] < 70 || p[1] > h * 0.62) continue;
+      g.fillStyle = `rgba(150,200,255,${0.7 * a})`; g.fillText(t(k), p[0], p[1]);
+    }
+    g.font = '800 12px "Familjen Grotesk", system-ui, sans-serif';
+    for (const [k, ll] of Object.entries(CONTINENT_AT)) {
+      if (!visible(ll)) continue; const p = proj(ll); if (!p || p[1] < 70 || p[1] > h * 0.62) continue;
+      const txt = t(k).toUpperCase(), on = k === cont;
+      g.lineWidth = 3; g.strokeStyle = `rgba(7,8,12,${0.55 * a})`; g.strokeText(txt, p[0], p[1]);
+      g.fillStyle = on ? `rgba(200,245,96,${a})` : `rgba(244,245,247,${0.82 * a})`; g.fillText(txt, p[0], p[1]);
+    }
+    g.restore();
+  };
+  // everything except the pulsing marker
+  const drawBase = (g, countries, hl, labelA) => {
+    const path = d3.geoPath(proj, g);
+    g.lineJoin = "round"; g.lineCap = "round";
+    g.fillStyle = "#07080c"; g.fillRect(0, 0, w, h);
+    g.fillStyle = "rgba(255,255,255,.3)"; stars.forEach(([sx, sy, r]) => { g.beginPath(); g.arc(sx, sy, r, 0, 7); g.fill(); });
+    const [cx, cy] = proj.translate(), R = proj.scale();
+    const glow = g.createRadialGradient(cx, cy, R * .92, cx, cy, R * 1.16); glow.addColorStop(0, "rgba(124,196,255,.32)"); glow.addColorStop(1, "rgba(124,196,255,0)");
+    g.fillStyle = glow; g.beginPath(); g.arc(cx, cy, R * 1.16, 0, 7); g.fill();
+    const oc = g.createRadialGradient(cx - R * .35, cy - R * .35, R * .1, cx, cy, R); oc.addColorStop(0, "#1d4378"); oc.addColorStop(1, "#0a1630");
+    g.fillStyle = oc; g.beginPath(); path({ type: "Sphere" }); g.fill();
+    g.strokeStyle = "rgba(124,196,255,.10)"; g.lineWidth = 0.6; g.beginPath(); path(grat); g.stroke();
+    // land, then thin country borders on top
+    g.fillStyle = "#3a5a2a"; g.beginPath(); countries.forEach(f => path(f)); g.fill();
+    g.strokeStyle = "rgba(225,240,205,.42)"; g.lineWidth = 0.55; g.stroke();
+    if (hl) { g.fillStyle = "rgba(200,245,96,.62)"; g.strokeStyle = "#e4ff9a"; g.lineWidth = 1.6; g.beginPath(); path(hl); g.fill(); g.stroke(); }
+    // soft light from the top-left for a 3D look
+    const sh = g.createRadialGradient(cx - R * .45, cy - R * .5, R * .15, cx, cy, R * 1.02);
+    sh.addColorStop(0, "rgba(255,255,255,.10)"); sh.addColorStop(.55, "rgba(0,0,0,0)"); sh.addColorStop(1, "rgba(0,0,0,.38)");
+    g.fillStyle = sh; g.beginPath(); path({ type: "Sphere" }); g.fill();
+    drawLabels(g, labelA);
+  };
+  const t0 = performance.now(), DUR = REDUCED ? 1 : 4200, DUR2 = REDUCED ? 1 : 2200;
+  let last = 0, shapeK = null; // shapeK: extra zoom so the country's real outline fills ~half the screen
+  const frame = now => {
+    if (run !== visRun) return;
+    const settled = now - t0 > DUR + (shapeK && shapeK > 1.05 ? DUR2 : 0);
+    if (settled && now - last < 45) { requestAnimationFrame(frame); return; } // after the intro only the pulse moves: ~22 fps saves battery
+    last = now;
+    const t = Math.max(0, Math.min(1, (now - t0) / DUR)), k = ease(t);
+    const lon = start[0] + (target[0] - start[0]) * k, lat = start[1] + (target[1] - start[1]) * k;
+    const zt = Math.max(0, (t - .3) / .7);
+    let scale = base * (1 + (zoomK - 1) * zt * zt);
+    proj.rotate([-lon, -lat]).scale(scale).translate([w / 2, h * 0.36]);
+    const shape = (w10 && hit && (w10.get(hit.properties.name) || null)) || (fine && fineHit) || hit;
+    if (t >= 1 && shape && shapeK === null) {
+      const bb = d3.geoPath(proj).bounds(shape), bw = bb[1][0] - bb[0][0], bh = bb[1][1] - bb[0][1];
+      shapeK = bw > 0 && bh > 0 ? Math.max(1, Math.min(w * 0.5 / bw, h * 0.3 / bh, 40)) : 1;
+    }
+    const t2 = shapeK > 1.05 ? Math.max(0, Math.min(1, (now - t0 - DUR) / DUR2)) : 0;
+    if (t2 > 0) { scale *= 1 + (shapeK - 1) * ease(t2); proj.scale(scale); }
+    const done = t >= 1 && (shapeK <= 1.05 || t2 >= 1);
+    if (done && fine && w10state !== "loading") {
+      // settled: draw the detailed map once (1:10m for everything on screen), then only repaint the marker on top of it
+      if (!cache) {
+        const onScreen = f => { const b = d3.geoPath(proj).bounds(f); return isFinite(b[0][0]) && b[1][0] > 0 && b[0][0] < w && b[1][1] > 0 && b[0][1] < h; };
+        const countries = w10 ? fine.countries.map(f => (onScreen(f) ? get10(f) : f)) : fine.countries;
+        cache = document.createElement("canvas"); cache.width = cv.width; cache.height = cv.height; const g = cache.getContext("2d"); g.setTransform(cv.width / w, 0, 0, cv.height / h, 0, 0);
+        drawBase(g, countries, shape, shapeK > 1.05 ? 0 : 1);
+      }
+      x.drawImage(cache, 0, 0, w, h);
+    } else drawBase(x, (t2 > 0 && fine ? fine : world).countries, shape, Math.min(1, t * 1.6) * (1 - (shapeK > 1.05 ? ease(t2) : 0)));
+    if (t > .55) {
+      const p = proj(target), a = Math.min(1, (t - .55) / .25), pulse = (Math.max(0, now - t0) / 1300) % 1;
+      const ringA = a * (1 - (shapeK > 1.05 ? ease(t2) : 0)); // the ring fades as the country's own outline takes over
+      if (p) {
+        if (ringA > .01) {
+          x.strokeStyle = `rgba(200,245,96,${(1 - pulse) * ringA})`; x.lineWidth = 2; x.beginPath(); x.arc(p[0], p[1], 7 + pulse * 24, 0, 7); x.stroke();
+          x.fillStyle = `rgba(200,245,96,${ringA})`; x.beginPath(); x.arc(p[0], p[1], 5.5, 0, 7); x.fill();
+        }
+        x.font = '700 17px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = `rgba(255,255,255,${a})`;
+        let lx = p[0] + 14 + x.measureText(label).width > w - 76 ? p[0] - 14 - x.measureText(label).width : p[0] + 14, ly = p[1] - 9;
+        if (shape && t2 > 0) { // zoomed onto the country: move the name above its outline
+          const bb = d3.geoPath(proj).bounds(shape), e2 = ease(t2);
+          const ax = Math.max(16, Math.min(w - 76 - x.measureText(label).width, bb[0][0])), ay = Math.max(96, bb[0][1] - 30);
+          lx += (ax - lx) * e2; ly += (ay - ly) * e2;
+        }
+        x.fillText(label, lx, ly);
+        x.font = '500 12px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = `rgba(244,245,247,${a * .7})`; x.fillText(coordTxt, lx, ly + 17);
+      }
+    }
+    if (t < 1 || !REDUCED) requestAnimationFrame(frame); // keep the marker pulsing while the card is on screen
+  };
+  requestAnimationFrame(frame);
+}
+
+const chartCache = {};
+function chartData(topic) {
+  const [ind, reg, , years = "2000:2025"] = CHARTS[topic];
+  const key = ind + reg + years;
+  if (!chartCache[key]) chartCache[key] = getJSON(`https://api.worldbank.org/v2/country/${reg}/indicator/${ind}?format=json&per_page=200&date=${years}`)
+    .then(r => (Array.isArray(r) && Array.isArray(r[1]) ? r[1] : []).filter(d => d.value !== null && d.value !== undefined).map(d => [+d.date, +d.value]).sort((a, b) => a[0] - b[0]))
+    .catch(() => { delete chartCache[key]; return []; });
+  return chartCache[key];
+}
+async function runChart(slide, c, run) {
+  const topic = c.en || c.name, [, reg, unit] = CHARTS[topic];
+  const data = await chartData(topic); if (run !== visRun) return;
+  if (data.length < 5) { // no data: fall back to a clip, and give the card back its big word
+    c.vis = null;
+    if (!c.img && !slide.querySelector(".bigword")) slide.querySelector(".meta").insertAdjacentHTML("beforebegin", `<div class="bigword"><small>${esc(t(c.kind))}</small>${esc(c.topic || c.title.split(":").pop().trim().slice(0, 60))}</div>`);
+    return runVideo(slide, c, run);
+  }
+  const { x, w, h } = makeCanvas(slide);
+  const L = 46, Rr = w - 84, T = 120, B = h * 0.52;
+  let lo = Math.min(0, ...data.map(d => d[1])), hi = Math.max(...data.map(d => d[1])); hi += (hi - lo) * 0.18;
+  const X = i => L + (Rr - L) * i / (data.length - 1), Y = v => B - (B - T) * (v - lo) / (hi - lo || 1);
+  const peakI = data.reduce((m, d, i) => (Math.abs(d[1]) > Math.abs(data[m][1]) ? i : m), 0);
+  const title = `${c.name} · ${regionName(reg)}`, src = t("data_src");
+  const ticks = [0, .25, .5, .75, 1].map(f => lo + (hi - lo) * f);
+  const yearIdx = [0, Math.floor((data.length - 1) / 3), Math.floor(2 * (data.length - 1) / 3), data.length - 1];
+  const t0 = performance.now(), DUR = REDUCED ? 1 : 3800;
+  let peakAt = null;
+  const frame = now => {
+    if (run !== visRun) return;
+    const t = Math.max(0, Math.min(1, (now - t0) / DUR));
+    x.fillStyle = "#07080c"; x.fillRect(0, 0, w, h);
+    const bg = x.createRadialGradient(w * .8, h * .12, 20, w * .8, h * .12, w); bg.addColorStop(0, "rgba(255,198,92,.16)"); bg.addColorStop(1, "rgba(255,198,92,0)"); x.fillStyle = bg; x.fillRect(0, 0, w, h);
+    x.font = '700 15px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = "rgba(244,245,247,.9)"; x.fillText(title, L, 92);
+    x.font = '500 11px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = "rgba(244,245,247,.45)"; x.strokeStyle = "rgba(255,255,255,.08)"; x.lineWidth = 1;
+    ticks.forEach(v => { x.beginPath(); x.moveTo(L, Y(v)); x.lineTo(Rr, Y(v)); x.stroke(); x.fillText(fmtVal(v, unit), 6, Y(v) + 4); });
+    yearIdx.forEach(i => x.fillText(data[i][0], X(i) - 12, B + 20));
+    x.fillText(src, L, B + 40);
+    const p = t * (data.length - 1), n = Math.floor(p), f = p - n;
+    const pts = data.slice(0, n + 1).map((d, i) => [X(i), Y(d[1])]);
+    if (n < data.length - 1) pts.push([X(n) + (X(n + 1) - X(n)) * f, Y(data[n][1] + (data[n + 1][1] - data[n][1]) * f)]);
+    const ar = x.createLinearGradient(0, T, 0, B); ar.addColorStop(0, "rgba(255,198,92,.42)"); ar.addColorStop(1, "rgba(255,198,92,0)");
+    x.fillStyle = ar; x.beginPath(); x.moveTo(pts[0][0], Y(Math.max(lo, 0))); pts.forEach(q => x.lineTo(q[0], q[1])); x.lineTo(pts[pts.length - 1][0], Y(Math.max(lo, 0))); x.fill();
+    x.strokeStyle = "#ffc65c"; x.lineWidth = 3; x.lineJoin = "round"; x.beginPath(); pts.forEach((q, i) => (i ? x.lineTo(q[0], q[1]) : x.moveTo(q[0], q[1]))); x.stroke();
+    const last = pts[pts.length - 1]; x.fillStyle = "#fff"; x.beginPath(); x.arc(last[0], last[1], 5, 0, 7); x.fill();
+    if (p >= peakI) {
+      if (peakAt === null) peakAt = now;
+      const a = REDUCED ? 1 : Math.min(1, (now - peakAt) / 600), px = X(peakI), py = Y(data[peakI][1]);
+      x.globalAlpha = a; x.fillStyle = "#ffc65c"; x.beginPath(); x.arc(px, py, 6, 0, 7); x.fill();
+      const big = fmtVal(data[peakI][1], unit), yr = String(data[peakI][0]);
+      x.font = '800 20px "Familjen Grotesk", system-ui, sans-serif'; const bw = Math.max(x.measureText(big).width, 40) + 24;
+      const bx = Math.min(Math.max(L, px - bw / 2), Rr - bw), by = Math.max(T - 6, py - 64);
+      x.fillStyle = "rgba(16,18,26,.88)"; x.strokeStyle = "rgba(255,198,92,.6)"; x.lineWidth = 1;
+      x.beginPath(); x.roundRect ? x.roundRect(bx, by, bw, 48, 9) : x.rect(bx, by, bw, 48); x.fill(); x.stroke();
+      x.fillStyle = "#ffc65c"; x.fillText(big, bx + 12, by + 24);
+      x.font = '500 11px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = "rgba(244,245,247,.75)"; x.fillText(yr, bx + 12, by + 40);
+      x.globalAlpha = 1;
+    }
+    if (t < 1 || peakAt === null || now - peakAt < 650) requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+}
+
+/* real clips from Wikimedia Commons (only formats the phone can play) */
+const videoCache = {};
+const canWebm = (() => { try { return !!document.createElement("video").canPlayType('video/webm; codecs="vp9"'); } catch { return false; } })();
+function findClip(topic) {
+  if (!canWebm) return Promise.resolve(null);
+  if (!(topic in videoCache)) videoCache[topic] = getJSON(`https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&generator=search&gsrnamespace=6&gsrlimit=8&gsrsearch=${encodeURIComponent(`filetype:video intitle:"${topic}"`)}&prop=videoinfo&viprop=url|size|mime|derivatives`)
+    .then(r => {
+      for (const pg of (r.query?.pages || []).sort((a, b) => (a.index || 0) - (b.index || 0))) {
+        const vi = (pg.videoinfo || [])[0]; if (!vi || BLOCK.test(pg.title)) continue;
+        if (vi.duration && (vi.duration < 4 || vi.duration > 600)) continue;
+        const d = (vi.derivatives || []).filter(x => /webm/.test(x.type || "") && /vp9/.test(x.type || "") && (x.height || 0) >= 360 && (x.height || 0) <= 720).sort((a, b) => b.height - a.height)[0];
+        if (d) return { src: d.src, page: vi.descriptionurl || "" };
+      }
+      return null;
+    }).catch(() => null);
+  return videoCache[topic];
+}
+async function runVideo(slide, c, run) {
+  const clip = await findClip(c.en || c.name); if (run !== visRun || !clip) return;
+  let v = slide.querySelector(".vis-video");
+  if (!v) {
+    v = document.createElement("video"); v.className = "vis-video"; v.muted = true; v.loop = true; v.playsInline = true;
+    v.setAttribute("playsinline", ""); v.setAttribute("muted", ""); v.preload = "auto"; v.src = clip.src;
+    v.addEventListener("playing", () => v.classList.add("on"));
+    slide.querySelector(".bg").insertBefore(v, slide.querySelector(".bg .shade"));
+    const src = slide.querySelector(".src"); if (src && clip.page && !src.querySelector("a.vsrc")) src.insertAdjacentHTML("afterbegin", `<a class="vsrc" href="${esc(clip.page)}" target="_blank" rel="noopener">${esc(t("video_src"))}</a> · `);
+  }
+  keepVis(v);
+  try { await v.play(); } catch {}
+}
+
+/* ---------- quizzes ---------- */
+function makeQuiz() {
+  const pool = S.quizPool.filter(c => !c.quizzed);
+  const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+  const hist = pool.filter(c => c.kind === "history" && c.year > 0);
+  const withDesc = S.quizPool.filter(c => c.desc && c.name && c.kind !== "news" && c.kind !== "photo");
+  const news = pool.filter(c => c.kind === "news" && c.links?.length && (c.lang || LANG) === LANG);
+  const types = LANG === "en" ? ["capital"] : [];
+  if (hist.length) types.push("year");
+  if (withDesc.length >= 4 && pool.some(c => c.desc && c.name && c.kind !== "news" && c.kind !== "photo")) types.push("desc");
+  if (news.length) types.push("news");
+  if (!types.length) return null;
+  const type = pick(types);
+  if (type === "capital") {
+    const geo = pool.filter(c => CAPITALS[c.name]);
+    const country = geo.length ? pick(geo).name : pick(Object.keys(CAPITALS));
+    geo.forEach(c => { if (c.name === country) c.quizzed = true; });
+    const cap = CAPITALS[country];
+    const others = shuffle(Object.values(CAPITALS).filter(x => x !== cap)).slice(0, 3);
+    const src = geo.find(c => c.name === country);
+    return { id: "quiz:capital:" + country + ":" + S.cards.length, kind: "quiz", q: t("q_capital", country), img: src?.thumb || "",
+      opts: shuffle([cap, ...others]), answer: cap, explain: t("ex_capital", country, cap), src: src || { kind: "geo" } };
+  }
+  if (type === "year") {
+    const c = pick(hist); c.quizzed = true;
+    const y = +c.year, opts = new Set([y]);
+    const spread = Math.abs(2026 - y) > 300 ? 60 : Math.abs(2026 - y) > 80 ? 20 : 6;
+    for (let g = 0; opts.size < 4 && g < 500; g++) { const v = y + Math.round((Math.random() * 2 - 1) * spread) || y + 1; if (v !== y && v <= 2026 && v > 0) opts.add(v); }
+    return { id: "quiz:" + c.id, kind: "quiz", q: t("q_year", trimText(c.event, 160)), img: c.thumb,
+      opts: shuffle([...opts]).map(String), answer: String(y), explain: t("ex_year", y), src: c };
+  }
+  if (type === "desc") {
+    const c = pick(pool.filter(x => x.desc && x.name && x.kind !== "news" && x.kind !== "photo")); c.quizzed = true;
+    // .name = article title (history cards' .title is the event sentence); dedupe (same article can be trend + deep)
+    const others = [...new Set(shuffle(withDesc.filter(x => x.name !== c.name && x.desc !== c.desc)).map(x => x.name))].slice(0, 3);
+    if (others.length < 3) return null;
+    return { id: "quiz:" + c.id, kind: "quiz", q: t("q_desc", c.desc), opts: shuffle([c.name, ...others]), answer: c.name,
+      explain: `${c.name}: ${trimText(c.text.replace(/^On this day in [^,]*, /, ""), 140)}`, src: c };
+  }
+  const c = pick(news); c.quizzed = true;
+  const answer = c.topic;
+  const distract = [...new Set(shuffle(S.quizPool.filter(x => x.kind !== "news" && x.name && x.name !== answer && x.name.length < 50)).map(x => x.name))].slice(0, 3);
+  if (distract.length < 3) return null;
+  return { id: "quiz:" + c.id, kind: "quiz", q: t("q_news", trimText(c.headline, 170)), img: c.thumb,
+    opts: shuffle([answer, ...distract]), answer, explain: `${answer}: ${trimText(c.text.replace(c.headline, ""), 140)}`, src: c };
+}
+
+/* ---------- rendering ---------- */
+const ICON = {
+  heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.4-9.2-9A5 5 0 0 1 12 5.6 5 5 0 0 1 21.2 11C19 15.6 12 20 12 20z"/></svg>',
+  save: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg>',
+  share: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l7 7-7 7"/><path d="M21 11H11a8 8 0 0 0-8 8"/></svg>',
+  post: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M12 8v8M8 12h8"/></svg>',
+  read: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h7a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H3z"/><path d="M21 5h-7a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h7z"/></svg>',
+  on: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>',
+  off: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6"/></svg>',
+};
+function slideHTML(c, i) {
+  if (c.kind === "quiz") return `<section class="slide quiz" data-i="${i}" aria-label="Quiz">
+    <div class="bg"></div>
+    <div class="qwrap">
+      <div class="qlabel">${t("quick_quiz")}</div>
+      ${c.img ? `<img class="qimg" src="${esc(c.img)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : ""}
+      <div class="qtext">${esc(c.q)}</div>
+      <div class="opts">${c.opts.map(o => `<button class="opt" data-opt="${esc(o)}">${esc(o)}</button>`).join("")}</div>
+      <div class="qres" aria-live="polite">${c.done ? resultHTML(c) : ""}</div>
+      <div class="qhint">${t("skip")}</div>
+    </div></section>`;
+  const wide = c.imgW && c.imgH && c.imgW / c.imgH > 1.25;
+  const bg = c.img
+    ? `<div class="blur" style="background-image:url('${cssUrl(c.img)}')"></div><div class="pic${wide ? " contain" : ""}" style="background-image:url('${cssUrl(c.img)}')"></div>`
+    : `<div class="grad" style="--g:${GRADS[i % GRADS.length]}"></div>`;
+  const cont = c.kind === "geo" ? continentOf(c) : null;
+  const label = esc(t(c.kind)) + (cont ? ` · ${esc(t(cont))}` : "") + (c.kind === "history" ? ` · ${esc(c.year)}` : "") + (c.lang && c.lang !== LANG ? ` · ${esc(t("en_news"))}` : "");
+  return `<section class="slide" data-i="${i}" aria-label="${esc(c.title)}">
+    <div class="bg">${bg}<div class="shade"></div></div>
+    ${!c.img && !c.vis ? `<div class="bigword"><small>${esc(t(c.kind))}</small>${esc(c.topic || c.title.split(":").pop().trim().slice(0, 60))}</div>` : ""}
+    <div class="meta">
+      <span class="tag ${c.kind}">${label}</span>
+      <h2>${esc(c.title)}</h2>
+      ${c.kind === "photo" ? "" : `<p class="cap">${captionHTML(c)}</p>
+      <button class="more" data-more>${t("more")}</button>`}
+      <div class="src">${c.credit ? esc(trimText(c.credit, 60)) + " · " : ""}<a href="${esc(c.url)}" target="_blank" rel="noopener">Wikipedia</a> · CC BY-SA</div>
+    </div>
+    <div class="side">
+      <button class="act${S.liked[c.id] ? " liked" : ""}" data-act="like" aria-label="${esc(t("like"))}"><span class="ic">${ICON.heart}</span><span>${S.liked[c.id] ? t("liked") : t("like")}</span></button>
+      <button class="act${S.saved[c.id] ? " saved" : ""}" data-act="save" aria-label="${esc(t("save"))}"><span class="ic">${ICON.save}</span><span>${S.saved[c.id] ? t("saved") : t("save")}</span></button>
+      <button class="act" data-act="share" aria-label="${esc(t("share"))}"><span class="ic">${ICON.share}</span><span>${t("share")}</span></button>
+      <button class="act" data-act="post" aria-label="${esc(t("post"))}"><span class="ic">${ICON.post}</span><span>${t("post")}</span></button>
+      <a class="act" href="${esc(c.url)}" target="_blank" rel="noopener" aria-label="${esc(t("read"))}"><span class="ic">${ICON.read}</span><span>${t("read")}</span></a>
+    </div>
+    <div class="bar"><i></i></div>
+  </section>`;
+}
+function captionHTML(c) {
+  const t = c.kind === "news" ? c.text.replace(c.headline, "").trim() || c.text : c.text;
+  return t.split(/(\s+)/).map((w, k) => (/\s/.test(w) ? w : `<span class="w" data-k="${k}">${esc(w)}</span>`)).join("");
+}
+function resultHTML(c) {
+  return c.correct ? `<b style="color:var(--ok)">${t("correct")}</b> ${esc(c.explain)}` : `<b style="color:var(--bad)">${t("wrong")}</b> ${esc(c.explain)}`;
+}
+function visibleCards() {
+  if (S.filter === "news") return S.cards.filter(c => !c.fromSaved && (c.kind === "news" || c.kind === "quiz" && c.src?.kind === "news"));
+  if (S.filter === "saved") return S.cards.filter(c => S.saved[c.id]);
+  return S.cards.filter(c => !c.fromSaved);
+}
+// cards saved on earlier visits are not in S.cards after a reload: bring them back (hidden from For you / News)
+function restoreSaved() {
+  for (const v of Object.values(S.saved)) if (v && v.text && v.kind && !S.seen.has(v.id)) { S.seen.add(v.id); S.cards.push({ ...v, fromSaved: true }); }
+}
+let rendered = 0;
+function renderFeed(reset) {
+  const feed = $("#feed"), list = visibleCards();
+  if (reset) { feed.innerHTML = ""; rendered = 0; feed.scrollTop = 0; }
+  if (S.filter === "saved" && !list.length) {
+    feed.innerHTML = `<section class="slide"><div class="bg"><div class="grad" style="--g:${GRADS[3]}"></div></div><div class="qwrap"><div class="qlabel">${t("saved_h")}</div><div class="qtext">${t("nothing_saved")}</div><p style="color:var(--ink-dim)">${t("saved_empty")}</p></div></section>`;
+    return;
+  }
+  const frag = list.slice(rendered).map((c, k) => slideHTML(c, S.cards.indexOf(c))).join("");
+  feed.insertAdjacentHTML("beforeend", frag);
+  feed.querySelectorAll(".slide:not([data-obs])").forEach(el => { el.dataset.obs = 1; io.observe(el); });
+  rendered = list.length;
+}
+function appendCards(cards) {
+  for (const c of cards) {
+    if (S.seen.has(c.id) || (c.kind !== "quiz" && VIEWED.has(c.id))) continue;
+    S.seen.add(c.id); S.cards.push(c);
+    if (c.kind !== "quiz") { S.quizPool.push(c); S.sinceQuiz++; }
+    if (S.sinceQuiz >= QUIZ_EVERY) { const q = makeQuiz(); if (q && !S.seen.has(q.id)) { S.seen.add(q.id); S.cards.push(q); S.sinceQuiz = 0; } }
+  }
+  if (S.filter !== "saved") renderFeed(false);
+}
+let newsDays = 0;
+async function loadMore() {
+  if (S.loadingMore) return;
+  S.loadingMore = true;
+  try {
+    let day = { news: [], extra: [] };
+    if (newsDays < 2) {
+      try { day = await loadDay(); } catch {}
+      if (LANG !== "en" && !day.news.length) { // this Wikipedia has no "In the news": use English news
+        try { const en = await loadDay(0, apiFor("en"), "enCursor"); en.news.forEach(c => { c.lang = "en"; c.id = "en:" + c.id; }); day.news = en.news; } catch {}
+      }
+      newsDays++;
+    }
+    const first = !S.cards.length;
+    const topics = await loadTopics(first ? 5 : 6);
+    let cards;
+    if (first) cards = [...day.news, ...shuffle([...topics, ...day.extra])];
+    else { cards = shuffle([...topics, ...day.extra]); day.news.forEach((n, i) => cards.splice(Math.min(cards.length, i * 3), 0, n)); }
+    if (!cards.length && !S.cards.length) throw new Error("offline");
+    appendCards(cards);
+    $("#loading").hidden = true;
+  } catch {
+    $("#loading").textContent = t("offline");
+  } finally { S.loadingMore = false; }
+}
+
+/* ---------- playback: narration + highlight ---------- */
+const synth = window.speechSynthesis;
+let voice = null;
+const NOVELTY = /Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Hysterical|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Fred|Junior|Ralph|Kathy|Grandma|Grandpa|Rocko|Shelley|\bFlo\b|Eddy|Reed|Sandy/i;
+// calm male voices first (the person asked for a gentler, non-female narrator)
+const GENTLE_MALE = /\b(Evan|Nathan|Aaron|Arthur|Oliver|Tom|Daniel|Ryan|Guy|Thomas|Nicolas|Markus|Yannick|Jorge|Diego|Juan|Luca|Paolo|Alex)\b|Google UK English Male|Microsoft (Guy|Ryan|Christopher|Eric|Andrew|Brian)/i;
+function voiceScore(v) {
+  let s = 0;
+  if (/premium|enhanced|natural|neural/i.test(v.name)) s += 10;
+  if (GENTLE_MALE.test(v.name)) s += 15;
+  if (/en[-_](US|GB)/i.test(v.lang)) s += 2;
+  if (NOVELTY.test(v.name)) s -= 30;
+  return s;
+}
+function voicesFor(lang = LANG) { const code = LANGS[lang]?.voice || lang; return synth ? synth.getVoices().filter(v => new RegExp("^" + code + "([-_]|$)", "i").test(v.lang)).sort((a, b) => voiceScore(b) - voiceScore(a) || a.name.localeCompare(b.name)) : []; }
+function voiceFor(lang = LANG) {
+  const vs = voicesFor(lang), want = store.get("voice." + lang, "");
+  return (want && vs.find(v => v.name === want)) || vs[0] || null;
+}
+function pickVoice() { voice = voiceFor(LANG); }
+if (synth) { pickVoice(); synth.onvoiceschanged = pickVoice; }
+let speakToken = 0, barTimer = 0;
+function stopPlayback() {
+  speakToken++;
+  if (synth) { if (synth.paused) synth.resume(); synth.cancel(); } // Safari: cancel() while paused leaves later utterances stuck paused
+  clearInterval(barTimer);
+  document.querySelectorAll(".w.on").forEach(w => w.classList.remove("on"));
+}
+function play(slide) {
+  stopPlayback();
+  document.querySelectorAll(".slide.playing").forEach(s => s !== slide && s.classList.remove("playing"));
+  stopVisual();
+  if (!slide) return;
+  slide.classList.add("playing");
+  const c = S.cards[+slide.dataset.i];
+  if (c && c.kind !== "quiz") startVisual(slide, c);
+  if (!c || c.kind === "quiz") { if (c?.kind === "quiz" && S.sound && S.started && !c.done) speak(c.q, null, null); return; }
+  countLearned(c);
+  const bar = slide.querySelector(".bar i");
+  const spoken = c.kind === "news" ? c.text : c.kind === "history" ? c.text : `${c.title}. ${c.text}`;
+  if (S.sound && S.started && synth) speak(spoken, slide, bar, c.lang || LANG);
+  else { // silent: progress bar by reading time
+    const dur = Math.max(6000, spoken.split(/\s+/).length * 330), t0 = Date.now();
+    barTimer = setInterval(() => { const p = Math.min(1, (Date.now() - t0) / dur); if (bar) bar.style.width = p * 100 + "%"; if (p >= 1) clearInterval(barTimer); }, 120);
+  }
+}
+function speak(text, slide, bar, lang = LANG) {
+  const tok = ++speakToken;
+  const u = new SpeechSynthesisUtterance(text);
+  window.__ssUtt = u; // keep a reference: GC'd utterances may never fire onend/onboundary
+  if (!voice) pickVoice();
+  const vv = lang === LANG ? voice : voiceFor(lang);
+  if (vv) u.voice = vv;
+  u.lang = vv?.lang || lang; u.rate = store.get("rate", 0.9); u.pitch = 0.94;
+  const words = slide ? [...slide.querySelectorAll(".cap .w")] : [];
+  const capText = slide ? slide.querySelector(".cap").textContent : "";
+  const offset = Math.max(0, text.indexOf(capText.slice(0, 30)));
+  // map char index -> caption word
+  const starts = []; if (words.length) { let pos = 0; words.forEach(w => { const at = capText.indexOf(w.textContent, pos); starts.push(at); pos = at + w.textContent.length; }); }
+  let lastOn = null;
+  u.onboundary = e => {
+    if (tok !== speakToken) return;
+    if (bar) bar.style.width = Math.min(100, (e.charIndex / text.length) * 100) + "%";
+    if (!words.length) return;
+    const ci = e.charIndex - offset; if (ci < 0) return;
+    let k = 0; while (k + 1 < starts.length && starts[k + 1] <= ci) k++;
+    if (lastOn) lastOn.classList.remove("on");
+    lastOn = words[k]; if (lastOn) lastOn.classList.add("on");
+  };
+  u.onend = () => { if (tok !== speakToken) return; if (bar) bar.style.width = "100%"; if (lastOn) lastOn.classList.remove("on"); };
+  synth.speak(u);
+}
+
+/* ---------- progress (streak, learned) ---------- */
+function todayKey() { const d = new Date(); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; }
+function countLearned(c) {
+  markViewed(c);
+  const P = S.progress, k = todayKey();
+  if (!P.days[k]) {
+    const y = new Date(); y.setDate(y.getDate() - 1);
+    const yk = `${y.getFullYear()}-${y.getMonth() + 1}-${y.getDate()}`;
+    P.streak = P.last === yk ? P.streak + 1 : 1; P.last = k; P.days[k] = { learned: 0, seen: [] };
+    const keys = Object.keys(P.days); if (keys.length > 60) delete P.days[keys[0]];
+  }
+  if (!P.days[k].seen.includes(c.id)) { P.days[k].seen.push(c.id); P.days[k].learned++; P.learned++; if (P.days[k].seen.length > 400) P.days[k].seen.shift(); }
+  store.set("progress", P); $("#streak").textContent = P.streak;
+}
+function showProgress() {
+  const P = S.progress, today = P.days[todayKey()]?.learned || 0;
+  const acc = P.answered ? Math.round((P.correct / P.answered) * 100) + "%" : "–";
+  const savedCards = S.cards.filter(c => S.saved[c.id]);
+  const savedOld = Object.values(S.saved).filter(v => typeof v === "object" && !S.cards.some(c => c.id === v.id));
+  const items = [...savedCards.map(c => ({ id: c.id, title: c.title, thumb: c.thumb, url: c.url })), ...savedOld];
+  openScreen(`<h1>${t("you")}</h1><p class="lead">${t("you_lead")}</p>
+    <div class="stats">
+      <div class="stat"><b>${P.streak}</b><span>${t("streak")}</span></div>
+      <div class="stat"><b>${today}</b><span>${t("learned")}</span></div>
+      <div class="stat"><b>${acc}</b><span>${t("score")}</span></div>
+    </div>
+    <h1 style="font-size:18px;margin-bottom:10px">${t("language")}</h1>
+    <div class="set"><select id="langSel" aria-label="${esc(t("language"))}">${Object.entries(LANGS).map(([k, v]) => `<option value="${k}"${k === LANG ? " selected" : ""}>${v.name}</option>`).join("")}</select></div>
+    <h1 style="font-size:18px;margin-bottom:10px">${t("voice")}</h1>
+    <div class="set">
+      <label for="voiceSel">${t("narrator")}</label>
+      <select id="voiceSel">${voicesFor().map(v => `<option value="${esc(v.name)}"${voice && v.name === voice.name ? " selected" : ""}>${esc(v.name)} (${esc(v.lang)})</option>`).join("") || `<option>${t("default_voice")}</option>`}</select>
+      <label for="rateSel">${t("speed")} <span id="rateVal">${store.get("rate", 0.9).toFixed(2)}×</span></label>
+      <input id="rateSel" type="range" min="0.8" max="1.25" step="0.05" value="${store.get("rate", 0.9)}">
+      <button class="testv" id="testVoice">${t("test")}</button>
+      <p class="hint">${t("voice_hint")}</p>
+    </div>
+    <h1 style="font-size:18px;margin-bottom:10px">${t("saved_h")}</h1>
+    ${items.length ? `<div class="grid">${items.map(s => `<a class="tile" href="${esc(s.url)}" target="_blank" rel="noopener" style="background-image:url('${cssUrl(s.thumb)}')"><span>${esc(trimText(s.title, 70))}</span></a>`).join("")}</div>`
+      : `<div class="empty">${t("saved_empty")}</div>`}
+    <p class="lead" style="margin-top:24px;font-size:13px">${t("credits")}</p>`);
+}
+function openScreen(html) { stopPlayback(); stopVisual(); $("#toast").hidden = true; $("#screen").innerHTML = `<div class="in">${html}</div>`; $("#screen").hidden = false; $("#closeScreen").hidden = false; history.pushState({ screen: 1 }, ""); }
+function closeScreen() { $("#screen").hidden = true; $("#closeScreen").hidden = true; play(currentSlide()); }
+
+/* ---------- post maker: 1080x1920 image for TikTok / Instagram ---------- */
+const TAGCOL = { news: "#ff5d6c", geo: "#7cc4ff", econ: "#ffc65c", photo: "#c8f560", history: "#ffc65c", trend: "#7cc4ff", deep: "#c8f560", fact: "#c8f560" };
+const loadImg = src => new Promise((res, rej) => { const i = new Image(); i.crossOrigin = "anonymous"; i.onload = () => res(i); i.onerror = rej; i.src = src; });
+function wrapLines(x, text, maxW, maxLines) {
+  const words = [], lines = []; let cur = "", i = 0;
+  for (const w of String(text || "").split(/\s+/).filter(Boolean)) { // hard-break words wider than a line (URLs, long compounds)
+    if (x.measureText(w).width <= maxW) { words.push(w); continue; }
+    let part = ""; for (const ch of w) { if (part && x.measureText(part + ch).width > maxW) { words.push(part); part = ch; } else part += ch; } if (part) words.push(part);
+  }
+  for (; i < words.length; i++) {
+    const test = cur ? cur + " " + words[i] : words[i];
+    if (x.measureText(test).width > maxW && cur) { lines.push(cur); cur = words[i]; if (lines.length === maxLines) break; }
+    else cur = test;
+  }
+  if (lines.length < maxLines && cur) { lines.push(cur); i = words.length; }
+  if (i < words.length) { let last = lines[lines.length - 1]; while (last && x.measureText(last + "…").width > maxW) last = last.replace(/\s*\S+$/, ""); lines[lines.length - 1] = (last || "") + "…"; }
+  return lines;
+}
+function roundRect(x, X, Y, w, h, r) { x.beginPath(); x.moveTo(X + r, Y); x.arcTo(X + w, Y, X + w, Y + h, r); x.arcTo(X + w, Y + h, X, Y + h, r); x.arcTo(X, Y + h, X, Y, r); x.arcTo(X, Y, X + w, Y, r); x.closePath(); }
+async function drawPost(c, withImage) {
+  const W = 1080, H = 1920, cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+  const x = cv.getContext("2d");
+  // pass the real text: without it only the subset containing U+0020 loads, so č/š/ž (latin-ext) would fall back to a system font
+  const sample = `${c.title || ""} ${c.text || ""} ${t(c.kind)} ${t("post_tag")}`.slice(0, 600);
+  try { await Promise.all([document.fonts.load('800 60px "Unbounded"', "Clued"), document.fonts.load('700 70px "Familjen Grotesk"', sample), document.fonts.load('500 40px "Familjen Grotesk"', sample), document.fonts.load('600 34px "Familjen Grotesk"', sample)]); } catch {}
+  x.fillStyle = "#07080c"; x.fillRect(0, 0, W, H);
+  const img = withImage && c.img ? await loadImg(c.img).catch(() => null) : null;
+  if (img) {
+    const sc = Math.max(W / img.width, (H * 0.72) / img.height), w = img.width * sc, h = img.height * sc;
+    x.drawImage(img, (W - w) / 2, Math.min(0, (H * 0.72 - h) / 2), w, h);
+  } else {
+    const g = x.createLinearGradient(0, 0, W, H); g.addColorStop(0, "#1b2a6b"); g.addColorStop(.6, "#0b0f24"); g.addColorStop(1, "#3a0f3f");
+    x.fillStyle = g; x.fillRect(0, 0, W, H);
+    // decorative globe so text-only posts don't look empty
+    const cx = W / 2, cy = H * 0.3, r = 300; x.save(); x.strokeStyle = TAGCOL[c.kind] || "#c8f560"; x.globalAlpha = .55; x.lineWidth = 14; x.lineCap = "round";
+    x.beginPath(); x.arc(cx, cy, r, 0, Math.PI * 2); x.stroke();
+    x.beginPath(); x.ellipse(cx, cy, r * .45, r, 0, 0, Math.PI * 2); x.stroke();
+    x.beginPath(); x.moveTo(cx - r, cy); x.lineTo(cx + r, cy); x.stroke();
+    [-.5, .5].forEach(k => { x.beginPath(); x.moveTo(cx - r * .86, cy + r * k); x.quadraticCurveTo(cx, cy + r * k * .76, cx + r * .86, cy + r * k); x.stroke(); });
+    x.restore();
+  }
+  let g = x.createLinearGradient(0, H * 0.28, 0, H); g.addColorStop(0, "rgba(7,8,12,0)"); g.addColorStop(.42, "rgba(7,8,12,.88)"); g.addColorStop(1, "rgba(7,8,12,1)");
+  x.fillStyle = g; x.fillRect(0, 0, W, H);
+  g = x.createLinearGradient(0, 0, 0, 320); g.addColorStop(0, "rgba(7,8,12,.75)"); g.addColorStop(1, "rgba(7,8,12,0)"); x.fillStyle = g; x.fillRect(0, 0, W, 320);
+  // brand
+  const icon = await loadImg("icon-192.png").catch(() => null);
+  if (icon) { x.save(); roundRect(x, 72, 84, 104, 104, 26); x.clip(); x.drawImage(icon, 72, 84, 104, 104); x.restore(); }
+  x.fillStyle = "#f4f5f7"; x.font = '800 54px "Unbounded", system-ui, sans-serif'; x.textBaseline = "middle"; x.fillText("Clued", icon ? 200 : 72, 138);
+  // text block, laid out from the bottom up
+  const pad = 80, maxW = W - pad * 2;
+  const body = c.kind === "news" ? (c.text.replace(c.headline, "").trim() || c.text) : c.kind === "photo" ? "" : c.text;
+  x.font = '700 76px "Familjen Grotesk", system-ui, sans-serif'; const tl = wrapLines(x, c.title, maxW, 5);
+  x.font = '500 44px "Familjen Grotesk", system-ui, sans-serif'; const cl = body ? wrapLines(x, trimText(body, 320), maxW, 6) : [];
+  const footY = H - 150, capH = cl.length * 62, titH = tl.length * 86;
+  let y = footY - 60 - capH - (cl.length ? 34 : 0) - titH - 30 - 64;
+  // tag pill
+  const tag = t(c.kind).toUpperCase(); x.font = '700 32px "Familjen Grotesk", system-ui, sans-serif';
+  const tw = x.measureText(tag).width + 44; roundRect(x, pad, y, tw, 64, 14); x.fillStyle = "rgba(16,18,26,.75)"; x.fill();
+  x.strokeStyle = "rgba(255,255,255,.18)"; x.lineWidth = 2; x.stroke(); x.fillStyle = TAGCOL[c.kind] || "#c8f560"; x.fillText(tag, pad + 22, y + 33);
+  y += 64 + 30; x.textBaseline = "alphabetic";
+  x.fillStyle = "#ffffff"; x.font = '700 76px "Familjen Grotesk", system-ui, sans-serif'; tl.forEach((l, i) => x.fillText(l, pad, y + 70 + i * 86)); y += titH + 34;
+  x.fillStyle = "rgba(244,245,247,.8)"; x.font = '500 44px "Familjen Grotesk", system-ui, sans-serif'; cl.forEach((l, i) => x.fillText(l, pad, y + 48 + i * 62));
+  // footer
+  x.fillStyle = "#c8f560"; x.fillRect(pad, footY - 6, 88, 8);
+  x.fillStyle = "rgba(244,245,247,.62)"; x.font = '600 34px "Familjen Grotesk", system-ui, sans-serif'; x.fillText(t("post_tag") + " · Clued", pad, footY + 56);
+  x.font = '500 26px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = "rgba(244,245,247,.42)"; x.fillText("Wikipedia · CC BY-SA", pad, footY + 100);
+  return cv;
+}
+const toBlobP = cv => new Promise((res, rej) => { try { cv.toBlob(b => (b ? res(b) : rej(new Error("empty"))), "image/png"); } catch (e) { rej(e); } });
+let postData = null;
+let postBusy = false;
+async function makePost(c) {
+  if (postBusy || !$("#screen").hidden) return; postBusy = true;
+  try { await makePostInner(c); } finally { postBusy = false; }
+}
+async function makePostInner(c) {
+  stopPlayback(); toast(t("post_making"));
+  let blob;
+  const toBlobFree = async cv => { try { return await toBlobP(cv); } finally { cv.width = cv.height = 0; } }; // iOS frees canvas memory late: release it now
+  try { blob = await toBlobFree(await drawPost(c, true)); }
+  catch { try { blob = await toBlobFree(await drawPost(c, false)); } catch { toast(t("post_fail")); return; } } // picture blocked: text-only version
+  const slug = (c.name || c.title || "post").toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 40);
+  const file = new File([blob], `clued-${slug}.png`, { type: "image/png" });
+  const app = location.origin + location.pathname;
+  const caption = `${c.title}\n\n${c.kind === "photo" ? "" : trimText(c.kind === "news" ? (c.text.replace(c.headline, "").trim() || c.text) : c.text, 220) + "\n\n"}${t("post_tag")} 👉 Clued ${app}\n\n${t("hashtags")}`;
+  if (postData) URL.revokeObjectURL(postData.url);
+  postData = { file, caption, url: URL.createObjectURL(blob), title: c.title };
+  openScreen(`<h1>${t("post_h")}</h1><img class="postimg" src="${postData.url}" alt=""><p class="lead" style="text-align:center">${t("post_hint")}</p>
+    <div class="postbtns"><button class="cta" id="postShare">${t("post_share")}</button><button class="ghost" id="postCaption">${t("post_caption")}</button></div>`);
+}
+async function sharePost() {
+  if (!postData) return;
+  try {
+    if (navigator.canShare && navigator.canShare({ files: [postData.file] })) { await navigator.share({ files: [postData.file], title: postData.title }); return; }
+  } catch (e) { if (e.name === "AbortError") return; }
+  // no file sharing (desktop browsers): download it instead
+  try { const a = document.createElement("a"); a.href = postData.url; a.download = postData.file.name; document.body.appendChild(a); a.click(); a.remove(); } catch {}
+  toast(t("post_hint"));
+}
+async function copyCaption() {
+  if (!postData) return;
+  try { await navigator.clipboard.writeText(postData.caption); toast(t("t_copied")); }
+  catch { const ta = document.createElement("textarea"); ta.value = postData.caption; ta.style.cssText = "width:100%;min-height:160px;margin-top:12px;border-radius:12px;padding:10px;background:#141720;color:#fff;border:1px solid rgba(255,255,255,.16)"; $("#screen .in").appendChild(ta); ta.select(); }
+}
+function setLang(l) { if (!LANGS[l] || l === LANG) return; store.set("lang", l); location.reload(); }
+
+/* ---------- actions ---------- */
+let toastT = 0;
+function toast(m) { const t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => (t.hidden = true), 2200); }
+function setSound(on) {
+  S.sound = on; store.set("sound", on);
+  const b = $("#sound"); b.innerHTML = on ? ICON.on : ICON.off; b.setAttribute("aria-pressed", on); b.setAttribute("aria-label", t("narrator"));
+  stopPlayback(); if (S.started) play(currentSlide());
+}
+function like(slide, c, burstAt) {
+  const btn = slide.querySelector('[data-act="like"]');
+  if (!S.liked[c.id] || burstAt) { S.liked[c.id] = 1; } else delete S.liked[c.id];
+  store.set("liked", S.liked);
+  btn.classList.toggle("liked", !!S.liked[c.id]); btn.lastElementChild.textContent = S.liked[c.id] ? t("liked") : t("like");
+  btn.classList.remove("pop"); void btn.offsetWidth; btn.classList.add("pop");
+  if (burstAt) {
+    const h = document.createElement("div"); h.className = "heart-burst"; h.style.left = burstAt.x + "px"; h.style.top = burstAt.y + "px";
+    h.innerHTML = ICON.heart; slide.appendChild(h); setTimeout(() => h.remove(), 850);
+  }
+}
+async function share(c) {
+  const data = { title: c.title, text: trimText(c.title, 120) + " (via Clued)", url: c.url };
+  try { if (navigator.share) { await navigator.share(data); return; } } catch (e) { if (e.name === "AbortError") return; }
+  try { await navigator.clipboard.writeText(c.url); toast(t("t_copied")); } catch { toast(c.url); }
+}
+function answer(slide, c, opt) {
+  if (c.done) return;
+  c.done = true; c.correct = opt === c.answer;
+  S.progress.answered++; if (c.correct) S.progress.correct++; store.set("progress", S.progress);
+  slide.querySelectorAll(".opt").forEach(b => {
+    if (b.dataset.opt === c.answer) b.classList.add("right");
+    else if (b.dataset.opt === opt) b.classList.add("wrong");
+    b.disabled = true;
+  });
+  slide.querySelector(".qres").innerHTML = resultHTML(c);
+  if (S.sound && S.started && synth) speak((c.correct ? t("correct") : t("wrong")) + " " + c.explain, null, null);
+  if (navigator.vibrate) navigator.vibrate(c.correct ? 30 : [40, 60, 40]);
+}
+
+/* ---------- events ---------- */
+const io = new IntersectionObserver(entries => {
+  for (const e of entries) {
+    if (e.isIntersecting && e.intersectionRatio > 0.6) {
+      S.active = e.target; if (S.started && $("#screen").hidden) play(e.target);
+      const i = [...e.target.parentNode.children].indexOf(e.target);
+      if (S.filter !== "saved" && rendered - i < 6) loadMore();
+    }
+  }
+}, { root: $("#feed"), threshold: [0.6] });
+const currentSlide = () => S.active;
+
+let lastTap = 0;
+$("#feed").addEventListener("click", e => {
+  const slide = e.target.closest(".slide"); if (!slide) return;
+  if (Date.now() - unlockedAt < 700 && !e.target.closest("button,a")) return; // that tap just turned the voice on
+  const c = S.cards[+slide.dataset.i];
+  const opt = e.target.closest(".opt"); if (opt && c) { answer(slide, c, opt.dataset.opt); return; }
+  const act = e.target.closest("[data-act]");
+  if (act && c) { if (act.dataset.act === "like") like(slide, c); if (act.dataset.act === "save") {
+      if (S.saved[c.id]) delete S.saved[c.id]; else { const { quizzed, fromSaved, links, ...keep } = c; S.saved[c.id] = keep; }
+      store.set("saved", S.saved); act.classList.toggle("saved", !!S.saved[c.id]); act.lastElementChild.textContent = S.saved[c.id] ? t("saved") : t("save");
+      toast(S.saved[c.id] ? t("t_saved") : t("t_removed")); }
+    if (act.dataset.act === "post") makePost(c);
+    if (act.dataset.act === "share") share(c); return; }
+  if (e.target.closest("[data-more]")) { slide.classList.toggle("open"); e.target.textContent = slide.classList.contains("open") ? t("less") : t("more"); return; }
+  if (e.target.closest("a")) return;
+  if (!c || c.kind === "quiz") return;
+  const now = Date.now();
+  if (now - lastTap < 320) { like(slide, c, { x: e.clientX, y: e.clientY }); lastTap = 0; return; }
+  lastTap = now;
+  // single tap: pause / resume narration
+  setTimeout(() => { if (lastTap === now) { if (synth?.speaking && !synth.paused) { synth.pause(); toast(t("t_paused")); } else if (synth?.paused) { synth.resume(); } else play(slide); } }, 330);
+});
+document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
+  S.filter = b.dataset.feed; if (S.filter === "saved") restoreSaved();
+  document.querySelectorAll(".tabs button").forEach(x => x.setAttribute("aria-selected", x === b ? "true" : "false"));
+  stopPlayback(); renderFeed(true);
+}));
+$("#sound").addEventListener("click", () => setSound(!S.sound));
+$("#loading").addEventListener("click", () => { if (!S.cards.length) { $("#loading").textContent = t("loading"); loadMore(); } });
+$("#streakBtn").addEventListener("click", showProgress);
+$("#closeScreen").addEventListener("click", () => history.back());
+$("#screen").addEventListener("change", e => {
+  if (e.target.id === "langSel") { setLang(e.target.value); return; }
+  if (e.target.id === "voiceSel") { store.set("voice." + LANG, e.target.value); pickVoice(); sampleVoice(); }
+  if (e.target.id === "rateSel") { store.set("rate", +e.target.value); sampleVoice(); }
+});
+$("#screen").addEventListener("input", e => { if (e.target.id === "rateSel") $("#rateVal").textContent = (+e.target.value).toFixed(2) + "×"; });
+$("#screen").addEventListener("click", e => { if (e.target.id === "testVoice") sampleVoice(); if (e.target.id === "postShare") sharePost(); if (e.target.id === "postCaption") copyCaption(); });
+function sampleVoice() { if (!synth) return; stopPlayback(); speak(t("sample"), null, null); }
+window.addEventListener("popstate", () => { if (!$("#screen").hidden) closeScreen(); });
+document.addEventListener("visibilitychange", () => { if (document.hidden) { stopPlayback(); stopVisual(); } else if ($("#screen").hidden && S.started) play(currentSlide()); });
+document.addEventListener("keydown", e => {
+  if (!$("#screen").hidden) { if (e.key === "Escape") history.back(); return; }
+  const f = $("#feed");
+  if (e.key === "ArrowDown" || e.key === "j") { f.scrollBy({ top: f.clientHeight, behavior: "smooth" }); e.preventDefault(); }
+  if (e.key === "ArrowUp" || e.key === "k") { f.scrollBy({ top: -f.clientHeight, behavior: "smooth" }); e.preventDefault(); }
+});
+function begin(withSound) {
+  S.started = true; $("#start").hidden = true; store.set("onboarded", true);
+  // the first speak() happens synchronously inside this tap, which unlocks speech on iOS
+  setSound(withSound && !!synth);
+}
+$("#go").addEventListener("click", () => begin(true));
+$("#goMuted").addEventListener("click", () => begin(false));
+
+/* ---------- boot ---------- */
+$("#streak").textContent = S.progress.last === todayKey() || (() => { const y = new Date(); y.setDate(y.getDate() - 1); return S.progress.last === `${y.getFullYear()}-${y.getMonth() + 1}-${y.getDate()}`; })() ? S.progress.streak : 0;
+$("#sound").innerHTML = S.sound ? ICON.on : ICON.off;
+const onboarded = store.get("onboarded", false);
+let unlockedAt = 0;
+if (!onboarded) $("#start").hidden = false;
+else {
+  S.started = true;
+  // browsers only allow speech after a tap: the first touch anywhere starts the narration
+  if (S.sound && synth) {
+    setTimeout(() => toast(t("tap_sound")), 900);
+    const unlock = () => { unlockedAt = Date.now(); document.removeEventListener("pointerdown", unlock, true); if (S.sound && $("#screen").hidden) play(currentSlide()); };
+    document.addEventListener("pointerdown", unlock, true);
+  }
+}
+document.documentElement.lang = LANG;
+$("#start p").textContent = t("start_p"); $("#go").textContent = t("start_sound"); $("#goMuted").textContent = t("start_muted");
+document.querySelectorAll(".tabs button").forEach(b => { b.textContent = t("tab_" + b.dataset.feed); });
+$("#loading").textContent = t("loading");
+$("#langStart").innerHTML = Object.entries(LANGS).map(([k, v]) => `<option value="${k}"${k === LANG ? " selected" : ""}>${v.name}</option>`).join("");
+$("#langStart").addEventListener("change", e => setLang(e.target.value));
+
+S.dayCursor = new Date(); S.enCursor = new Date();
+loadMore();
+if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
+</script>
+</body>
+</html>

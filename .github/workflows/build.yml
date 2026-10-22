@@ -93,6 +93,14 @@ jobs:
           git config user.name "clued-bot"; git config user.email "clued-bot@users.noreply.github.com"
           git add -f shots; git commit -q -m "Real-data screenshots" || echo nothing
           for i in 1 2 3; do git pull --rebase -q origin dev && git push -q origin HEAD:dev && break; sleep 5; done
+      - name: Test copy for the phone (preview branch, does not touch the live app)
+        if: github.ref == 'refs/heads/dev'
+        run: |
+          cd site
+          git init -q -b preview
+          git config user.name "clued-bot"; git config user.email "clued-bot@users.noreply.github.com"
+          git add -A && git commit -q -m "Preview build"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" preview
       # ---------- main: publish ----------
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main'

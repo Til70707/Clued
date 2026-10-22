@@ -562,6 +562,8 @@ def main():
     im = (feed or {}).get("image") or {}
     if im.get("image", {}).get("source"):
         d = strip_html((im.get("description") or {}).get("html") or (im.get("description") or {}).get("text") or "")
+        if d and LANG != "en" and not (fetch_feed(LANG, now) or {}).get("image"):  # English caption: translate it
+            d = translate(d) or d
         if d and not BLOCK.search(d):
             src = im["image"]["source"]; th = (im.get("thumbnail") or {}).get("source") or src
             big = re.sub(r"/\d+px-", "/1280px-", th) if re.search(r"/\d+px-", th) else src

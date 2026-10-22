@@ -566,7 +566,7 @@ const COUNTRY_CONT = (() => {
   const m = {}, add = (k, list) => list.split("|").forEach(n => { m[n] = k; });
   add("c_eu", "Slovenia|Croatia|United Kingdom|Russia|Belarus|Moldova|Lithuania|Latvia|Estonia|Kosovo|Luxembourg|Malta|Cyprus|Austria|Italy|Hungary|Germany|France|Spain|Portugal|Poland|Czech Republic|Slovakia|Romania|Bulgaria|Greece|Serbia|Bosnia and Herzegovina|Montenegro|Albania|North Macedonia|Ukraine|Norway|Sweden|Finland|Denmark|Iceland|Ireland|Netherlands|Belgium|Switzerland|Vatican City|Monaco|Ljubljana|Maribor|Lake Bled|Triglav|Postojna Cave|Svalbard|Alps|Balkans|Scandinavia|Danube");
   add("c_as", "Turkey|Saudi Arabia|Iran|Israel|Yemen|Iraq|Syria|Jordan|Lebanon|Kuwait|Oman|Bahrain|Palestine|Afghanistan|Taiwan|North Korea|Sri Lanka|Cambodia|Laos|Uzbekistan|Turkmenistan|Kyrgyzstan|Tajikistan|Azerbaijan|Georgia|Armenia|Bhutan|United Arab Emirates|Pakistan|India|Bangladesh|China|Japan|South Korea|Vietnam|Thailand|Indonesia|Philippines|Malaysia|Kazakhstan|Mongolia|Myanmar|Nepal|Qatar|Singapore|Tokyo|Mumbai|Istanbul|Himalayas|Mount Everest|Gobi Desert|Lake Baikal|Siberia|Mount Fuji|Yangtze|Ganges|Mekong|Central Asia|Caucasus|Dead Sea|Aral Sea");
-  add("c_af", "Egypt|Morocco|Nigeria|Libya|Sudan|S. Sudan|Algeria|Tunisia|Somalia|Mali|Niger|Chad|Cameroon|Uganda|Rwanda|Burundi|Angola|Zambia|Zimbabwe|Mozambique|Malawi|Senegal|Guinea|Sierra Leone|Liberia|Burkina Faso|Benin|Togo|Gabon|Botswana|Namibia|Eritrea|Djibouti|Mauritania|Dem. Rep. Congo|Congo|Côte d'Ivoire|Central African Rep.|Kenya|Ethiopia|South Africa|Ghana|Tanzania|Lagos|Sahara|Namib|Nile|Congo River|Mount Kilimanjaro|Great Rift Valley|Madagascar|Sahel|Horn of Africa");
+  add("c_af", "Egypt|Morocco|Nigeria|Libya|Sudan|S. Sudan|Algeria|Tunisia|Somalia|Mali|Niger|Chad|Cameroon|Uganda|Rwanda|Burundi|Angola|Zambia|Zimbabwe|Mozambique|Malawi|Senegal|Guinea|Sierra Leone|Liberia|Burkina Faso|Benin|Togo|Gabon|Botswana|Namibia|Eritrea|Djibouti|Mauritania|Dem. Rep. Congo|Congo|Côte d'Ivoire|Central African Rep.|Kenya|Ethiopia|South Africa|Ghana|Tanzania|Lagos|Sahara|Namib|Nile|Congo River|Mount Kilimanjaro|Great Rift Valley|Suez Canal|Madagascar|Sahel|Horn of Africa");
   add("c_na", "Canada|United States|United States of America|Guatemala|Honduras|Nicaragua|Costa Rica|Panama|Haiti|Dominican Rep.|Jamaica|El Salvador|Cuba|Mexico City|Rocky Mountains|Mississippi River|Grand Canyon|Yellowstone National Park|Greenland|Panama Canal");
   add("c_sa", "Brazil|Argentina|Ecuador|Paraguay|Uruguay|Guyana|Suriname|Chile|Peru|Colombia|Venezuela|Bolivia|São Paulo|Andes|Amazon River|Amazon rainforest|Atacama Desert|Patagonia|Galápagos Islands");
   add("c_oc", "Australia|New Zealand|Great Barrier Reef");
@@ -776,6 +776,7 @@ async function runGlobe(slide, c, run) {
           const ax = Math.max(16, Math.min(w - 76 - x.measureText(label).width, bb[0][0])), ay = Math.max(96, bb[0][1] - 30);
           lx += (ax - lx) * e2; ly += (ay - ly) * e2;
         }
+        lx = Math.max(16, Math.min(w - 76 - x.measureText(label).width, lx)); // never cut off at the screen edge
         x.fillText(label, lx, ly);
         x.font = '500 12px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = `rgba(244,245,247,${a * .7})`; x.fillText(coordTxt, lx, ly + 17);
       }

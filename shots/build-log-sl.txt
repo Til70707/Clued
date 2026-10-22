@@ -1,0 +1,10 @@
+sl: 3 news cards
+  no shape for Great Barrier Reef
+  no shape for Lake Bled
+  no shape for Caspian Sea
+  no shape for Bosporus
+  no shape for Balkans
+  no shape for Central Asia
+sl: 223 topics, 35 with shapes
+sl: voice piper-sl_SI-artur-medium, 227 new clips, 226/226 cards with audio, voice ok: True
+sl: done in 379s

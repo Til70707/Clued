@@ -1,0 +1,10 @@
+de: 3 news cards
+  no shape for Great Barrier Reef
+  no shape for Lake Bled
+  no shape for Caspian Sea
+  no shape for Bosporus
+  no shape for Balkans
+  no shape for Central Asia
+de: 274 topics, 38 with shapes
+de: voice piper-de_DE-thorsten-high, 277 new clips, 277/277 cards with audio, voice ok: True
+de: done in 1998s

@@ -1,0 +1,9 @@
+fr: 2 news cards
+  no shape for Great Barrier Reef
+  no shape for Lake Bled
+  no shape for Caspian Sea
+  no shape for Bosporus
+  no shape for Central Asia
+fr: 271 topics, 34 with shapes
+fr: voice piper-fr_FR-tom-medium, 274 new clips, 273/273 cards with audio, voice ok: True
+fr: done in 697s

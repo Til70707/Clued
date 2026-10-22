@@ -1,0 +1,6 @@
+it: 3 news cards
+  no shape for Balkans
+  no shape for Central Asia
+it: 221 topics, 13 with shapes
+it: voice kokoro-im_nicola, 225 new clips, 224/224 cards with audio, voice ok: True
+it: done in 2435s

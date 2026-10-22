@@ -1,28 +1,50 @@
-[webkit/en] card 1: {"kind": "news", "vis": null, "title": "The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and studen"}
-[webkit/en] card 2: {"kind": "news", "vis": null, "title": "The International Bureau of Weights and Measures votes to abolish the leap secon"}
-[webkit/en] card 3: {"kind": "news", "vis": null, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
-[webkit/en] card 4: {"kind": "photo", "vis": null, "title": "Jim Buckley’s Red Dragon sculpture from 1985 during River Lee flooding, October "}
-[webkit/en] card 5: {"kind": "econ", "vis": null, "title": "Semiconductor industry"}
-[webkit/en] card 6: {"kind": "econ", "vis": "chart", "title": "Economy of Germany"}
-[webkit/en] card 7: {"kind": "geo", "vis": "globe", "title": "Bolivia"}
-[webkit/en] card 8: {"kind": "quiz", "vis": null, "title": "Today's news: “The Houthis launch a series of attacks on Saudi Arabian airports,"}
-[webkit/en] card 9: {"kind": "econ", "vis": "chart", "title": "Gini coefficient"}
-[webkit/en] card 10: {"kind": "econ", "vis": null, "title": "Carbon tax"}
-[webkit/en] card 11: {"kind": "econ", "vis": null, "title": "Human capital"}
-[webkit/en] card 12: {"kind": "geo", "vis": "globe", "title": "Albania"}
-[webkit/en] card 13: {"kind": "geo", "vis": "globe", "title": "Strait of Hormuz"}
-[webkit/en] card 14: {"kind": "quiz", "vis": null, "title": "What is the capital of Albania?"}
-[webkit/sl] card 1: {"kind": "news", "vis": null, "title": "The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and studen"}
-[webkit/sl] card 2: {"kind": "news", "vis": null, "title": "The International Bureau of Weights and Measures votes to abolish the leap secon"}
-[webkit/sl] card 3: {"kind": "news", "vis": null, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
-[webkit/sl] card 4: {"kind": "geo", "vis": "globe", "title": "Donava"}
-[webkit/sl] card 5: {"kind": "geo", "vis": "globe", "title": "Bajkalsko jezero"}
-[webkit/sl] card 6: {"kind": "photo", "vis": null, "title": "Jim Buckley’s Red Dragon sculpture from 1985 during River Lee flooding, October "}
-[webkit/sl] card 7: {"kind": "geo", "vis": "globe", "title": "Izrael"}
-[webkit/sl] card 8: {"kind": "econ", "vis": null, "title": "Indeksni sklad"}
-[webkit/sl] card 9: {"kind": "quiz", "vis": null, "title": "Kaj od tega je »sladkovodno riftno jezero v južni Sibiriji«?"}
-[webkit/sl] card 10: {"kind": "photo", "vis": null, "title": "A small hoverfly in the sun (female Episyrphus balteatus)"}
-[webkit/sl] card 11: {"kind": "geo", "vis": "globe", "title": "Švedska"}
-[webkit/sl] card 12: {"kind": "geo", "vis": "globe", "title": "Lagos"}
-[webkit/sl] card 13: {"kind": "geo", "vis": null, "title": "Cunami"}
-[webkit/sl] card 14: {"kind": "geo", "vis": null, "title": "Ognjenik"}
+[webkit/en] card 1: {"kind": "photo", "vis": null, "ftype": null, "audio": true, "title": "Jim Buckley’s Red Dragon sculpture from 1985 during River Lee flooding, October "}
+[webkit/en] card 2: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Sweden"}
+[webkit/en] card 3: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "What is the capital of Sweden?"}
+[webkit/en] card 4: {"kind": "geo", "vis": null, "ftype": null, "audio": true, "title": "Pangaea"}
+[webkit/en] card 5: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Renewable energy"}
+[webkit/en] card 6: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Turkey"}
+[webkit/en] card 7: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Division of labour"}
+[webkit/en] card 8: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Belgium"}
+[webkit/en] card 9: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Venezuela"}
+[webkit/en] card 10: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Silk Road"}
+[webkit/en] card 11: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Poverty"}
+[webkit/en] card 12: {"kind": "geo", "vis": null, "ftype": null, "audio": true, "title": "Landlocked country"}
+[webkit/en] card 13: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Sanctions (law)"}
+[webkit/en] card 14: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Which one is “Historical network of Eurasian trade routes”?"}
+[webkit/en] card 15: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Index fund"}
+[webkit/en] card 16: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "John Maynard Keynes"}
+[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b7/Reclaiming_Work_-_The_Cycle_Couriers_Subverting_the_Gig_Economy.webm/Reclaimi Load request cancelled
+[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b7/Reclaiming_Work_-_The_Cycle_Couriers_Subverting_the_Gig_Economy.webm/Reclaimi Load request cancelled
+[webkit/en] card 17: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Gig economy"}
+[webkit/en] card 18: {"kind": "geo", "vis": null, "ftype": null, "audio": true, "title": "Prime meridian"}
+[webkit/en] news 1: {"kind": "news", "vis": null, "img": false, "audio": true, "title": "The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and studen"}
+[webkit/en] news 2: {"kind": "news", "vis": null, "img": false, "audio": true, "title": "The International Bureau of Weights and Measures votes to abolish the leap secon"}
+[webkit/en] news 3: {"kind": "news", "vis": null, "img": false, "audio": true, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/en] news 4: {"kind": "quiz", "vis": null, "img": false, "audio": false, "title": "Today's news: “The International Bureau of Weights and Measures votes to abolish"}
+[webkit/en] content ok: True, topics: 291, with audio: 291
+[webkit/sl] card 1: {"kind": "photo", "vis": null, "ftype": null, "audio": true, "title": "Jim Buckley’s Red Dragon sculpture from 1985 during River Lee flooding, October "}
+[webkit/sl] card 2: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Čile"}
+[webkit/sl] card 3: {"kind": "geo", "vis": "locator", "ftype": null, "audio": true, "title": "Mumbaj"}
+[webkit/sl] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/9/99/Andrew_Yang_Explains_The_Freedom_Dividend_%28USA_Universal_Basic_Income%29.we Load request cancelled
+[webkit/sl] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/9/99/Andrew_Yang_Explains_The_Freedom_Dividend_%28USA_Universal_Basic_Income%29.we Load request cancelled
+[webkit/sl] card 4: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Univerzalni temeljni dohodek"}
+[webkit/sl] card 5: {"kind": "geo", "vis": "globe", "ftype": "river", "audio": true, "title": "Ganges"}
+[webkit/sl] card 6: {"kind": "geo", "vis": "globe", "ftype": "region", "audio": true, "title": "Kavkaška regija"}
+[webkit/sl] card 7: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Kaj od tega je »najbolj naseljeno mesto v Indiji in glavno mesto indijske zvezne"}
+[webkit/sl] card 8: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Monetarna politika"}
+[webkit/sl] card 9: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Evroobmočje"}
+[webkit/sl] card 10: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Vedenjska ekonomija"}
+[webkit/sl] card 11: {"kind": "geo", "vis": "globe", "ftype": "region", "audio": true, "title": "Alpe"}
+[webkit/sl] card 12: {"kind": "geo", "vis": null, "ftype": null, "audio": true, "title": "Madagaskar"}
+[webkit/sl] card 13: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Kaj od tega je »podrazred gospodarske politike«?"}
+[webkit/sl] card 14: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Galapaški otoki"}
+[webkit/sl] card 15: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Grčija"}
+[webkit/sl] card 16: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Bruto domači proizvod"}
+[webkit/sl] card 17: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Stagflacija"}
+[webkit/sl] card 18: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Globalizacija"}
+[webkit/sl] news 1: {"kind": "news", "vis": null, "img": false, "audio": true, "title": "The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and studen"}
+[webkit/sl] news 2: {"kind": "news", "vis": null, "img": false, "audio": true, "title": "The International Bureau of Weights and Measures votes to abolish the leap secon"}
+[webkit/sl] news 3: {"kind": "news", "vis": null, "img": false, "audio": true, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/sl] news 4: {"kind": "news", "vis": null, "img": false, "audio": true, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/sl] content ok: True, topics: 223, with audio: 223

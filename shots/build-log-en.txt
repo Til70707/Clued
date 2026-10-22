@@ -1,0 +1,10 @@
+en: 3 news cards
+  no shape for Great Barrier Reef
+  no shape for Lake Bled
+  no shape for Caspian Sea
+  no shape for Bosporus
+  no shape for Balkans
+  no shape for Central Asia
+en: 291 topics, 38 with shapes
+en: voice kokoro-am_michael, 295 new clips, 294/294 cards with audio, voice ok: True
+en: done in 5056s

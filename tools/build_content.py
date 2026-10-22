@@ -215,7 +215,8 @@ _topo_shapes()
 
 # ---------- Wikipedia ----------
 API = f"https://{LANG}.wikipedia.org/api/rest_v1"
-def summary(lang, title):
+def summary(lang, title, rev=None):
+    if rev: return get(f"https://{lang}.wikipedia.org/api/rest_v1/page/summary/{urllib.parse.quote(title.replace(' ', '_'), safe='')}/{rev}")
     return get(f"https://{lang}.wikipedia.org/api/rest_v1/page/summary/{urllib.parse.quote(title.replace(' ', '_'), safe='')}")
 
 def lang_titles(titles):
@@ -268,7 +269,9 @@ def news_card(story, pages, event, src_lang, pic=None):
     c.pop("coords", None)
     c["id"] = "news:" + hashlib.sha1(story[:120].encode()).hexdigest()[:12]
     c["title"] = trim(story, 140); c["headline"] = story
-    c["text"] = trim(story + " " + (main.get("extract") or ""))
+    st = stable(src_lang, page_title(main))
+    c["text"] = trim(story + " " + ((st or main).get("extract") or ""))
+    if st and st.get("_stable"): c["checked"] = st["_stable"]
     c["topic"] = page_title(main)
     c["links"] = [page_title(p) for p in pages]
     im = good_image(pic) if pic else None
@@ -342,6 +345,30 @@ def _wiki_links(n):
             elif not (x.tag == "ul"): rec(x)
     rec(n); return out
 
+# news outlets with real editorial checks; a Current-events story is used only when one of them reported it
+TRUSTED = {"reuters.com": "Reuters", "apnews.com": "AP", "bbc.co.uk": "BBC", "bbc.com": "BBC", "afp.com": "AFP", "france24.com": "France 24",
+           "dw.com": "DW", "aljazeera.com": "Al Jazeera", "theguardian.com": "The Guardian", "nytimes.com": "The New York Times",
+           "washingtonpost.com": "The Washington Post", "npr.org": "NPR", "bloomberg.com": "Bloomberg", "ft.com": "Financial Times",
+           "wsj.com": "The Wall Street Journal", "economist.com": "The Economist", "cnn.com": "CNN", "cbc.ca": "CBC", "abc.net.au": "ABC Australia",
+           "lemonde.fr": "Le Monde", "spiegel.de": "Der Spiegel", "elpais.com": "El País", "politico.com": "Politico", "politico.eu": "Politico",
+           "euronews.com": "Euronews", "kyodonews.net": "Kyodo", "nhk.or.jp": "NHK", "scmp.com": "SCMP", "thehindu.com": "The Hindu",
+           "timesofisrael.com": "The Times of Israel", "haaretz.com": "Haaretz", "rfi.fr": "RFI", "voanews.com": "VOA", "un.org": "UN News",
+           "who.int": "WHO", "nature.com": "Nature", "science.org": "Science", "nasa.gov": "NASA", "esa.int": "ESA", "cbsnews.com": "CBS News",
+           "nbcnews.com": "NBC News", "abcnews.go.com": "ABC News", "sky.com": "Sky News", "rte.ie": "RTÉ", "yonhapnews.co.kr": "Yonhap",
+           "en.yna.co.kr": "Yonhap", "africanews.com": "Africanews", "anews.com.tr": "", "irishtimes.com": "The Irish Times", "independent.co.uk": "The Independent"}
+TRUSTED = {k: v for k, v in TRUSTED.items() if v}
+def _sources(li):
+    out = []
+    def rec(k):
+        for x in k.kids:
+            if isinstance(x, str): continue
+            if x.tag == "a" and "external" in (x.attrs.get("class") or ""):
+                u = x.attrs.get("href") or ""; host = urllib.parse.urlparse(u).netloc.lower().removeprefix("www.")
+                name = next((v for d, v in TRUSTED.items() if host == d or host.endswith("." + d)), None)
+                out.append({"name": name or re.sub(r"[()]", "", x.text()).strip(), "url": u, "trusted": bool(name)})
+            else: rec(x)
+    rec(li); return out
+
 def ce_items(day):
     q = get("https://en.wikipedia.org/w/api.php?action=parse&format=json&formatversion=2&prop=text&page="
             + urllib.parse.quote(f"Portal:Current_events/{day:%Y}_{day:%B}_{day.day}"))
@@ -358,7 +385,7 @@ def ce_items(day):
             else:
                 txt = re.sub(r"\s+", " ", li.text(skip)).strip()
                 txt = re.sub(r"\s*\(\s*\)\s*$", "", txt)
-                items.append({"cat": cat, "story": txt, "links": _wiki_links(li), "topics": topics})
+                items.append({"cat": cat, "story": txt, "links": _wiki_links(li), "topics": topics, "sources": _sources(li)})
     def walk(n):
         nonlocal cat
         for k in n.kids:
@@ -372,13 +399,15 @@ def ce_items(day):
 
 def ce_cards(days, have, limit):
     """Pick the most serious stories, a few from each category in turn."""
-    by = {c: [] for c in CE_CATS}
+    by = {c: [] for c in CE_CATS}; untrusted = []
     for day in days:
         for it in ce_items(day):
             s = it["story"]
             if it["cat"] not in by or len(s) < 60 or BLOCK.search(s) or MINOR.search(s) or TECHY.search(s): continue
+            if not any(x["trusted"] for x in it["sources"]): untrusted.append(s[:70]); continue   # no reliable outlet behind it
             by[it["cat"]].append(it)
-    log(f"  current events: " + ", ".join(f"{k.split()[0]} {len(v)}" for k, v in by.items()))
+    log(f"  current events: " + ", ".join(f"{k.split()[0]} {len(v)}" for k, v in by.items()) + f"; skipped {len(untrusted)} without a trusted source")
+    for u in untrusted[:8]: log("    untrusted:", u)
     cards, round_ = [], 0
     while len(cards) < limit and any(round_ < len(v) for v in by.values()):
         for cat in CE_CATS:
@@ -392,6 +421,7 @@ def ce_cards(days, have, limit):
             c = news_card(it["story"], pages, None, "en")
             if c["id"] in have or c["topic"] in have: continue
             c["cat"] = cat; have.add(c["id"]); have.add(c["topic"])
+            c["sources"] = [{"name": x["name"], "url": x["url"]} for x in it["sources"] if x["trusted"]][:3]
             cards.append(c)
         round_ += 1
     return cards
@@ -449,7 +479,7 @@ def localize_news(cards):
         c["headline"] = tr; c["title"] = trim(tr, 140)
         bg = ""
         if loc.get(c.get("topic")):
-            p = summary(LANG, loc[c["topic"]])
+            p = stable(LANG, loc[c["topic"]])
             if ok_page(p): bg = p.get("extract") or ""; c["url"] = ((p.get("content_urls") or {}).get("mobile") or {}).get("page") or c["url"]; c["topic"] = page_title(p)
         c["text"] = trim(tr + " " + bg)
         if c.get("place") and loc.get(c["place"]): c["place"] = loc[c["place"]]
@@ -524,6 +554,32 @@ PLACE_AT = {"Prime meridian": [0, 51.48], "Equator": [-78.45, 0], "International
             "Monsoon": [80, 18], "Mariana Trench": [142.2, 11.35], "Sahel": [5, 14], "Horn of Africa": [45, 8], "Siberia": [100, 62],
             "Balkans": [20, 43], "Scandinavia": [15, 63], "Caucasus": [44, 42.5], "Patagonia": [-69, -45], "Great Barrier Reef": [147, -18]}
 
+# ---------- vandalism guard ----------
+# Anyone can edit Wikipedia. Bad edits are usually reverted within minutes or hours, so for background facts we read
+# the version of the article that has stood for at least STABLE_DAYS days (when the newest edit is more recent than that).
+STABLE_DAYS = 3
+def stable(lang, title):
+    s = summary(lang, title)
+    if not s or not ok_page(s): return s
+    try:
+        ts = datetime.fromisoformat((s.get("timestamp") or "").replace("Z", "+00:00"))
+    except ValueError:
+        return s
+    cut = datetime.now(timezone.utc) - timedelta(days=STABLE_DAYS)
+    if ts <= cut: s["_stable"] = s.get("revision") or "current"; return s
+    q = get(f"https://{lang}.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=revisions&rvprop=ids|timestamp&rvlimit=1"
+            f"&rvstart={cut:%Y-%m-%dT%H:%M:%SZ}&titles=" + urllib.parse.quote(page_title(s)))
+    try:
+        rev = q["query"]["pages"][0]["revisions"][0]["revid"]
+    except Exception:
+        return s                          # a brand-new article: nothing older to compare with
+    old = summary(lang, page_title(s), rev)
+    if ok_page(old):
+        if not old.get("coordinates") and s.get("coordinates"): old["coordinates"] = s["coordinates"]
+        old["_stable"] = rev; STABLE_HITS.append(title); return old
+    return s
+STABLE_HITS = []
+
 # capital of each country: its position and its name in this language (shown with a star on the globe)
 CAP_LOC = {}
 def add_capital(c, country):
@@ -596,7 +652,7 @@ def main():
             f = find_feature(t)                      # shapes are cheap: always use the newest matching rules
             if f: old.update(f)
             topics.append(old); continue
-        p = summary(LANG, lt)
+        p = stable(LANG, lt)
         if not ok_page(p): continue
         c = card_from_page(p, kind, en=t)
         if kind == "geo" and not c.get("coords") and t in PLACE_AT: c["coords"] = PLACE_AT[t]
@@ -611,6 +667,7 @@ def main():
         topics.append(c)
         time.sleep(0.05)
     prev_file.write_text(json.dumps(topics, ensure_ascii=False), encoding="utf-8")
+    log(f"{LANG}: {len(STABLE_HITS)} articles had fresh edits, so their {STABLE_DAYS}-day-old version was used")
     log(f"{LANG}: {len(topics)} topics, {sum(1 for c in topics if c.get('geom'))} with shapes")
 
     # narration: news first (fresh every day), then topics

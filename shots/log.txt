@@ -1,54 +1,54 @@
-[webkit/en] card 1: {"kind": "photo", "vis": null, "ftype": null, "audio": true, "title": "Jim Buckley’s Red Dragon sculpture from 1985 during River Lee flooding, October "}
-[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e3/G20%E3%83%A8%E3%83%8F%E3%83%8D%E3%82%B9%E3%83%96%E3%83%AB%E3%82%B0%E3%83%BB%E Load request cancelled
-[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e3/G20%E3%83%A8%E3%83%8F%E3%83%8D%E3%82%B9%E3%83%96%E3%83%AB%E3%82%B0%E3%83%BB%E Load request cancelled
-[webkit/en] card 2: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "G20"}
-[webkit/en] card 3: {"kind": "geo", "vis": "locator", "ftype": null, "audio": true, "title": "Mumbai"}
-[webkit/en] card 4: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Kazakhstan"}
-[webkit/en] card 5: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Deflation"}
-[webkit/en] card 6: {"kind": "geo", "vis": "chart", "ftype": null, "audio": true, "title": "Megacity"}
-[webkit/en] card 7: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Indonesia"}
-[webkit/en] card 8: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Great Depression"}
-[webkit/en] card 9: {"kind": "geo", "vis": "globe", "ftype": "region", "audio": true, "title": "Horn of Africa"}
-[webkit/en] card 10: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Egypt"}
-[webkit/en] card 11: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Unemployment"}
-[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/9/9f/President_Obama_Nominates_Jim_Yong_Kim_for_World_Bank_President.webm/Presiden Load request cancelled
-[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/9/9f/President_Obama_Nominates_Jim_Yong_Kim_for_World_Bank_President.webm/Presiden Load request cancelled
-[webkit/en] card 12: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "World Bank Group"}
-[webkit/en] card 13: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Supply and demand"}
-[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e6/The_History_of_the_European_Central_Bank.webm/The_History_of_the_European_Cen Load request cancelled
-[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e6/The_History_of_the_European_Central_Bank.webm/The_History_of_the_European_Cen Load request cancelled
-[webkit/en] card 14: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Central bank"}
-[webkit/en] news 1: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Hôtel de Ville, Limoges", "country": "France", "lang": null, "title": "The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and studen"}
-[webkit/en] news 2: {"kind": "news", "vis": null, "img": true, "audio": true, "place": null, "country": null, "lang": null, "title": "The International Bureau of Weights and Measures votes to effectively abolish th"}
-[webkit/en] news 3: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Saudi Arabia", "lang": null, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
-[webkit/en] news 4: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Israel", "lang": null, "title": "The Israel Defense Forces (IDF) and Shin Bet say that they have killed a Hamas N"}
-[webkit/en] news 5: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Indonesia", "lang": null, "title": "Indonesia, Pakistan, Qatar, and Turkey jointly sign the Badr Memorandum of Under"}
-[webkit/en] news 6: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Athens", "country": "Greece", "lang": null, "title": "Thousands of students and teachers march through Athens, Thessaloniki, and Patra"}
-[webkit/en] news 7: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Natore District", "country": "Bangladesh", "lang": null, "title": "At least 14 people are killed and 20 others are injured after a bus and a truck "}
-[webkit/en] news 8: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "South Africa", "lang": null, "title": "South Africa cuts fuel levies by R3.00 (US$0.18) per litre of diesel and R1.50 ("}
-[webkit/en] content ok: True, topics: 291, with audio: 291
-[webkit/sl] CRASH Traceback (most recent call last):
-  File "/home/runner/work/Clued/Clued/tools/shots.py", line 62, in <module>
-    try: run(p, engine, lang)
-         ^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/Clued/Clued/tools/shots.py", line 24, in run
-    pg.goto("http://127.0.0.1:8080/index.html", wait_until="load")
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 9002, in goto
-    self._sync(
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
-    return task.result()
-           ^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_page.py", line 553, in goto
-    return await self._main_frame.goto(**locals_to_params(locals()))
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_frame.py", line 145, in goto
-    await self._channel.send("goto", locals_to_params(locals()))
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 59, in send
-    return await self._connection.wrap_api_call(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 520, in wrap_api_call
-    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
-playwright._impl._errors.TimeoutError: Page.goto: Timeout 30000ms exceeded.
-Call log:
-navigating to "http://127.0.0.1:8080/index.html", waiting until "load"
-
+[webkit/en] console error: Failed to load resource: the server responded with a status of 404 (File not found)
+[webkit/en] console error: Failed to load resource: the server responded with a status of 404 (File not found)
+[webkit/en] card 1: {"kind": "geo", "vis": "globe", "ftype": null, "audio": false, "title": "Ukraine"}
+[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/f/f2/Aerial_views_of_Taiga_in_Russia_3.webm/Aerial_views_of_Taiga_in_Russia_3.webm Load request cancelled
+[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/f/f2/Aerial_views_of_Taiga_in_Russia_3.webm/Aerial_views_of_Taiga_in_Russia_3.webm Load request cancelled
+[webkit/en] card 2: {"kind": "geo", "vis": null, "ftype": null, "audio": false, "title": "Taiga"}
+[webkit/en] card 3: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "What is the capital of Ukraine?"}
+[webkit/en] card 4: {"kind": "geo", "vis": "locator", "ftype": null, "audio": false, "title": "Maribor"}
+[webkit/en] card 5: {"kind": "econ", "vis": null, "ftype": null, "audio": false, "title": "Monopoly"}
+[webkit/en] card 6: {"kind": "geo", "vis": "locator", "ftype": null, "audio": false, "title": "Atlantic Ocean"}
+[webkit/en] card 7: {"kind": "photo", "vis": null, "ftype": null, "audio": false, "title": "Jim Buckley’s Red Dragon sculpture from 1985 during River Lee flooding, October "}
+[webkit/en] card 8: {"kind": "econ", "vis": null, "ftype": null, "audio": false, "title": "Sharing economy"}
+[webkit/en] card 9: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "What is the capital of Peru?"}
+[webkit/en] card 10: {"kind": "econ", "vis": "chart", "ftype": null, "audio": false, "title": "Monetary policy"}
+[webkit/en] card 11: {"kind": "geo", "vis": null, "ftype": null, "audio": false, "title": "El Niño–Southern Oscillation"}
+[webkit/en] card 12: {"kind": "photo", "vis": null, "ftype": null, "audio": false, "title": "A small hoverfly in the sun (female Episyrphus balteatus)"}
+[webkit/en] card 13: {"kind": "geo", "vis": "locator", "ftype": null, "audio": false, "title": "Gobi Desert"}
+[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/b/b9/Gov._Wolf_Proposes_Education_Reinvestment_Plan_Featuring_Natural_Gas_Severance_Tax.webm? Load request cancelled
+[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/b/b9/Gov._Wolf_Proposes_Education_Reinvestment_Plan_Featuring_Natural_Gas_Severance_Tax.webm? Load request cancelled
+[webkit/en] card 14: {"kind": "econ", "vis": null, "ftype": null, "audio": false, "title": "Natural gas"}
+[webkit/en] news 1: {"kind": "news", "vis": null, "img": true, "audio": false, "place": null, "country": null, "lang": null, "title": "The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and studen"}
+[webkit/en] news 2: {"kind": "news", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": null, "title": "The International Bureau of Weights and Measures votes to effectively abolish th"}
+[webkit/en] news 3: {"kind": "news", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": null, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/en] news 4: {"kind": "news", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": null, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/en] news 5: {"kind": "news", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": null, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/en] news 6: {"kind": "news", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": null, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/en] news 7: {"kind": "news", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": null, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/en] news 8: {"kind": "news", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": null, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/en] content ok: False, topics: 0, with audio: 0
+[webkit/sl] console error: Failed to load resource: the server responded with a status of 404 (File not found)
+[webkit/sl] console error: Failed to load resource: the server responded with a status of 404 (File not found)
+[webkit/sl] card 1: {"kind": "geo", "vis": null, "ftype": null, "audio": false, "title": "Potres"}
+[webkit/sl] card 2: {"kind": "photo", "vis": null, "ftype": null, "audio": false, "title": "Skulptura Rdeči zmaj Jima Buckleyja iz leta 1985 med poplavo reke Lee, oktober 2"}
+[webkit/sl] card 3: {"kind": "geo", "vis": "globe", "ftype": null, "audio": false, "title": "Francija"}
+[webkit/sl] card 4: {"kind": "photo", "vis": null, "ftype": null, "audio": false, "title": "A small hoverfly in the sun (female Episyrphus balteatus)"}
+[webkit/sl] card 5: {"kind": "econ", "vis": "chart", "ftype": null, "audio": false, "title": "Evropska centralna banka"}
+[webkit/sl] card 6: {"kind": "geo", "vis": "globe", "ftype": null, "audio": false, "title": "Indija"}
+[webkit/sl] card 7: {"kind": "geo", "vis": "locator", "ftype": null, "audio": false, "title": "Donava"}
+[webkit/sl] card 8: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Kaj od tega je »reka v Evropi«?"}
+[webkit/sl] card 9: {"kind": "econ", "vis": null, "ftype": null, "audio": false, "title": "Menjalni tečaj"}
+[webkit/sl] card 10: {"kind": "photo", "vis": null, "ftype": null, "audio": false, "title": "Klobuk z zavihanimi lističi, Laccaria laccata (rdečkasta bledivka). Žariščni skl"}
+[webkit/sl] card 11: {"kind": "geo", "vis": "globe", "ftype": null, "audio": false, "title": "Slovaška"}
+[webkit/sl] card 12: {"kind": "geo", "vis": "locator", "ftype": null, "audio": false, "title": "Južnokitajsko morje"}
+[webkit/sl] card 13: {"kind": "geo", "vis": "globe", "ftype": null, "audio": false, "title": "Izrael"}
+[webkit/sl] card 14: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Kaj od tega je »država v Zahodni Aziji«?"}
+[webkit/sl] news 1: {"kind": "news", "vis": null, "img": true, "audio": false, "place": null, "country": null, "lang": "en", "title": "The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and studen"}
+[webkit/sl] news 2: {"kind": "news", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": "en", "title": "The International Bureau of Weights and Measures votes to effectively abolish th"}
+[webkit/sl] news 3: {"kind": "news", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": "en", "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/sl] news 4: {"kind": "news", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": "en", "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/sl] news 5: {"kind": "news", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": "en", "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/sl] news 6: {"kind": "news", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": "en", "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/sl] news 7: {"kind": "news", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": "en", "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/sl] news 8: {"kind": "news", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": "en", "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/sl] content ok: False, topics: 0, with audio: 0

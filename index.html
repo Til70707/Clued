@@ -123,6 +123,16 @@ canvas.vis{position:absolute;inset:0}
 .testv{justify-self:start;padding:9px 14px;border-radius:10px;background:var(--lime);color:var(--lime-ink);font-weight:800}
 .set .hint{margin:0;font-size:13px;color:var(--ink-faint)}
 
+#langpick{position:fixed;inset:0;z-index:65;display:flex;flex-direction:column;justify-content:center;gap:18px;padding:0 max(22px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 24px) max(22px,env(safe-area-inset-left,0px));
+  background:radial-gradient(90% 60% at 20% 15%,rgba(200,245,96,.22),transparent 60%),radial-gradient(80% 50% at 90% 40%,rgba(124,196,255,.2),transparent 60%),var(--bg)}
+#langpick h1{font:800 clamp(40px,12vw,64px)/1 var(--f-display);letter-spacing:-.04em;margin:0}
+#langpick h1 em{font-style:normal;color:var(--lime)}
+.lp-q{margin:0;color:var(--ink-dim);font-size:16px}
+.lp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:520px}
+.lp-grid button{display:flex;align-items:center;gap:10px;padding:16px 14px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid var(--line);font:700 17px var(--f-body);text-align:left}
+.lp-grid button span{font-size:24px}
+.lp-grid button:active{background:rgba(200,245,96,.18);border-color:var(--lime)}
+canvas.loc{position:absolute;top:calc(env(safe-area-inset-top,0px) + 66px);right:max(14px,env(safe-area-inset-right,0px));width:118px;height:118px;border-radius:50%;box-shadow:0 8px 30px rgba(0,0,0,.55);z-index:2}
 #start{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;justify-content:flex-end;gap:16px;padding:0 max(22px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 36px) max(22px,env(safe-area-inset-left,0px));
   background:radial-gradient(90% 60% at 20% 15%,rgba(200,245,96,.28),transparent 60%),radial-gradient(80% 50% at 90% 40%,rgba(124,196,255,.22),transparent 60%),var(--bg)}
 #start h1{font:800 clamp(40px,12vw,72px)/.98 var(--f-display);letter-spacing:-.04em;margin:0}
@@ -159,6 +169,11 @@ canvas.vis{position:absolute;inset:0}
 <div class="screen" id="screen" hidden></div>
 <button class="close" id="closeScreen" hidden aria-label="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
 
+<div id="langpick" hidden>
+  <h1>Clued<em>.</em></h1>
+  <p class="lp-q">Choose your language · Izberi jezik</p>
+  <div class="lp-grid" id="lpGrid"></div>
+</div>
 <div id="start" hidden>
   <h1>Clued<em>.</em></h1>
   <p>The world news that matters, plus geography and economics, in short swipes read to you. Every few swipes, a quick quiz.</p>
@@ -394,13 +409,14 @@ function okPage(p) {
   if (SKIP_TITLES.test(t) || BLOCK.test(t) || BLOCK.test(p.extract || "") || BLOCK.test(p.description || "")) return false;
   return p.type !== "disambiguation" && (p.extract || "").length > 80;
 }
+const BAD_IMG = /\.svg($|\/)|flag|logo|emblem|coat_of_arms|seal_of|wappen|banner|slogan|locator|location_map|_map\b|map_of/i;
 function fromPage(p, kind, extra = {}) {
   const title = p.titles?.normalized || p.title;
   return {
     id: kind + ":" + (p.titles?.canonical || title) + (extra.idSuffix || ""),
     kind, title, name: title, desc: p.description || "",
-    text: trimText(p.extract), img: sizedImg(p.originalimage, p.thumbnail),
-    thumb: p.thumbnail?.source || "", url: p.content_urls?.mobile?.page || p.content_urls?.desktop?.page || "",
+    text: trimText(p.extract), img: BAD_IMG.test(p.originalimage?.source || p.thumbnail?.source || "") ? "" : sizedImg(p.originalimage, p.thumbnail),
+    thumb: BAD_IMG.test(p.thumbnail?.source || "") ? "" : p.thumbnail?.source || "", url: p.content_urls?.mobile?.page || p.content_urls?.desktop?.page || "",
     imgW: p.originalimage?.width || p.thumbnail?.width || 0, imgH: p.originalimage?.height || p.thumbnail?.height || 0,
     coords: p.coordinates && isFinite(p.coordinates.lon) && isFinite(p.coordinates.lat) ? [+p.coordinates.lon, +p.coordinates.lat] : null,
     ...extra,
@@ -527,7 +543,13 @@ function fmtVal(v, unit) {
   return (unit === "$" ? "$" : "") + nf.format(v);
 }
 function visFor(c, topic) {
-  if (c.kind === "geo" && HAS_GEO && (c.coords || (topic && CAPITALS[topic]))) return "globe"; // countries without coordinates get their centre from the map
+  if (c.kind === "geo" && HAS_GEO) {
+    if (c.geom) return "globe";                          // lake, river, mountains, desert, sea: coloured on the globe
+    if (topic && CAPITALS[topic]) return "globe";         // countries: zoom onto their real outline
+    if (c.coords && c.img) return "locator";              // small places: their photo + a little globe showing where
+    if (c.coords) return "globe";
+  }
+  if (c.kind === "news" && !c.img && c.globeName && HAS_GEO) return "globe"; // no photo of the event: show where it happened
   if (topic && CHARTS[topic]) return "chart";
   return null;
 }
@@ -548,6 +570,7 @@ const COUNTRY_CONT = (() => {
   add("c_an", "Antarctica");
   return m;
 })();
+const COUNTRY_LABEL = new Proxy({}, { get: (_, n) => { try { const iso = { "United States of America": "US", "United Kingdom": "GB", "Saudi Arabia": "SA", France: "FR", Germany: "DE", Italy: "IT", Spain: "ES", Slovenia: "SI", Ukraine: "UA", Russia: "RU", China: "CN", Japan: "JP", India: "IN", Israel: "IL", Iran: "IR", Yemen: "YE", Brazil: "BR", Mexico: "MX", Canada: "CA", Australia: "AU", Turkey: "TR", Egypt: "EG", Nigeria: "NG", "South Africa": "ZA", Argentina: "AR", Chile: "CL", Peru: "PE", Colombia: "CO", Venezuela: "VE", Poland: "PL", Hungary: "HU", Austria: "AT", Croatia: "HR", Greece: "GR", Sweden: "SE", Norway: "NO", Finland: "FI", Denmark: "DK", Netherlands: "NL", Belgium: "BE", Switzerland: "CH", Portugal: "PT", Ireland: "IE", Pakistan: "PK", Bangladesh: "BD", Indonesia: "ID", Philippines: "PH", Vietnam: "VN", Thailand: "TH", "South Korea": "KR", "North Korea": "KP", Syria: "SY", Iraq: "IQ", Lebanon: "LB", Sudan: "SD", Ethiopia: "ET", Kenya: "KE", Morocco: "MA", Algeria: "DZ", Libya: "LY", Afghanistan: "AF", Myanmar: "MM", Taiwan: "TW", Mongolia: "MN", Kazakhstan: "KZ" }[n]; return iso ? new Intl.DisplayNames([LANG], { type: "region" }).of(iso) : undefined; } catch { return undefined; } } });
 function continentOf(c) {
   const k = COUNTRY_CONT[c.en || c.name];
   if (k) return k;
@@ -626,19 +649,24 @@ function makeCanvas(slide, maxDpr = 2) {
 function startVisual(slide, c) {
   const run = ++visRun;
   if (c.vis === "globe" && HAS_GEO) return runGlobe(slide, c, run);
+  if (c.vis === "locator" && HAS_GEO) return runLocator(slide, c, run);
   if (c.vis === "chart") return runChart(slide, c, run);
   if ((c.kind === "geo" || c.kind === "econ") && !c.vis) return runVideo(slide, c, run);
 }
 
 async function runGlobe(slide, c, run) {
   const world = await loadWorld("110m"); if (run !== visRun) return;
-  const name = c.en || c.name, findIn = wd => wd.countries.find(f => f.properties.name === name || f.properties.name === COUNTRY_ALIAS[name]) || null;
-  const hit = findIn(world);
-  const target = c.coords || (hit && world.precise ? d3.geoCentroid(hit) : null);
+  const name = c.globeName || c.en || c.name, findIn = wd => wd.countries.find(f => f.properties.name === name || f.properties.name === COUNTRY_ALIAS[name]) || null;
+  // a lake, river, sea, desert or mountain range comes with its own shape from Natural Earth
+  const feat = c.geom ? { type: "Feature", properties: { name: "__feature" }, geometry: c.geom } : null;
+  if (feat && /Polygon/.test(c.geom.type)) fixWinding(feat);
+  const isLine = !!(feat && /LineString/.test(c.geom.type)), isWater = c.ftype === "lake" || c.ftype === "sea";
+  const hit = feat || findIn(world);
+  const target = c.coords || (hit && (world.precise || feat) ? d3.geoCentroid(hit) : null);
   if (!target) { c.vis = null; return runVideo(slide, c, run); } // no position known: try a clip instead
   const { cv, x, w, h } = makeCanvas(slide, 3); // full screen resolution so borders stay crisp
-  let fine = null, fineHit = null, cache = null, w10 = null, w10state = hit && world.precise ? "loading" : "none";
-  if (world.precise) loadWorld("50m").then(wd => { if (wd && run === visRun) { fine = wd; fineHit = findIn(wd); } });
+  let fine = null, fineHit = null, cache = null, w10 = null, w10state = hit && !feat && world.precise ? "loading" : "none";
+  if (world.precise) loadWorld("50m").then(wd => { if (wd && run === visRun) { fine = wd; fineHit = feat || findIn(wd); } });
   if (w10state === "loading") loadWorld10().then(z => { w10 = z; w10state = z ? "ready" : "none"; });
   const get10 = f => (w10 && (w10.get(f.properties.name) || null)) || f;
   const start = [target[0] - 70, 12];
@@ -646,7 +674,7 @@ async function runGlobe(slide, c, run) {
   if (hit) { const b = d3.geoBounds(hit), span = Math.max(Math.abs(b[1][0] - b[0][0]) * Math.cos(target[1] * Math.PI / 180), Math.abs(b[1][1] - b[0][1])); zoomK = Math.max(1.4, Math.min(2.5, 24 / Math.max(span, 1))); }
   const base = Math.min(w, h) * 0.42, proj = d3.geoOrthographic().clipAngle(90).precision(0.4), grat = d3.geoGraticule10();
   const stars = Array.from({ length: 70 }, (_, i) => [((i * 97) % 100) / 100 * w, ((i * 53) % 100) / 100 * h * 0.6, (i % 3) * 0.5 + 0.5]);
-  const label = c.name, contName = continentOf({ ...c, coords: c.coords || target }), coordTxt = (contName ? t(contName) + "  ·  " : "") + `${Math.abs(target[1]).toFixed(0)}°${target[1] >= 0 ? "N" : "S"}  ${Math.abs(target[0]).toFixed(0)}°${target[0] >= 0 ? "E" : "W"}`;
+  const label = c.globeName ? (COUNTRY_LABEL[c.globeName] || c.globeName) : c.name, contName = continentOf({ ...c, coords: c.coords || target }), coordTxt = (contName ? t(contName) + "  ·  " : "") + `${Math.abs(target[1]).toFixed(0)}°${target[1] >= 0 ? "N" : "S"}  ${Math.abs(target[0]).toFixed(0)}°${target[0] >= 0 ? "E" : "W"}`;
   const ease = t => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
   // everything except the pulsing marker
   const cont = continentOf({ ...c, coords: c.coords || target });
@@ -683,7 +711,14 @@ async function runGlobe(slide, c, run) {
     // land, then thin country borders on top
     g.fillStyle = "#3a5a2a"; g.beginPath(); countries.forEach(f => path(f)); g.fill();
     g.strokeStyle = "rgba(225,240,205,.42)"; g.lineWidth = 0.55; g.stroke();
-    if (hl) { g.fillStyle = "rgba(200,245,96,.62)"; g.strokeStyle = "#e4ff9a"; g.lineWidth = 1.6; g.beginPath(); path(hl); g.fill(); g.stroke(); }
+    if (hl) {
+      if (isLine) { // river: a glowing blue line
+        g.beginPath(); path(hl); g.strokeStyle = "rgba(120,210,255,.35)"; g.lineWidth = 9; g.stroke();
+        g.beginPath(); path(hl); g.strokeStyle = "#8fe0ff"; g.lineWidth = 3.2; g.stroke();
+      } else if (isWater) { // lake or sea: bright water with a light rim
+        g.fillStyle = "rgba(105,190,255,.85)"; g.strokeStyle = "#c8f0ff"; g.lineWidth = 1.6; g.beginPath(); path(hl); g.fill(); g.stroke();
+      } else { g.fillStyle = "rgba(200,245,96,.62)"; g.strokeStyle = "#e4ff9a"; g.lineWidth = 1.6; g.beginPath(); path(hl); g.fill(); g.stroke(); }
+    }
     // soft light from the top-left for a 3D look
     const sh = g.createRadialGradient(cx - R * .45, cy - R * .5, R * .15, cx, cy, R * 1.02);
     sh.addColorStop(0, "rgba(255,255,255,.10)"); sh.addColorStop(.55, "rgba(0,0,0,0)"); sh.addColorStop(1, "rgba(0,0,0,.38)");
@@ -702,7 +737,7 @@ async function runGlobe(slide, c, run) {
     const zt = Math.max(0, (t - .3) / .7);
     let scale = base * (1 + (zoomK - 1) * zt * zt);
     proj.rotate([-lon, -lat]).scale(scale).translate([w / 2, h * 0.36]);
-    const shape = (w10 && hit && (w10.get(hit.properties.name) || null)) || (fine && fineHit) || hit;
+    const shape = (w10 && hit && !feat && (w10.get(hit.properties.name) || null)) || (fine && fineHit) || hit;
     if (t >= 1 && shape && shapeK === null) {
       const bb = d3.geoPath(proj).bounds(shape), bw = bb[1][0] - bb[0][0], bh = bb[1][1] - bb[0][1];
       shapeK = bw > 0 && bh > 0 ? Math.max(1, Math.min(w * 0.5 / bw, h * 0.3 / bh, 40)) : 1;
@@ -744,6 +779,39 @@ async function runGlobe(slide, c, run) {
   requestAnimationFrame(frame);
 }
 
+// a small globe in the corner of a photo card, spinning to the place
+async function runLocator(slide, c, run) {
+  const world = await loadWorld("110m"); if (run !== visRun || !c.coords) return;
+  let cv = slide.querySelector("canvas.loc");
+  const S2 = 118, dpr = Math.min(3, devicePixelRatio || 1);
+  if (!cv) { cv = document.createElement("canvas"); cv.className = "loc"; slide.appendChild(cv); }
+  keepVis(cv);
+  cv.width = cv.height = Math.round(S2 * dpr);
+  const x = cv.getContext("2d"); x.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const proj = d3.geoOrthographic().clipAngle(90).precision(0.5).scale(S2 / 2 - 2).translate([S2 / 2, S2 / 2]), path = d3.geoPath(proj, x);
+  const target = c.coords, start = [target[0] - 60, 10], ease = t => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  const t0 = performance.now(), DUR = REDUCED ? 1 : 1600; let last = 0;
+  const frame = now => {
+    if (run !== visRun) return;
+    if (now - t0 > DUR && now - last < 60) { requestAnimationFrame(frame); return; }
+    last = now;
+    const k = ease(Math.max(0, Math.min(1, (now - t0) / DUR)));
+    proj.rotate([-(start[0] + (target[0] - start[0]) * k), -(start[1] + (target[1] - start[1]) * k)]);
+    x.clearRect(0, 0, S2, S2);
+    const oc = x.createRadialGradient(S2 * .35, S2 * .3, 4, S2 / 2, S2 / 2, S2 / 2); oc.addColorStop(0, "#2a5a96"); oc.addColorStop(1, "#0a1630");
+    x.fillStyle = oc; x.beginPath(); path({ type: "Sphere" }); x.fill();
+    x.fillStyle = "#3a5a2a"; x.strokeStyle = "rgba(225,240,205,.35)"; x.lineWidth = .5; x.beginPath(); world.countries.forEach(f => path(f)); x.fill(); x.stroke();
+    x.strokeStyle = "rgba(255,255,255,.5)"; x.lineWidth = 1.5; x.beginPath(); path({ type: "Sphere" }); x.stroke();
+    const p = proj(target);
+    if (p && k > .6) {
+      const pulse = (Math.max(0, now - t0) / 1300) % 1;
+      x.strokeStyle = `rgba(200,245,96,${1 - pulse})`; x.lineWidth = 2; x.beginPath(); x.arc(p[0], p[1], 4 + pulse * 12, 0, 7); x.stroke();
+      x.fillStyle = "#c8f560"; x.beginPath(); x.arc(p[0], p[1], 4, 0, 7); x.fill();
+    }
+    if (!REDUCED || now - t0 < DUR) requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+}
 const chartCache = {};
 function chartData(topic) {
   const [ind, reg, , years = "2000:2025"] = CHARTS[topic];
@@ -939,9 +1007,10 @@ function resultHTML(c) {
   return c.correct ? `<b style="color:var(--ok)">${t("correct")}</b> ${esc(c.explain)}` : `<b style="color:var(--bad)">${t("wrong")}</b> ${esc(c.explain)}`;
 }
 function visibleCards() {
-  if (S.filter === "news") return S.cards.filter(c => !c.fromSaved && (c.kind === "news" || c.kind === "quiz" && c.src?.kind === "news"));
+  const isNews = c => c.kind === "news" || (c.kind === "quiz" && c.src?.kind === "news");
+  if (S.filter === "news") return S.cards.filter(c => !c.fromSaved && isNews(c));
   if (S.filter === "saved") return S.cards.filter(c => S.saved[c.id]);
-  return S.cards.filter(c => !c.fromSaved);
+  return S.cards.filter(c => !c.fromSaved && !isNews(c));
 }
 // cards saved on earlier visits are not in S.cards after a reload: bring them back (hidden from For you / News)
 function restoreSaved() {
@@ -969,10 +1038,44 @@ function appendCards(cards) {
   }
   if (S.filter !== "saved") renderFeed(false);
 }
+// Content prepared every morning by GitHub (tools/build_content.py): texts, shapes and natural-voice audio.
+const CONTENT = { ok: false, news: [], photo: null, topics: [], cur: 0, newsGiven: false };
+function prepCard(c) {
+  if (c.kind === "news" && !c.img && c.country) c.globeName = c.country;
+  c.vis = visFor(c, c.en);
+  return c;
+}
+async function loadContent() {
+  try {
+    const stamp = new Date().toISOString().slice(0, 10);
+    const [n, tp] = await Promise.all([getJSON(`content/${LANG}/news.json?d=${stamp}`), getJSON(`content/${LANG}/topics.json?d=${stamp}`)]);
+    CONTENT.news = (n.news || []).map(prepCard); CONTENT.photo = n.photo ? prepCard(n.photo) : null;
+    CONTENT.topics = shuffle((tp.topics || []).map(prepCard));
+    CONTENT.ok = CONTENT.topics.length > 0 || CONTENT.news.length > 0;
+  } catch { CONTENT.ok = false; }
+}
+function nextTopics(n) {
+  const out = [], list = CONTENT.topics;
+  if (list.length && list.every(c => VIEWED_T.has(c.en))) { VIEWED_T.clear(); store.set("viewedT", []); shuffle(list); }
+  for (let k = 0; k < list.length * 2 && out.length < n; k++) {
+    const c = list[CONTENT.cur++ % list.length];
+    if (!VIEWED_T.has(c.en) && !S.seen.has(c.id) && !out.includes(c)) out.push(c);
+  }
+  return out;
+}
 let newsDays = 0;
 async function loadMore() {
   if (S.loadingMore) return;
   S.loadingMore = true;
+  if (CONTENT.ok) {
+    try {
+      let cards = [];
+      if (!CONTENT.newsGiven) { CONTENT.newsGiven = true; cards = [...CONTENT.news]; if (CONTENT.photo) cards.push(CONTENT.photo); }
+      cards = cards.concat(nextTopics(cards.length ? 8 : 6));
+      appendCards(cards); $("#loading").hidden = true;
+    } finally { S.loadingMore = false; }
+    return;
+  }
   try {
     let day = { news: [], extra: [] };
     if (newsDays < 2) {
@@ -1017,8 +1120,34 @@ function voiceFor(lang = LANG) {
 function pickVoice() { voice = voiceFor(LANG); }
 if (synth) { pickVoice(); synth.onvoiceschanged = pickVoice; }
 let speakToken = 0, barTimer = 0;
+const AUDIO = new Audio(); AUDIO.preload = "auto"; AUDIO.setAttribute("playsinline", "");
+let audioTimer = 0;
+function playAudio(c, slide, bar) {
+  const tok = ++speakToken;
+  AUDIO.src = c.audio; AUDIO.playbackRate = store.get("arate", 1);
+  const words = slide ? [...slide.querySelectorAll(".cap .w")] : [];
+  const capLen = slide ? slide.querySelector(".cap")?.textContent.length || 1 : 1;
+  const lead = c.kind === "news" || c.kind === "photo" ? 0 : (c.title.length + 2) / (c.title.length + 2 + capLen); // the title is read first
+  const starts = []; if (words.length) { let pos = 0; const txt = slide.querySelector(".cap").textContent; words.forEach(w => { const at = txt.indexOf(w.textContent, pos); starts.push(at); pos = at + w.textContent.length; }); }
+  let lastOn = null;
+  clearInterval(audioTimer);
+  audioTimer = setInterval(() => {
+    if (tok !== speakToken) { clearInterval(audioTimer); return; }
+    const d = AUDIO.duration; if (!d || !isFinite(d)) return;
+    const p = AUDIO.currentTime / d;
+    if (bar) bar.style.width = Math.min(100, p * 100) + "%";
+    if (!words.length) return;
+    const cp = (p - lead) / (1 - lead); if (cp < 0) return;
+    const ci = cp * capLen; let k = 0; while (k + 1 < starts.length && starts[k + 1] <= ci) k++;
+    if (lastOn !== words[k]) { if (lastOn) lastOn.classList.remove("on"); lastOn = words[k]; if (lastOn) lastOn.classList.add("on"); }
+    if (AUDIO.ended) { clearInterval(audioTimer); if (lastOn) lastOn.classList.remove("on"); if (bar) bar.style.width = "100%"; }
+  }, 120);
+  const p = AUDIO.play(); if (p && p.catch) p.catch(() => {});
+}
 function stopPlayback() {
   speakToken++;
+  try { AUDIO.pause(); } catch {}
+  clearInterval(audioTimer);
   if (synth) { if (synth.paused) synth.resume(); synth.cancel(); } // Safari: cancel() while paused leaves later utterances stuck paused
   clearInterval(barTimer);
   document.querySelectorAll(".w.on").forEach(w => w.classList.remove("on"));
@@ -1031,11 +1160,12 @@ function play(slide) {
   slide.classList.add("playing");
   const c = S.cards[+slide.dataset.i];
   if (c && c.kind !== "quiz") startVisual(slide, c);
-  if (!c || c.kind === "quiz") { if (c?.kind === "quiz" && S.sound && S.started && !c.done) speak(c.q, null, null); return; }
+  if (!c || c.kind === "quiz") return; // quizzes are read silently
   countLearned(c);
   const bar = slide.querySelector(".bar i");
   const spoken = c.kind === "news" ? c.text : c.kind === "history" ? c.text : `${c.title}. ${c.text}`;
-  if (S.sound && S.started && synth) speak(spoken, slide, bar, c.lang || LANG);
+  if (S.sound && S.started && c.audio) playAudio(c, slide, bar);
+  else if (S.sound && S.started && synth) speak(spoken, slide, bar, c.lang || LANG);
   else { // silent: progress bar by reading time
     const dur = Math.max(6000, spoken.split(/\s+/).length * 330), t0 = Date.now();
     barTimer = setInterval(() => { const p = Math.min(1, (Date.now() - t0) / dur); if (bar) bar.style.width = p * 100 + "%"; if (p >= 1) clearInterval(barTimer); }, 120);
@@ -1098,12 +1228,9 @@ function showProgress() {
     <div class="set"><select id="langSel" aria-label="${esc(t("language"))}">${Object.entries(LANGS).map(([k, v]) => `<option value="${k}"${k === LANG ? " selected" : ""}>${v.name}</option>`).join("")}</select></div>
     <h1 style="font-size:18px;margin-bottom:10px">${t("voice")}</h1>
     <div class="set">
-      <label for="voiceSel">${t("narrator")}</label>
-      <select id="voiceSel">${voicesFor().map(v => `<option value="${esc(v.name)}"${voice && v.name === voice.name ? " selected" : ""}>${esc(v.name)} (${esc(v.lang)})</option>`).join("") || `<option>${t("default_voice")}</option>`}</select>
-      <label for="rateSel">${t("speed")} <span id="rateVal">${store.get("rate", 0.9).toFixed(2)}×</span></label>
-      <input id="rateSel" type="range" min="0.8" max="1.25" step="0.05" value="${store.get("rate", 0.9)}">
+      <label for="arateSel">${t("speed")} <span id="arateVal">${store.get("arate", 1).toFixed(2)}×</span></label>
+      <input id="arateSel" type="range" min="0.8" max="1.3" step="0.05" value="${store.get("arate", 1)}">
       <button class="testv" id="testVoice">${t("test")}</button>
-      <p class="hint">${t("voice_hint")}</p>
     </div>
     <h1 style="font-size:18px;margin-bottom:10px">${t("saved_h")}</h1>
     ${items.length ? `<div class="grid">${items.map(s => `<a class="tile" href="${esc(s.url)}" target="_blank" rel="noopener" style="background-image:url('${cssUrl(s.thumb)}')"><span>${esc(trimText(s.title, 70))}</span></a>`).join("")}</div>`
@@ -1253,7 +1380,6 @@ function answer(slide, c, opt) {
     b.disabled = true;
   });
   slide.querySelector(".qres").innerHTML = resultHTML(c);
-  if (S.sound && S.started && synth) speak((c.correct ? t("correct") : t("wrong")) + " " + c.explain, null, null);
   if (navigator.vibrate) navigator.vibrate(c.correct ? 30 : [40, 60, 40]);
 }
 
@@ -1289,7 +1415,12 @@ $("#feed").addEventListener("click", e => {
   if (now - lastTap < 320) { like(slide, c, { x: e.clientX, y: e.clientY }); lastTap = 0; return; }
   lastTap = now;
   // single tap: pause / resume narration
-  setTimeout(() => { if (lastTap === now) { if (synth?.speaking && !synth.paused) { synth.pause(); toast(t("t_paused")); } else if (synth?.paused) { synth.resume(); } else play(slide); } }, 330);
+  setTimeout(() => {
+    if (lastTap !== now) return;
+    if (AUDIO.src && !AUDIO.paused && !AUDIO.ended) { AUDIO.pause(); toast(t("t_paused")); }
+    else if (AUDIO.src && AUDIO.paused && AUDIO.currentTime > 0 && !AUDIO.ended && S.cards[+slide.dataset.i]?.audio && AUDIO.src.endsWith(S.cards[+slide.dataset.i].audio)) { AUDIO.play().catch(() => {}); }
+    else if (synth?.speaking && !synth.paused) { synth.pause(); toast(t("t_paused")); } else if (synth?.paused) { synth.resume(); } else play(slide);
+  }, 330);
 });
 document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
   S.filter = b.dataset.feed; if (S.filter === "saved") restoreSaved();
@@ -1305,9 +1436,17 @@ $("#screen").addEventListener("change", e => {
   if (e.target.id === "voiceSel") { store.set("voice." + LANG, e.target.value); pickVoice(); sampleVoice(); }
   if (e.target.id === "rateSel") { store.set("rate", +e.target.value); sampleVoice(); }
 });
-$("#screen").addEventListener("input", e => { if (e.target.id === "rateSel") $("#rateVal").textContent = (+e.target.value).toFixed(2) + "×"; });
+$("#screen").addEventListener("input", e => {
+  if (e.target.id === "rateSel") $("#rateVal").textContent = (+e.target.value).toFixed(2) + "×";
+  if (e.target.id === "arateSel") { $("#arateVal").textContent = (+e.target.value).toFixed(2) + "×"; store.set("arate", +e.target.value); AUDIO.playbackRate = +e.target.value; }
+});
 $("#screen").addEventListener("click", e => { if (e.target.id === "testVoice") sampleVoice(); if (e.target.id === "postShare") sharePost(); if (e.target.id === "postCaption") copyCaption(); });
-function sampleVoice() { if (!synth) return; stopPlayback(); speak(t("sample"), null, null); }
+function sampleVoice() {
+  stopPlayback();
+  const c = S.cards.find(x => x.audio) || CONTENT.topics.find(x => x.audio);
+  if (c) { AUDIO.src = c.audio; AUDIO.playbackRate = store.get("arate", 1); AUDIO.play().catch(() => {}); return; }
+  if (synth) speak(t("sample"), null, null);
+}
 window.addEventListener("popstate", () => { if (!$("#screen").hidden) closeScreen(); });
 document.addEventListener("visibilitychange", () => { if (document.hidden) { stopPlayback(); stopVisual(); } else if ($("#screen").hidden && S.started) play(currentSlide()); });
 document.addEventListener("keydown", e => {
@@ -1329,11 +1468,22 @@ $("#streak").textContent = S.progress.last === todayKey() || (() => { const y = 
 $("#sound").innerHTML = S.sound ? ICON.on : ICON.off;
 const onboarded = store.get("onboarded", false);
 let unlockedAt = 0;
-if (!onboarded) $("#start").hidden = false;
+const FLAGS = { en: "🇬🇧", sl: "🇸🇮", de: "🇩🇪", es: "🇪🇸", fr: "🇫🇷", it: "🇮🇹" };
+let langChosen = false; try { langChosen = !!localStorage.getItem("ss.lang"); } catch {}
+if (!langChosen) {
+  $("#lpGrid").innerHTML = Object.entries(LANGS).map(([k, v]) => `<button data-lang-pick="${k}"><span>${FLAGS[k] || ""}</span>${v.name}</button>`).join("");
+  $("#langpick").hidden = false;
+  $("#lpGrid").addEventListener("click", e => {
+    const b = e.target.closest("[data-lang-pick]"); if (!b) return;
+    const k = b.dataset.langPick; store.set("lang", k);
+    if (k !== LANG) { location.reload(); return; }
+    $("#langpick").hidden = true; $("#start").hidden = false;
+  });
+} else if (!onboarded) $("#start").hidden = false;
 else {
   S.started = true;
   // browsers only allow speech after a tap: the first touch anywhere starts the narration
-  if (S.sound && synth) {
+  if (S.sound) {
     setTimeout(() => toast(t("tap_sound")), 900);
     const unlock = () => { unlockedAt = Date.now(); document.removeEventListener("pointerdown", unlock, true); if (S.sound && $("#screen").hidden) play(currentSlide()); };
     document.addEventListener("pointerdown", unlock, true);
@@ -1347,7 +1497,7 @@ $("#langStart").innerHTML = Object.entries(LANGS).map(([k, v]) => `<option value
 $("#langStart").addEventListener("change", e => setLang(e.target.value));
 
 S.dayCursor = new Date(); S.enCursor = new Date();
-loadMore();
+loadContent().then(loadMore);
 if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
 </script>
 </body>

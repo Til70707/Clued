@@ -1,0 +1,106 @@
+name: build
+# Builds the daily content + neural-voice narration for every language.
+# dev branch: builds and saves real-data screenshots for review (nothing goes live).
+# main branch: builds and publishes the site to GitHub Pages (once Pages source is "GitHub Actions").
+on:
+  push:
+    branches: [dev, main]
+    paths-ignore: ["shots/**"]
+  schedule:
+    - cron: "17 4 * * *"   # every morning: fresh news + narration
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency: { group: "build-${{ github.ref }}", cancel-in-progress: true }
+
+jobs:
+  content:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        lang: [en, sl, de, es, fr, it]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: System tools
+        run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg espeak-ng
+      - name: Voice engine
+        run: |
+          pip install -q shapely soundfile numpy
+          case "${{ matrix.lang }}" in
+            en|es|it) pip install -q torch --index-url https://download.pytorch.org/whl/cpu && pip install -q "kokoro==0.9.4" ;;
+            *) pip install -q "piper-tts==1.3.0" ;;
+          esac
+      - name: Restore previous content and voice clips
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache-content/${{ matrix.lang }}
+            .cache-geo
+            ~/.cache/huggingface
+          key: content-${{ matrix.lang }}-${{ github.run_id }}
+          restore-keys: content-${{ matrix.lang }}-
+      - name: Build ${{ matrix.lang }}
+        run: python tools/build_content.py ${{ matrix.lang }}
+        env:
+          AUDIO_BUDGET: "700"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: content-${{ matrix.lang }}
+          path: out/
+          if-no-files-found: warn
+
+  site:
+    needs: content
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: artifacts }
+      - name: Assemble site
+        run: |
+          mkdir -p site/content logs
+          cp index.html sw.js manifest.webmanifest icon.svg icon-180.png icon-192.png icon-512.png d3-array.min.js d3-geo.min.js land-simple.json site/
+          for d in artifacts/content-*; do cp -r "$d"/content/* site/content/ 2>/dev/null || true; cp "$d"/build-log-*.txt logs/ 2>/dev/null || true; done
+          ls site/content || true; du -sh site
+      # ---------- dev: real-data screenshots for review ----------
+      - uses: actions/setup-python@v5
+        if: github.ref == 'refs/heads/dev'
+        with: { python-version: "3.12" }
+      - name: Screenshots (iPhone, real data)
+        if: github.ref == 'refs/heads/dev'
+        run: |
+          pip install -q playwright==1.48.0
+          python -m playwright install --with-deps webkit
+          SITE_DIR=site python tools/shots.py || true
+          cp logs/*.txt shots/ 2>/dev/null || true
+          mkdir -p shots/audio
+          for l in en sl de es fr it; do f=$(ls -S site/content/$l/a/*.mp3 2>/dev/null | head -1); if [ -n "$f" ]; then cp "$f" shots/audio/sample-$l.mp3; fi; done
+          ls -la shots shots/audio
+      - name: Save screenshots to dev
+        if: github.ref == 'refs/heads/dev'
+        run: |
+          git config user.name "clued-bot"; git config user.email "clued-bot@users.noreply.github.com"
+          git add -f shots; git commit -q -m "Real-data screenshots" || echo nothing
+          for i in 1 2 3; do git pull --rebase -q origin dev && git push -q origin HEAD:dev && break; sleep 5; done
+      # ---------- main: publish ----------
+      - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main'
+        with: { path: site }
+
+  deploy:
+    needs: site
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: { name: github-pages, url: "${{ steps.d.outputs.page_url }}" }
+    steps:
+      - id: d
+        uses: actions/deploy-pages@v4

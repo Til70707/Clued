@@ -1,5 +1,5 @@
 // Clued service worker: caches the app shell only; content always comes fresh from Wikipedia.
-const CACHE = "clued-v1";
+const CACHE = "clued-v2";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg", "./icon-180.png", "./icon-192.png", "./d3-array.min.js", "./d3-geo.min.js", "./land-simple.json"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => {

@@ -18,5 +18,5 @@ en: news 0 own + 16 from English; with place: 15, photo: 1, untranslated: 0
     [Business]  -                    United Kingdom The North Sea Transition Authority (NSTA) of the United Kingdom approves production from t
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
 en: 291 topics, 43 with shapes
-en: voice kokoro-am_michael, 1 new clips, 307/307 cards with audio, voice ok: True
-en: done in 22s
+en: voice kokoro-am_michael, 0 new clips, 307/307 cards with audio, voice ok: True
+en: done in 3s

@@ -1,9 +1,6 @@
   current events: Armed 8, International 4, Politics 4, Disasters 3, Business 2, Science 2, Health 1, Law 7
   translator ready: facebook/nllb-200-distilled-1.3B
-fr: news 0 own + 16 from English; with place: 15, photo: 1, untranslated: 0
-    [itn]       Hôtel de ville de Li France         L'Hôtel de Ville à Limoges est partiellement détruit par un incendie criminel alors que le
-    [itn]       -                    -              Le Bureau international des poids et mesures vote pour abolir effectivement la seconde de 
-    [itn]       -                    Saudi Arabia   Les Houthis lancent une série d'attaques contre les aéroports saoudiens, tuant au moins 20
+fr: news 0 own + 16 from English; with place: 16, photo: 0, untranslated: 0
     [Armed co]  -                    Israel         Les Forces de défense israéliennes (FDI) et le Shin Bet ont déclaré avoir tué un militant 
     [Internat]  -                    Indonesia      L'Indonésie, le Pakistan, le Qatar et la Turquie signent conjointement le mémorandum d'acc
     [Politics]  Athènes              Greece         Des milliers d'étudiants et d'enseignants défilent à Athènes, Thessalonique et Patras en G
@@ -17,7 +14,10 @@ fr: news 0 own + 16 from English; with place: 15, photo: 1, untranslated: 0
     [Politics]  -                    Canada         Paul St-Pierre Plamondon est assermenté 34e Premier ministre du Québec, au Canada, à la su
     [Disaster]  Le Caire             Egypt          Douze personnes sont tuées et 30 autres blessées après qu'un bus s'est écrasé sur un camio
     [Business]  -                    United Kingdom L'Autorité de transition de la mer du Nord (NSTA) du Royaume-Uni approuve la production du
+    [Science ]  -                    India          L'autorité indienne de certification eMudhra a eu ses clés privées compromises, révélant q
+    [Law and ]  Nouveau-Mexique      United States  Un juge de district du Nouveau-Mexique, aux États-Unis, ordonne à Meta de payer 25 milliar
+    [Armed co]  -                    El Salvador    Le président salvadorien Nayib Bukele annonce le début d'une opération militaire pour sauv
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
 fr: 287 topics, 43 with shapes
-fr: voice piper-fr_FR-tom-medium, 15 new clips, 303/303 cards with audio, voice ok: True
-fr: done in 366s
+fr: voice piper-fr_FR-tom-medium, 3 new clips, 303/303 cards with audio, voice ok: True
+fr: done in 113s

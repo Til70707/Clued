@@ -1,5 +1,4 @@
   current events: Armed 8, International 4, Politics 4, Disasters 3, Business 2, Science 2, Health 1, Law 7
-  translator ready: facebook/nllb-200-distilled-1.3B
 de: news 3 own + 15 from English; with place: 15, photo: 2, untranslated: 0
     [itn]       -                    -              Luca Niculescu ist zum Ministerpräsidenten Rumäniens gewählt worden.
     [itn]       -                    -              Warnungen vor Cyber­angriffen, die auf der Sicher­heits­lücke PHP2Shell basieren, haben we
@@ -21,5 +20,5 @@ de: news 3 own + 15 from English; with place: 15, photo: 2, untranslated: 0
     [Business]  -                    United Kingdom Die North Sea Transition Authority (NSTA) des Vereinigten Königreichs genehmigt die Produk
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
 de: 289 topics, 43 with shapes
-de: voice piper-de_DE-thorsten-high, 14 new clips, 307/307 cards with audio, voice ok: True
-de: done in 352s
+de: voice piper-de_DE-thorsten-high, 0 new clips, 307/307 cards with audio, voice ok: True
+de: done in 7s

@@ -1,10 +1,22 @@
-en: 3 news cards
-  no shape for Great Barrier Reef
-  no shape for Lake Bled
-  no shape for Caspian Sea
-  no shape for Bosporus
-  no shape for Balkans
-  no shape for Central Asia
-en: 291 topics, 38 with shapes
-en: voice kokoro-am_michael, 295 new clips, 294/294 cards with audio, voice ok: True
-en: done in 5056s
+  current events: Armed 8, International 4, Politics 4, Disasters 3, Business 2, Science 4, Health 1, Law 7
+en: news 0 own + 16 from English; with place: 12, photo: 1, untranslated: 0
+    [itn]       Hôtel de Ville, Limo France         The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and student protests
+    [itn]       -                    -              The International Bureau of Weights and Measures votes to effectively abolish the leap sec
+    [itn]       -                    -              The Houthis launch a series of attacks on Saudi Arabian airports, killing at least 20 peop
+    [Armed co]  -                    -              The Israel Defense Forces (IDF) and Shin Bet say that they have killed a Hamas Nukhba forc
+    [Internat]  -                    Indonesia      Indonesia, Pakistan, Qatar, and Turkey jointly sign the Badr Memorandum of Understanding, 
+    [Politics]  Athens               Greece         Thousands of students and teachers march through Athens, Thessaloniki, and Patras in Greec
+    [Disaster]  Natore District      Bangladesh     At least 14 people are killed and 20 others are injured after a bus and a truck collide he
+    [Business]  -                    South Africa   South Africa cuts fuel levies by R3.00 (US$0.18) per litre of diesel and R1.50 ($0.09) per
+    [Science ]  -                    -              Node.js releases three security updates. These address 10 different vulnerabilities, inclu
+    [Health a]  -                    Nigeria        Nigeria announces its first case of Ebola virus in the epidemic.
+    [Law and ]  New Taipei City      Taiwan         Taiwanese prosecutors indict five people for allegedly accepting money and planning to inj
+    [Armed co]  Embassy of the Unite Saudi Arabia   The U.S. Department of State orders non-emergency employees at its embassy in Riyadh, Saud
+    [Internat]  -                    Libya          Libya's eastern-based House of Representatives approves a 2019 maritime boundary agreement
+    [Politics]  -                    Canada         Paul St-Pierre Plamondon is sworn in as the 34th premier of Quebec, Canada, following the 
+    [Disaster]  Cairo                Egypt          Twelve people are killed and 30 others are injured after a bus crashes into a truck near C
+    [Business]  -                    United Kingdom The North Sea Transition Authority (NSTA) of the United Kingdom approves production from t
+  no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
+en: 289 topics, 43 with shapes
+en: voice kokoro-am_michael, 14 new clips, 305/305 cards with audio, voice ok: True
+en: done in 256s

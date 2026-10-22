@@ -1,10 +1,23 @@
-sl: 3 news cards
-  no shape for Great Barrier Reef
-  no shape for Lake Bled
-  no shape for Caspian Sea
-  no shape for Bosporus
-  no shape for Balkans
-  no shape for Central Asia
-sl: 223 topics, 35 with shapes
-sl: voice piper-sl_SI-artur-medium, 227 new clips, 226/226 cards with audio, voice ok: True
-sl: done in 379s
+  current events: Armed 8, International 4, Politics 4, Disasters 3, Business 2, Science 4, Health 1, Law 7
+  translator ready (NLLB-200)
+sl: news 0 own + 16 from English; with place: 12, photo: 1, untranslated: 0
+    [itn]       Hôtel de Ville, Limo France         Hôtel de Ville v Limoges je delno uničen s požarom, saj se v Franciji povečujejo goriva in
+    [itn]       -                    -              Mednarodno uradje za teže in ukrepe glasuje za učinkovito ukinitev drugega skaka zaradi za
+    [itn]       -                    -              Houthisti začnejo serijo napadov na letališča v Saudski Arabiji, kjer je umrlo vsaj 20 lju
+    [Armed co]  -                    -              Izraelske obrambne sile (IDF) in Shin Bet pravijo, da so ubili militanta Hamas Nukhba, ki 
+    [Internat]  -                    Indonesia      Indonezija, Pakistan, Katar in Turčija skupaj podpišejo Memorandum o razumevanju v Badru, 
+    [Politics]  Atene                Greece         Na tisoče študentov in učiteljev je protestovalo proti naraščajočim življenjskim stroškom 
+    [Disaster]  Natore District      Bangladesh     Najmanj 14 ljudi je umrlo, 20 pa je bilo poškodovanih, ko sta se avtobus in tovornjak sooč
+    [Business]  -                    South Africa   Južna Afrika je od 4. novembra do 1. decembra znižala pristojbine za gorivo za 3,00 R (0,1
+    [Science ]  -                    -              Node.js je izdal tri varnostne posodobitve. To obravnava 10 različnih ranljivosti, vključn
+    [Health a]  -                    Nigeria        Nigerija objavi prvi primer virusa ebole v epidemiji.
+    [Law and ]  New Taipei City      Taiwan         Tajvanski tožilci obtožujejo pet ljudi za domnevno sprejemanje denarja in načrtovanje pošk
+    [Armed co]  Embassy of the Unite Saudi Arabia   ZDA. Ministrstvo za zunanje zadeve naroči zaposlenim v svojem veleposlaništvu v Rijadu v S
+    [Internat]  -                    Libya          Skupščina predstavnikov s sedežem na vzhodu Libije odobri sporazum o pomorskih mejah z Tur
+    [Politics]  -                    Canada         Paul St-Pierre Plamondon je prisegel kot 34. premier Quebeca, Kanada, po zmagi Parti Québé
+    [Disaster]  Kairo                Egypt          Dvanajst ljudi je umrlo, 30 pa je bilo ranjenih, ko se je avtobus udaril v tovornjak blizu
+    [Business]  -                    United Kingdom Podjetje za prehod na Severno morje (NSTA) Združenega kraljestva odobri proizvodnjo iz Jac
+  no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
+sl: 228 topics, 40 with shapes
+sl: voice piper-sl_SI-artur-medium, 21 new clips, 244/244 cards with audio, voice ok: True
+sl: done in 213s

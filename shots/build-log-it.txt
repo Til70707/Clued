@@ -1,6 +1,23 @@
-it: 3 news cards
-  no shape for Balkans
-  no shape for Central Asia
-it: 221 topics, 13 with shapes
-it: voice kokoro-im_nicola, 225 new clips, 224/224 cards with audio, voice ok: True
-it: done in 2435s
+  current events: Armed 8, International 4, Politics 4, Disasters 3, Business 2, Science 4, Health 1, Law 7
+  translator ready (NLLB-200)
+it: news 0 own + 16 from English; with place: 12, photo: 1, untranslated: 0
+    [itn]       Municipio di Limoges France         L'Hôtel de Ville di Limoges è parzialmente distrutto dall'incendio in quanto il carburante
+    [itn]       -                    -              L'Ufficio internazionale dei pesi e delle misure vota per abolire efficacemente il secondo
+    [itn]       -                    -              Gli Houthi lanciano una serie di attacchi contro gli aeroporti dell'Arabia Saudita, uccide
+    [Armed co]  -                    -              Le Forze di Difesa Israeliane (IDF) e Shin Bet affermano di aver ucciso un militante delle
+    [Internat]  -                    Indonesia      Indonesia, Pakistan, Qatar e Turchia firmano congiuntamente il Memorandum of Understanding
+    [Politics]  Atene                Greece         Migliaia di studenti e insegnanti marciano attraverso Atene, Salonicco e Patras in Grecia 
+    [Disaster]  Distretto di Natore  Bangladesh     Almeno 14 persone sono morte e altri 20 sono ferite dopo che un autobus e un camion si son
+    [Business]  -                    South Africa   Dal 4 novembre al 1 dicembre il Sudafrica riduce i prelievi sul carburante di R3.00 (US$0.
+    [Science ]  -                    -              Node.js rilascia tre aggiornamenti di sicurezza. Questi affrontano 10 vulnerabilità divers
+    [Health a]  -                    Nigeria        La Nigeria annuncia il suo primo caso di virus Ebola nell'epidemia.
+    [Law and ]  Nuova Taipei         Taiwan         I pubblici ministeri taiwanesi accusano cinque persone per presunta accettazione di denaro
+    [Armed co]  Embassy of the Unite Saudi Arabia   Gli Stati Uniti. Il Dipartimento di Stato ordina ai dipendenti non di emergenza della sua 
+    [Internat]  -                    Libya          La Camera dei Rappresentanti della Libia orientale approva un accordo di confine marittimo
+    [Politics]  -                    Canada         Paul St-Pierre Plamondon è giurato come 34 ° primo ministro del Quebec, Canada, dopo la vi
+    [Disaster]  Il Cairo             Egypt          Dodici persone sono morte e altri 30 sono ferite dopo che un autobus si è schiantato contr
+    [Business]  -                    United Kingdom L'Autorità di transizione del Mare del Nord (NSTA) del Regno Unito approva la produzione d
+  no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
+it: 279 topics, 41 with shapes
+it: voice kokoro-im_nicola, 74 new clips, 295/295 cards with audio, voice ok: True
+it: done in 943s

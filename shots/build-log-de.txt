@@ -1,10 +1,26 @@
-de: 3 news cards
-  no shape for Great Barrier Reef
-  no shape for Lake Bled
-  no shape for Caspian Sea
-  no shape for Bosporus
-  no shape for Balkans
-  no shape for Central Asia
-de: 274 topics, 38 with shapes
-de: voice piper-de_DE-thorsten-high, 277 new clips, 277/277 cards with audio, voice ok: True
-de: done in 1998s
+  current events: Armed 8, International 4, Politics 4, Disasters 3, Business 2, Science 4, Health 1, Law 7
+  translator ready (NLLB-200)
+de: news 3 own + 16 from English; with place: 13, photo: 1, untranslated: 0
+    [itn]       -                    -              Luca Niculescu ist zum Ministerpräsidenten Rumäniens gewählt worden.
+    [itn]       -                    -              Warnungen vor Cyber­angriffen, die auf der Sicher­heits­lücke PHP2Shell basieren, haben we
+    [itn]       Tanegashima Space Ce Japan          Die Raum­fahrt­mission MMX zu den Mars­monden Phobos und Deimos ist vom japanischen Welt­r
+    [itn]       Hôtel de Ville (Limo France         Das Hôtel de Ville in Limoges wird teilweise durch Brandstiftung zerstört, da die Brennsto
+    [itn]       -                    -              Das Internationale Büro für Gewichte und Maßnahmen stimmt dafür ab, den zweiten Sprung übe
+    [itn]       -                    -              Die Houthis führen eine Reihe von Angriffen auf Flugplätze in Saudi-Arabien durch, bei den
+    [Armed co]  -                    -              Die israelischen Verteidigungsstreitkräfte (IDF) und Shin Bet sagen, dass sie einen Hamas-
+    [Internat]  -                    Indonesia      Indonesien, Pakistan, Katar und die Türkei unterzeichnen gemeinsam das Badr Memorandum of 
+    [Politics]  Athen                Greece         Tausende von Studenten und Lehrern marschieren durch Athen, Thessaloniki und Patras in Gri
+    [Disaster]  Natore (Distrikt)    Bangladesh     Mindestens 14 Menschen sind getötet und 20 weitere verletzt worden, nachdem ein Bus und ei
+    [Business]  -                    South Africa   Südafrika reduziert die Treibstoffgebühren vom 4. November bis zum 1.
+    [Science ]  -                    -              Node.js veröffentlicht drei Sicherheitsupdates. Diese adressieren 10 verschiedene Schwachs
+    [Health a]  -                    Nigeria        Nigeria gibt seinen ersten Fall des Ebola-Virus in der Epidemie bekannt.
+    [Law and ]  Neu-Taipeh           Taiwan         Die taiwanesischen Staatsanwaltschaft beschuldigt fünf Personen wegen mutmaßlicher Annahme
+    [Armed co]  -                    Saudi Arabia   Die Vereinigten Staaten. Das Außenministerium befiehlt nicht-notfallbeschäftigten Mitarbei
+    [Internat]  -                    Libya          Das libysche Repräsentantenhaus mit Sitz im Osten genehmigt ein maritimes Grenzvertrag mit
+    [Politics]  -                    Canada         Paul St-Pierre Plamondon wird nach dem Sieg der Parti Québécois bei den allgemeinen Wahlen
+    [Disaster]  Kairo                Egypt          Zwölf Menschen wurden getötet und 30 weitere verletzt, nachdem ein Bus einen LKW in der Nä
+    [Business]  -                    United Kingdom Die Nordsee-Übergangsbehörde (NSTA) des Vereinigten Königreichs genehmigt die Produktion a
+  no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
+de: 286 topics, 43 with shapes
+de: voice piper-de_DE-thorsten-high, 32 new clips, 305/305 cards with audio, voice ok: True
+de: done in 529s

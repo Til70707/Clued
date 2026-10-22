@@ -5,7 +5,8 @@ from playwright.sync_api import sync_playwright
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SITE = ROOT / os.environ.get("SITE_DIR", ".")
 OUT = ROOT / "shots"; OUT.mkdir(exist_ok=True)
-for f in OUT.glob("*"): f.unlink()
+for f in OUT.glob("*"):
+    if f.is_file(): f.unlink()
 srv = http.server.ThreadingHTTPServer(("127.0.0.1", 8080), functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(SITE)))
 threading.Thread(target=srv.serve_forever, daemon=True).start()
 log = []

@@ -237,8 +237,10 @@ def lang_titles(titles):
     return out
 
 # ---------- news ----------
-ORG = re.compile(r"organi[sz]ation|agency|company|corporation|political party|university|militant|movement|council|court|ministry|government|armed forces|army|bank\b|institute|bureau|committee|airline|newspaper|broadcaster|alliance|treaty|conference|summit|\bpresident\b|politician|born \d", re.I)
+ORG = re.compile(r"embassy|consulate|headquarters|organi[sz]ation|agency|company|corporation|political party|university|militant|movement|council|court|ministry|government|armed forces|army|bank\b|institute|bureau|committee|airline|newspaper|broadcaster|alliance|treaty|conference|summit|\bpresident\b|politician|born \d", re.I)
 
+OBIT = re.compile(r"^\d{1,2}\.? (de )?\w+ ?:|^\w+ \d{1,2}:|futbolist|calciator|footballeur|fußballspieler|nogometa", re.I)   # obituaries in some "In the news" feeds
+TECHY = re.compile(r"security update|vulnerabilit|\breleases? (version|v\d)|\bversion \d|patch(es)? for", re.I)        # software release notes are not world news
 def page_title(p):
     return (p.get("titles") or {}).get("normalized") or (p.get("title") or "").replace("_", " ")
 
@@ -272,6 +274,14 @@ def news_card(story, pages, event, src_lang, pic=None):
     im = good_image(pic) if pic else None
     c.update(im or {"img": "", "thumb": "", "imgW": 0, "imgH": 0})   # no picture of the event itself: the globe shows where it happened
     co, place, ctry = locate(pages, event)
+    if not co and src_lang == "en":  # no page with a position: a country named in the story ("Saudi Arabian airports")
+        names = sorted(set(COUNTRY_SHAPES) | {k for k, v in COUNTRY_ALIAS.items() if v in COUNTRY_SHAPES}, key=len, reverse=True)
+        hit = next((n for n in names if re.search(r"\b" + re.escape(n), story)), None)
+        if hit:
+            ctry = COUNTRY_ALIAS.get(hit, hit); pt = COUNTRY_SHAPES[ctry].representative_point(); co = [round(pt.x, 2), round(pt.y, 2)]
+    if not co and not c.get("img"):  # nowhere to point at: a photo of a person or thing in the story instead
+        im = next((good_image(p) for p in pages if good_image(p)), None)
+        if im: c.update(im)
     if co: c["coords"] = co
     if place: c["place"] = place
     if ctry: c["country"] = ctry
@@ -285,7 +295,7 @@ def itn_cards(feed, lang_tag):
         story_html = n.get("story") or ""; story = strip_html(story_html)
         links = n.get("links") or []
         pages = [p for p in links if ok_page(p)]
-        if not story or not pages or BLOCK.search(story): continue
+        if not story or not pages or BLOCK.search(story) or MINOR.search(story) or OBIT.search(story): continue
         if any(MINOR.search(p.get("description") or "") for p in links): continue
         # the bold link in the story is the event itself; its picture fits the story
         bold = re.search(r"<b>\s*<a [^>]*href=\"\./([^\"#]+)", story_html)
@@ -366,7 +376,7 @@ def ce_cards(days, have, limit):
     for day in days:
         for it in ce_items(day):
             s = it["story"]
-            if it["cat"] not in by or len(s) < 60 or BLOCK.search(s) or MINOR.search(s): continue
+            if it["cat"] not in by or len(s) < 60 or BLOCK.search(s) or MINOR.search(s) or TECHY.search(s): continue
             by[it["cat"]].append(it)
     log(f"  current events: " + ", ".join(f"{k.split()[0]} {len(v)}" for k, v in by.items()))
     cards, round_ = [], 0
@@ -381,15 +391,13 @@ def ce_cards(days, have, limit):
             if not pages or any(MINOR.search(p.get("description") or "") for p in pages): continue
             c = news_card(it["story"], pages, None, "en")
             if c["id"] in have or c["topic"] in have: continue
-            if not c.get("coords"):  # nowhere to point at: a photo of the first person/thing in the story instead
-                im = next((good_image(p) for p in pages if good_image(p)), None)
-                if im: c.update(im)
             c["cat"] = cat; have.add(c["id"]); have.add(c["topic"])
             cards.append(c)
         round_ += 1
     return cards
 
 # ---------- translation (English news for the other languages) ----------
+NLLB_MODEL = "facebook/nllb-200-distilled-1.3B"   # the bigger model translates noticeably better (Slovenian above all)
 NLLB = {"sl": "slv_Latn", "de": "deu_Latn", "es": "spa_Latn", "fr": "fra_Latn", "it": "ita_Latn"}
 TR_FILE = CACHE / "translations.json"
 TR = json.loads(TR_FILE.read_text(encoding="utf-8")) if TR_FILE.exists() else {}
@@ -400,12 +408,12 @@ def _translator():
         try:
             import torch
             from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-            name, cd = "facebook/nllb-200-distilled-600M", str(Path.home() / ".nllb")
+            name, cd = NLLB_MODEL, str(Path.home() / ".nllb")
             tok = AutoTokenizer.from_pretrained(name, src_lang="eng_Latn", cache_dir=cd)
             model = AutoModelForSeq2SeqLM.from_pretrained(name, cache_dir=cd).eval()
             torch.set_num_threads(max(1, os.cpu_count() or 2))
             _tm["m"] = (tok, model)
-            log("  translator ready (NLLB-200)")
+            log("  translator ready:", name)
         except Exception as e:
             log("  translator unavailable:", repr(e)[:300])
     return _tm["m"]
@@ -413,13 +421,14 @@ def _translator():
 def translate(text):
     """English -> LANG. None when no translator is available."""
     if LANG == "en" or not text: return text
-    key = hashlib.sha1((LANG + "|" + text).encode()).hexdigest()[:16]
+    key = hashlib.sha1((NLLB_MODEL + "|" + LANG + "|" + text).encode()).hexdigest()[:16]
     if key in TR: return TR[key]
     m = _translator()
     if not m: return None
     import torch
     tok, model = m
-    sents = [x for x in re.split(r"(?<=[.!?])\s+(?=[A-Z0-9\"“'(])", text) if x.strip()]
+    # sentence by sentence, but not after "U.S." or "Mr."
+    sents = [x for x in re.split(r"(?<![A-Z]\.[A-Z]\.)(?<!\b[A-Z][a-z]\.)(?<!\bMrs\.)(?<=[.!?])\s+(?=[A-Z0-9\"“'(])", text) if x.strip()]
     with torch.no_grad():
         enc = tok(sents, return_tensors="pt", padding=True, truncation=True, max_length=200)
         out = model.generate(**enc, forced_bos_token_id=tok.convert_tokens_to_ids(NLLB[LANG]), num_beams=4,

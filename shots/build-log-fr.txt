@@ -1,23 +1,23 @@
-  current events: Armed 8, International 4, Politics 4, Disasters 3, Business 2, Science 4, Health 1, Law 7
-  translator ready (NLLB-200)
-fr: news 0 own + 16 from English; with place: 12, photo: 1, untranslated: 0
-    [itn]       Hôtel de ville de Li France         L'Hôtel de Ville de Limoges est partiellement détruit par incendie alors que les manifesta
-    [itn]       -                    -              Le Bureau international des poids et mesures vote pour abolir efficacement le deuxième bon
-    [itn]       -                    -              Les Houthis lancent une série d'attaques contre les aéroports saoudiens, tuant au moins 20
-    [Armed co]  -                    -              Les Forces de défense israéliennes (FDI) et le Shin Bet affirment avoir tué un militant de
+  current events: Armed 8, International 4, Politics 4, Disasters 3, Business 2, Science 2, Health 1, Law 7
+  translator ready: facebook/nllb-200-distilled-1.3B
+fr: news 0 own + 16 from English; with place: 15, photo: 1, untranslated: 0
+    [itn]       Hôtel de ville de Li France         L'Hôtel de Ville à Limoges est partiellement détruit par un incendie criminel alors que le
+    [itn]       -                    -              Le Bureau international des poids et mesures vote pour abolir effectivement la seconde de 
+    [itn]       -                    Saudi Arabia   Les Houthis lancent une série d'attaques contre les aéroports saoudiens, tuant au moins 20
+    [Armed co]  -                    Israel         Les Forces de défense israéliennes (FDI) et le Shin Bet ont déclaré avoir tué un militant 
     [Internat]  -                    Indonesia      L'Indonésie, le Pakistan, le Qatar et la Turquie signent conjointement le mémorandum d'acc
-    [Politics]  Athènes              Greece         Des milliers d'étudiants et d'enseignants marchent à travers Athènes, Thessalonique et Pat
-    [Disaster]  Natore (district)    Bangladesh     Au moins 14 personnes sont mortes et 20 autres blessées après qu'un bus et un camion se so
-    [Business]  -                    South Africa   L'Afrique du Sud réduit les redevances de carburant de R3.00 (0,18 dollars américains) par
-    [Science ]  -                    -              Node.js publie trois mises à jour de sécurité. Ils traitent de 10 vulnérabilités différent
+    [Politics]  Athènes              Greece         Des milliers d'étudiants et d'enseignants défilent à Athènes, Thessalonique et Patras en G
+    [Disaster]  Natore (district)    Bangladesh     Au moins 14 personnes sont tuées et 20 autres blessées après une collision frontale entre 
+    [Business]  -                    South Africa   L'Afrique du Sud réduit les prélèvements sur le carburant de R3.00 (0,18 $ US) par litre d
+    [Science ]  Centre spatial de Ta Japan          JAXA lance le vaisseau spatial Martian Moons eXploration du centre spatial Tanegashima ver
     [Health a]  -                    Nigeria        Le Nigeria annonce son premier cas de virus Ebola dans l'épidémie.
-    [Law and ]  Nouveau Taipei       Taiwan         Les procureurs taïwanais accusent cinq personnes d'avoir prétendument accepté de l'argent 
-    [Armed co]  Ambassade des États- Saudi Arabia   Les États-Unis. Le Département d'État ordonne aux employés non d'urgence de son ambassade 
-    [Internat]  -                    Libya          La Chambre des représentants de l'est de la Libye approuve un accord de frontière maritime
-    [Politics]  -                    Canada         Paul St-Pierre Plamondon est prêté serment en tant que 34e Premier ministre du Québec, au 
-    [Disaster]  Le Caire             Egypt          Douze personnes sont mortes et 30 autres blessées après qu'un bus s'est heurté à un camion
+    [Law and ]  Nouveau Taipei       Taiwan         Les procureurs taïwanais ont inculpé cinq personnes pour avoir prétendument accepté de l'a
+    [Armed co]  Ambassade des États- Saudi Arabia   Le Département d'État américain ordonne aux employés non d'urgence de son ambassade à Riya
+    [Internat]  -                    Libya          La Chambre des représentants basée dans l'est de la Libye approuve un accord de 2019 sur l
+    [Politics]  -                    Canada         Paul St-Pierre Plamondon est assermenté 34e Premier ministre du Québec, au Canada, à la su
+    [Disaster]  Le Caire             Egypt          Douze personnes sont tuées et 30 autres blessées après qu'un bus s'est écrasé sur un camio
     [Business]  -                    United Kingdom L'Autorité de transition de la mer du Nord (NSTA) du Royaume-Uni approuve la production du
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
-fr: 285 topics, 43 with shapes
-fr: voice piper-fr_FR-tom-medium, 32 new clips, 301/301 cards with audio, voice ok: True
-fr: done in 337s
+fr: 287 topics, 43 with shapes
+fr: voice piper-fr_FR-tom-medium, 15 new clips, 303/303 cards with audio, voice ok: True
+fr: done in 366s

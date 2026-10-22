@@ -1,50 +1,51 @@
 [webkit/en] card 1: {"kind": "photo", "vis": null, "ftype": null, "audio": true, "title": "Jim Buckley’s Red Dragon sculpture from 1985 during River Lee flooding, October "}
-[webkit/en] card 2: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Sweden"}
-[webkit/en] card 3: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "What is the capital of Sweden?"}
-[webkit/en] card 4: {"kind": "geo", "vis": null, "ftype": null, "audio": true, "title": "Pangaea"}
-[webkit/en] card 5: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Renewable energy"}
-[webkit/en] card 6: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Turkey"}
-[webkit/en] card 7: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Division of labour"}
-[webkit/en] card 8: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Belgium"}
-[webkit/en] card 9: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Venezuela"}
-[webkit/en] card 10: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Silk Road"}
-[webkit/en] card 11: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Poverty"}
-[webkit/en] card 12: {"kind": "geo", "vis": null, "ftype": null, "audio": true, "title": "Landlocked country"}
-[webkit/en] card 13: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Sanctions (law)"}
-[webkit/en] card 14: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Which one is “Historical network of Eurasian trade routes”?"}
-[webkit/en] card 15: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Index fund"}
-[webkit/en] card 16: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "John Maynard Keynes"}
-[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b7/Reclaiming_Work_-_The_Cycle_Couriers_Subverting_the_Gig_Economy.webm/Reclaimi Load request cancelled
-[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b7/Reclaiming_Work_-_The_Cycle_Couriers_Subverting_the_Gig_Economy.webm/Reclaimi Load request cancelled
-[webkit/en] card 17: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Gig economy"}
-[webkit/en] card 18: {"kind": "geo", "vis": null, "ftype": null, "audio": true, "title": "Prime meridian"}
-[webkit/en] news 1: {"kind": "news", "vis": null, "img": false, "audio": true, "title": "The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and studen"}
-[webkit/en] news 2: {"kind": "news", "vis": null, "img": false, "audio": true, "title": "The International Bureau of Weights and Measures votes to abolish the leap secon"}
-[webkit/en] news 3: {"kind": "news", "vis": null, "img": false, "audio": true, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
-[webkit/en] news 4: {"kind": "quiz", "vis": null, "img": false, "audio": false, "title": "Today's news: “The International Bureau of Weights and Measures votes to abolish"}
+[webkit/en] card 2: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Spain"}
+[webkit/en] card 3: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Vatican City"}
+[webkit/en] card 4: {"kind": "geo", "vis": "globe", "ftype": "region", "audio": true, "title": "Namib"}
+[webkit/en] card 5: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Malaysia"}
+[webkit/en] card 6: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Human capital"}
+[webkit/en] card 7: {"kind": "geo", "vis": "locator", "ftype": null, "audio": true, "title": "International Date Line"}
+[webkit/en] card 8: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Economy of Germany"}
+[webkit/en] card 9: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Poverty"}
+[webkit/en] card 10: {"kind": "geo", "vis": null, "ftype": null, "audio": true, "title": "Enclave and exclave"}
+[webkit/en] card 11: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "India"}
+[webkit/en] card 12: {"kind": "geo", "vis": "globe", "ftype": "region", "audio": true, "title": "Sahel"}
+[webkit/en] card 13: {"kind": "geo", "vis": "locator", "ftype": null, "audio": true, "title": "Postojna Cave"}
+[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/c/cb/Flag_of_Hungary_and_flag_of_the_European_Union_waving_on_a_pole.webm/Flag_of_ Load request cancelled
+[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/c/cb/Flag_of_Hungary_and_flag_of_the_European_Union_waving_on_a_pole.webm/Flag_of_ Load request cancelled
+[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/c/cb/Flag_of_Hungary_and_flag_of_the_European_Union_waving_on_a_pole.webm/Flag_of_ Load request cancelled
+[webkit/en] card 14: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "European Union"}
+[webkit/en] news 1: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Hôtel de Ville, Limoges", "country": "France", "lang": null, "title": "The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and studen"}
+[webkit/en] news 2: {"kind": "news", "vis": null, "img": true, "audio": true, "place": null, "country": null, "lang": null, "title": "The International Bureau of Weights and Measures votes to effectively abolish th"}
+[webkit/en] news 3: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Saudi Arabia", "lang": null, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/en] news 4: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Israel", "lang": null, "title": "The Israel Defense Forces (IDF) and Shin Bet say that they have killed a Hamas N"}
+[webkit/en] news 5: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Indonesia", "lang": null, "title": "Indonesia, Pakistan, Qatar, and Turkey jointly sign the Badr Memorandum of Under"}
+[webkit/en] news 6: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Athens", "country": "Greece", "lang": null, "title": "Thousands of students and teachers march through Athens, Thessaloniki, and Patra"}
+[webkit/en] news 7: {"kind": "quiz", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": null, "title": "What is the capital of Pakistan?"}
+[webkit/en] news 8: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Natore District", "country": "Bangladesh", "lang": null, "title": "At least 14 people are killed and 20 others are injured after a bus and a truck "}
 [webkit/en] content ok: True, topics: 291, with audio: 291
 [webkit/sl] card 1: {"kind": "photo", "vis": null, "ftype": null, "audio": true, "title": "Jim Buckley’s Red Dragon sculpture from 1985 during River Lee flooding, October "}
-[webkit/sl] card 2: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Čile"}
-[webkit/sl] card 3: {"kind": "geo", "vis": "locator", "ftype": null, "audio": true, "title": "Mumbaj"}
-[webkit/sl] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/9/99/Andrew_Yang_Explains_The_Freedom_Dividend_%28USA_Universal_Basic_Income%29.we Load request cancelled
-[webkit/sl] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/9/99/Andrew_Yang_Explains_The_Freedom_Dividend_%28USA_Universal_Basic_Income%29.we Load request cancelled
-[webkit/sl] card 4: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Univerzalni temeljni dohodek"}
-[webkit/sl] card 5: {"kind": "geo", "vis": "globe", "ftype": "river", "audio": true, "title": "Ganges"}
-[webkit/sl] card 6: {"kind": "geo", "vis": "globe", "ftype": "region", "audio": true, "title": "Kavkaška regija"}
-[webkit/sl] card 7: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Kaj od tega je »najbolj naseljeno mesto v Indiji in glavno mesto indijske zvezne"}
-[webkit/sl] card 8: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Monetarna politika"}
-[webkit/sl] card 9: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Evroobmočje"}
-[webkit/sl] card 10: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Vedenjska ekonomija"}
-[webkit/sl] card 11: {"kind": "geo", "vis": "globe", "ftype": "region", "audio": true, "title": "Alpe"}
-[webkit/sl] card 12: {"kind": "geo", "vis": null, "ftype": null, "audio": true, "title": "Madagaskar"}
-[webkit/sl] card 13: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Kaj od tega je »podrazred gospodarske politike«?"}
-[webkit/sl] card 14: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Galapaški otoki"}
-[webkit/sl] card 15: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Grčija"}
-[webkit/sl] card 16: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Bruto domači proizvod"}
-[webkit/sl] card 17: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Stagflacija"}
-[webkit/sl] card 18: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Globalizacija"}
-[webkit/sl] news 1: {"kind": "news", "vis": null, "img": false, "audio": true, "title": "The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and studen"}
-[webkit/sl] news 2: {"kind": "news", "vis": null, "img": false, "audio": true, "title": "The International Bureau of Weights and Measures votes to abolish the leap secon"}
-[webkit/sl] news 3: {"kind": "news", "vis": null, "img": false, "audio": true, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
-[webkit/sl] news 4: {"kind": "news", "vis": null, "img": false, "audio": true, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
-[webkit/sl] content ok: True, topics: 223, with audio: 223
+[webkit/sl] card 2: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Italija"}
+[webkit/sl] card 3: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Brazilija"}
+[webkit/sl] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/6/68/G7%E5%BA%83%E5%B3%B6%E3%82%B5%E3%83%9F%E3%83%83%E3%83%88%EF%BC%9A%E5%B9%B3%E5 Load request cancelled
+[webkit/sl] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/6/68/G7%E5%BA%83%E5%B3%B6%E3%82%B5%E3%83%9F%E3%83%83%E3%83%88%EF%BC%9A%E5%B9%B3%E5 Load request cancelled
+[webkit/sl] card 4: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "G7"}
+[webkit/sl] card 5: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Obnovljivi viri energije"}
+[webkit/sl] card 6: {"kind": "geo", "vis": "locator", "ftype": null, "audio": true, "title": "Pacifiški ognjeni obroč"}
+[webkit/sl] card 7: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Islandija"}
+[webkit/sl] card 8: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Severna Makedonija"}
+[webkit/sl] card 9: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Južna Koreja"}
+[webkit/sl] card 10: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Kaj od tega je »država v Vzhodni Aziji«?"}
+[webkit/sl] card 11: {"kind": "geo", "vis": "globe", "ftype": "river", "audio": true, "title": "Mekong"}
+[webkit/sl] card 12: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Portugalska"}
+[webkit/sl] card 13: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Revščina"}
+[webkit/sl] card 14: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Etiopija"}
+[webkit/sl] news 1: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Hôtel de Ville, Limoges", "country": "France", "lang": null, "title": "Hôtel de Ville v Limoges je delno uničen zaradi požara, saj gorivo in študentski"}
+[webkit/sl] news 2: {"kind": "news", "vis": null, "img": true, "audio": true, "place": null, "country": null, "lang": null, "title": "Mednarodni urad za mere in uteži je odločil, da bo odpravil prestopno sekundo za"}
+[webkit/sl] news 3: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Saudi Arabia", "lang": null, "title": "Husi so izvedli serijo napadov na letališča v Savdski Arabiji, kjer je bilo ubit"}
+[webkit/sl] news 4: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Israel", "lang": null, "title": "Izraelske obrambne sile (IDF) in Shin Bet pravijo, da so ubili militanta Hamasov"}
+[webkit/sl] news 5: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Indonesia", "lang": null, "title": "Indonezija, Pakistan, Katar in Turčija skupaj podpišejo Memorandum o razumevanju"}
+[webkit/sl] news 6: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Atene", "country": "Greece", "lang": null, "title": "Na tisoče študentov in učiteljev po Atenah, Solunu in Patrasu v Grčiji protestir"}
+[webkit/sl] news 7: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Natore District", "country": "Bangladesh", "lang": null, "title": "V okrožju Natore v Bangladešu sta se avtobus in tovornjak srečala, pri čemer je "}
+[webkit/sl] news 8: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "South Africa", "lang": null, "title": "Južnoafriška republika je od 4. novembra do 1. decembra znižala dajatve za goriv"}
+[webkit/sl] content ok: True, topics: 228, with audio: 228

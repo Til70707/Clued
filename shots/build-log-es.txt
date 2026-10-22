@@ -1,25 +1,23 @@
-  current events: Armed 8, International 4, Politics 4, Disasters 3, Business 2, Science 4, Health 1, Law 7
-  translator ready (NLLB-200)
-es: news 2 own + 16 from English; with place: 12, photo: 1, untranslated: 0
-    [itn]       -                    -              21 de octubre: Hugo Rivero, futbolista uruguayo (56; en la imagen superior)
-    [itn]       -                    -              21 de octubre: Ken Ring, escritor neozelandés (85-86)
-    [itn]       Ayuntamiento de Limo France         El Hôtel de Ville en Limoges es parcialmente destruido por incendio a medida que el combus
-    [itn]       -                    -              La Oficina Internacional de Pesas y Medidas vota para abolir efectivamente el segundo salt
-    [itn]       -                    -              Los hutíes lanzan una serie de ataques contra aeropuertos de Arabia Saudita, matando al me
-    [Armed co]  -                    -              Las Fuerzas de Defensa de Israel (FDI) y Shin Bet dicen que han matado a un militante de l
-    [Internat]  -                    Indonesia      Indonesia, Pakistán, Qatar y Turquía firmaron conjuntamente el Memorando de Entendimiento 
-    [Politics]  Atenas               Greece         Miles de estudiantes y maestros marcharon por Atenas, Salónica y Patras en Grecia para pro
-    [Disaster]  Natore (zila)        Bangladesh     Al menos 14 personas murieron y otras 20 resultaron heridas después de que un autobús y un
-    [Business]  -                    South Africa   Sudáfrica recorta las tasas de combustible en R3.00 (US$0.18) por litro de diesel y R1.50 
-    [Science ]  -                    -              Node.js lanza tres actualizaciones de seguridad. Estos abordan 10 vulnerabilidades diferen
+  current events: Armed 8, International 4, Politics 4, Disasters 3, Business 2, Science 2, Health 1, Law 7
+  translator ready: facebook/nllb-200-distilled-1.3B
+es: news 0 own + 16 from English; with place: 15, photo: 1, untranslated: 0
+    [itn]       Ayuntamiento de Limo France         El Hôtel de Ville en Limoges es parcialmente destruido por un incendio provocado por el co
+    [itn]       -                    -              La Oficina Internacional de Pesos y Medidas vota para abolir efectivamente el segundo de s
+    [itn]       -                    Saudi Arabia   Los hutíes lanzan una serie de ataques contra aeropuertos de Arabia Saudita, matando al me
+    [Armed co]  -                    Israel         Las Fuerzas de Defensa de Israel (FDI) y el Shin Bet dicen que han matado a un militante d
+    [Internat]  -                    Indonesia      Indonesia, Pakistán, Qatar y Turquía firman conjuntamente el Memorando de Entendimiento Ba
+    [Politics]  Atenas               Greece         Miles de estudiantes y maestros marcharon por Atenas, Tesalónica y Patras en Grecia para p
+    [Disaster]  Natore (zila)        Bangladesh     Al menos 14 personas mueren y otras 20 resultan heridas después de que un autobús y un cam
+    [Business]  -                    South Africa   Sudáfrica reduce los gravámenes de combustible en R3.00 (US$0.18) por litro de diésel y R1
+    [Science ]  Centro Espacial de T Japan          JAXA lanza la nave espacial Martian Moons eXploration desde el Centro Espacial Tanegashima
     [Health a]  -                    Nigeria        Nigeria anuncia su primer caso de virus del Ébola en la epidemia.
     [Law and ]  Nueva Taipéi         Taiwan         Los fiscales taiwaneses acusan a cinco personas por supuestamente aceptar dinero y planear
-    [Armed co]  Embassy of the Unite Saudi Arabia   Los EE.UU. El Departamento de Estado ordena a los empleados no de emergencia de su embajad
-    [Internat]  -                    Libya          La Cámara de Representantes de Libia, con sede en el este, aprueba un acuerdo de frontera 
-    [Politics]  -                    Canada         Paul St-Pierre Plamondon es juramentado como el 34o primer ministro de Quebec, Canadá, des
-    [Disaster]  El Cairo             Egypt          Doce personas murieron y otras 30 resultaron heridas después de que un autobús chocara con
+    [Armed co]  Embassy of the Unite Saudi Arabia   El Departamento de Estado de EE.UU. ordena a los empleados no de emergencia en su embajada
+    [Internat]  -                    Libya          La Cámara de Representantes con sede en el este de Libia aprueba un acuerdo de frontera ma
+    [Politics]  -                    Canada         Paul St-Pierre Plamondon toma posesión como el 34o primer ministro de Quebec, Canadá, tras
+    [Disaster]  El Cairo             Egypt          Doce personas mueren y otras 30 resultan heridas después de que un autobús chocara contra 
     [Business]  -                    United Kingdom La Autoridad de Transición del Mar del Norte (NSTA) del Reino Unido aprueba la producción 
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
 es: 291 topics, 43 with shapes
-es: voice kokoro-em_alex, 16 new clips, 309/309 cards with audio, voice ok: True
-es: done in 369s
+es: voice kokoro-em_alex, 15 new clips, 307/307 cards with audio, voice ok: True
+es: done in 470s

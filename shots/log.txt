@@ -1,0 +1,28 @@
+[webkit/en] card 1: {"kind": "news", "vis": null, "title": "The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and studen"}
+[webkit/en] card 2: {"kind": "news", "vis": null, "title": "The International Bureau of Weights and Measures votes to abolish the leap secon"}
+[webkit/en] card 3: {"kind": "news", "vis": null, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/en] card 4: {"kind": "photo", "vis": null, "title": "Jim Buckley’s Red Dragon sculpture from 1985 during River Lee flooding, October "}
+[webkit/en] card 5: {"kind": "econ", "vis": null, "title": "Semiconductor industry"}
+[webkit/en] card 6: {"kind": "econ", "vis": "chart", "title": "Economy of Germany"}
+[webkit/en] card 7: {"kind": "geo", "vis": "globe", "title": "Bolivia"}
+[webkit/en] card 8: {"kind": "quiz", "vis": null, "title": "Today's news: “The Houthis launch a series of attacks on Saudi Arabian airports,"}
+[webkit/en] card 9: {"kind": "econ", "vis": "chart", "title": "Gini coefficient"}
+[webkit/en] card 10: {"kind": "econ", "vis": null, "title": "Carbon tax"}
+[webkit/en] card 11: {"kind": "econ", "vis": null, "title": "Human capital"}
+[webkit/en] card 12: {"kind": "geo", "vis": "globe", "title": "Albania"}
+[webkit/en] card 13: {"kind": "geo", "vis": "globe", "title": "Strait of Hormuz"}
+[webkit/en] card 14: {"kind": "quiz", "vis": null, "title": "What is the capital of Albania?"}
+[webkit/sl] card 1: {"kind": "news", "vis": null, "title": "The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and studen"}
+[webkit/sl] card 2: {"kind": "news", "vis": null, "title": "The International Bureau of Weights and Measures votes to abolish the leap secon"}
+[webkit/sl] card 3: {"kind": "news", "vis": null, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/sl] card 4: {"kind": "geo", "vis": "globe", "title": "Donava"}
+[webkit/sl] card 5: {"kind": "geo", "vis": "globe", "title": "Bajkalsko jezero"}
+[webkit/sl] card 6: {"kind": "photo", "vis": null, "title": "Jim Buckley’s Red Dragon sculpture from 1985 during River Lee flooding, October "}
+[webkit/sl] card 7: {"kind": "geo", "vis": "globe", "title": "Izrael"}
+[webkit/sl] card 8: {"kind": "econ", "vis": null, "title": "Indeksni sklad"}
+[webkit/sl] card 9: {"kind": "quiz", "vis": null, "title": "Kaj od tega je »sladkovodno riftno jezero v južni Sibiriji«?"}
+[webkit/sl] card 10: {"kind": "photo", "vis": null, "title": "A small hoverfly in the sun (female Episyrphus balteatus)"}
+[webkit/sl] card 11: {"kind": "geo", "vis": "globe", "title": "Švedska"}
+[webkit/sl] card 12: {"kind": "geo", "vis": "globe", "title": "Lagos"}
+[webkit/sl] card 13: {"kind": "geo", "vis": null, "title": "Cunami"}
+[webkit/sl] card 14: {"kind": "geo", "vis": null, "title": "Ognjenik"}

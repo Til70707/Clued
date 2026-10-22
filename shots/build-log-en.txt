@@ -1,0 +1,31 @@
+  current events: Armed 5, International 6, Politics 3, Disasters 2, Business 1, Science 2, Health 2, Law 8; skipped 13 without a trusted source
+    untrusted: At least six people are killed and 25 others are injured when a bus co
+    untrusted: Two people are killed and two others are injured by debris after a sus
+    untrusted: The Israel Defense Forces (IDF) and Shin Bet say that they have killed
+    untrusted: The North Sea Transition Authority (NSTA) of the United Kingdom approv
+    untrusted: Italian interior minister Matteo Piantedosi announces a crackdown on t
+    untrusted: A Tunisian military court sentences politician and businesswoman Olfa 
+    untrusted: Paul St-Pierre Plamondon is sworn in as the 34th premier of Quebec, Ca
+    untrusted: The death toll in the market drone attack in Abyei on the border of So
+en: news 0 own + 16 from English; with place: 15, photo: 1, untranslated: 0
+    [itn]       Hôtel de Ville, Limo France         The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and student protests
+    [itn]       -                    -              The International Bureau of Weights and Measures votes to effectively abolish the leap sec
+    [itn]       -                    Saudi Arabia   The Houthis launch a series of attacks on Saudi Arabian airports, killing at least 20 peop
+    [Armed co]  King Fahd Internatio Saudi Arabia   Two people are killed and eight others are injured in a Houthi attack on King Fahd Interna
+    [Internat]  -                    Canada         Canada and Turkey open negotiations for a free trade agreement during Canadian prime minis
+    [Politics]  Athens               Greece         Thousands of students and teachers march through Athens, Thessaloniki, and Patras in Greec
+    [Disaster]  Nagqu                China          A Mw 7.0 earthquake strikes Tibet, with an epicenter in Nagqu.
+    [Business]  -                    South Africa   South Africa cuts fuel levies by R3.00 (US$0.18) per litre of diesel and R1.50 ($0.09) per
+    [Science ]  Onkalo spent nuclear Finland        The Finnish Government grants Posiva an operating license for the Onkalo spent nuclear fue
+    [Health a]  -                    France         France reports the first human case of the livestock Shamonda virus in a patient who died 
+    [Law and ]  -                    Guatemala      A Guatemalan court sentences seven former police officers to prison terms of up to 60 year
+    [Armed co]  Embassy of the Unite Saudi Arabia   The U.S. Department of State orders non-emergency employees at its embassy in Riyadh to le
+    [Internat]  -                    Indonesia      Indonesia, Pakistan, Qatar, and Turkey jointly sign the Badr Memorandum of Understanding, 
+    [Politics]  Parliament of Romani Romania        The Parliament of Romania appoints Luca Niculescu as the new Prime Minister, succeeding Il
+    [Disaster]  Toledo, Ohio         United States  A leak of glycidyl methacrylate from a chemical tank at the terminal in Toledo, Ohio, Unit
+    [Science ]  Tanegashima Space Ce Japan          JAXA launches the Martian Moons eXploration spacecraft from the Tanegashima Space Center t
+  no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
+en: 10 articles had fresh edits, so their 3-day-old version was used
+en: 291 topics, 43 with shapes
+en: voice kokoro-am_michael, 8 new clips, 307/307 cards with audio, voice ok: True
+en: done in 132s

@@ -1,0 +1,32 @@
+  current events: Armed 5, International 6, Politics 3, Disasters 2, Business 1, Science 2, Health 2, Law 8; skipped 13 without a trusted source
+    untrusted: At least six people are killed and 25 others are injured when a bus co
+    untrusted: Two people are killed and two others are injured by debris after a sus
+    untrusted: The Israel Defense Forces (IDF) and Shin Bet say that they have killed
+    untrusted: The North Sea Transition Authority (NSTA) of the United Kingdom approv
+    untrusted: Italian interior minister Matteo Piantedosi announces a crackdown on t
+    untrusted: A Tunisian military court sentences politician and businesswoman Olfa 
+    untrusted: Paul St-Pierre Plamondon is sworn in as the 34th premier of Quebec, Ca
+    untrusted: The death toll in the market drone attack in Abyei on the border of So
+  translator ready: facebook/nllb-200-distilled-1.3B
+sl: news 0 own + 16 from English; with place: 15, photo: 1, untranslated: 0
+    [itn]       Hôtel de Ville, Limo France         Hôtel de Ville v Limoges je delno uničen zaradi požara, saj gorivo in študentski protesti 
+    [itn]       -                    -              Mednarodni urad za mere in uteži je odločil, da bo odpravil prestopno sekundo zaradi težav
+    [itn]       -                    Saudi Arabia   Husi so izvedli serijo napadov na letališča v Savdski Arabiji, kjer je bilo ubitih vsaj 20
+    [Armed co]  King Fahd Internatio Saudi Arabia   V napadu husijev na mednarodno letališče kralja Fahda v Dammamu v Savdski Arabiji so umrli
+    [Internat]  -                    Canada         Kanada in Turčija med obiskom kanadskega predsednika Mark Carneyja v Ankari začnejo pogaja
+    [Politics]  Atene                Greece         Na tisoče študentov in učiteljev po Atenah, Solunu in Patrasu v Grčiji protestira proti na
+    [Disaster]  Nagqu                China          Zemeljski potres s magnitudo 7,0 se je zgodil v Tibetu, epicenter v Nagquju.
+    [Business]  -                    South Africa   Južnoafriška republika je od 4. novembra do 1. decembra znižala dajatve za gorivo za R3,00
+    [Science ]  Onkalo spent nuclear Finland        Finska vlada podeli podjetju Posiva licenco za obratovanje skladišča izrabljenega jedrskeg
+    [Health a]  -                    France         Francija poroča o prvem primeru okužbe z virusom Shamonde pri živalih pri bolniku, ki je u
+    [Law and ]  -                    Guatemala      Gvatemalsko sodišče je sedem nekdanjih policistov obsodilo na do 60 let zapora zaradi kazn
+    [Armed co]  Embassy of the Unite Saudi Arabia   Ameriško ministrstvo za zunanje zadeve je naročilo zaposlenim v veleposlaništvu v Rijadu, 
+    [Internat]  -                    Indonesia      Indonezija, Pakistan, Katar in Turčija skupaj podpišejo Memorandum o razumevanju Badr, pom
+    [Politics]  Parlament Romunije   Romania        Parlament Romunije imenuje Luca Niculescu za novega predsednika vlade, ki nadomešča Ilieja
+    [Disaster]  Toledo, Ohio         United States  Zaradi uhajanja glicidil metakrilata iz kemičnega rezervoarja na letališču v Toledu v drža
+    [Science ]  Tanegashima Space Ce Japan          JAXA iz vesoljskega centra Tanegashima izstreli vesoljsko ladjo Martian Moons eXploration 
+  no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
+sl: 10 articles had fresh edits, so their 3-day-old version was used
+sl: 228 topics, 40 with shapes
+sl: voice piper-sl_SI-artur-medium, 11 new clips, 244/244 cards with audio, voice ok: True
+sl: done in 160s

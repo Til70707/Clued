@@ -1,0 +1,32 @@
+  current events: Armed 6, International 6, Politics 3, Disasters 2, Business 1, Science 2, Health 2, Law 8; skipped 14 without a trusted source
+    untrusted: An al-Qaeda in the Arabian Peninsula attack in Shabwah Governorate kil
+    untrusted: At least six people are killed and 25 others are injured when a bus co
+    untrusted: Two people are killed and two others are injured by debris after a sus
+    untrusted: The Israel Defense Forces (IDF) and Shin Bet say that they have killed
+    untrusted: The North Sea Transition Authority (NSTA) of the United Kingdom approv
+    untrusted: Italian interior minister Matteo Piantedosi announces a crackdown on t
+    untrusted: A Tunisian military court sentences politician and businesswoman Olfa 
+    untrusted: Paul St-Pierre Plamondon is sworn in as the 34th premier of Quebec, Ca
+  translator ready: facebook/nllb-200-distilled-1.3B
+fr: news 0 own + 16 from English; with place: 15, photo: 1, untranslated: 0
+    [itn]       Hôtel de ville de Li France         L'Hôtel de Ville à Limoges est partiellement détruit par un incendie criminel alors que le
+    [itn]       -                    -              Le Bureau international des poids et mesures vote pour abolir effectivement la seconde de 
+    [itn]       -                    Saudi Arabia   Les Houthis lancent une série d'attaques contre les aéroports saoudiens, tuant au moins 20
+    [Armed co]  Détroit d'Ormuz      Oman           Le Corps des Gardiens de la Révolution islamique rapporte que sept pétroliers ont été touc
+    [Internat]  -                    Canada         Le Canada et la Turquie ouvrent des négociations pour un accord de libre-échange lors de l
+    [Politics]  Athènes              Greece         Des milliers d'étudiants et d'enseignants défilent à Athènes, Thessalonique et Patras en G
+    [Disaster]  Préfecture de Nagchu China          Un séisme de magnitude 7,0 frappe le Tibet, avec un épicentre à Nagqu.
+    [Business]  -                    South Africa   L'Afrique du Sud réduit les prélèvements sur le carburant de R3.00 (0,18 $ US) par litre d
+    [Science ]  Onkalo               Finland        Le gouvernement finlandais accorde à Posiva une licence d'exploitation pour le dépôt de co
+    [Health a]  -                    France         La France rapporte le premier cas humain du virus Shamonda chez un patient décédé après av
+    [Law and ]  -                    Guatemala      Un tribunal guatémaltèque condamne sept anciens policiers à des peines d'emprisonnement po
+    [Armed co]  Aéroport internation Saudi Arabia   Deux personnes sont tuées et huit autres blessées dans une attaque des Houthis contre l'aé
+    [Internat]  -                    Indonesia      L'Indonésie, le Pakistan, le Qatar et la Turquie signent conjointement le mémorandum d'acc
+    [Politics]  Parlement roumain    Romania        Le Parlement roumain nomme Luca Niculescu comme nouveau Premier ministre, succédant à Ilie
+    [Disaster]  Toledo (Ohio)        United States  Une fuite de métacrylate de glycidyle provenant d'un réservoir chimique du terminal de Tol
+    [Science ]  Centre spatial de Ta Japan          JAXA lance le vaisseau spatial Martian Moons eXploration du centre spatial Tanegashima ver
+  no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
+fr: 17 articles had fresh edits, so their 3-day-old version was used
+fr: 287 topics, 43 with shapes
+fr: voice piper-fr_FR-tom-medium, 20 new clips, 303/303 cards with audio, voice ok: True
+fr: done in 193s

@@ -677,6 +677,7 @@ async function runGlobe(slide, c, run) {
   const START = [[-70, 12], [75, -8], [-30, 50], [40, 35], [-55, -30]], so = START[seed % START.length];
   const start = [target[0] + so[0], Math.max(-55, Math.min(60, target[1] * 0.3 + so[1]))];
   const cap = c.capital && c.capital.coords ? c.capital : null; // countries: after the outline, fly on to the capital
+  const capLbl = cap ? t("cap_lbl").toUpperCase() : ""; // (inside the frame loop "t" is the animation time)
   let zoomK = 1.9;
   if (hit) { const b = d3.geoBounds(hit), span = Math.max(Math.abs(b[1][0] - b[0][0]) * Math.cos(target[1] * Math.PI / 180), Math.abs(b[1][1] - b[0][1])); zoomK = Math.max(1.4, Math.min(2.5, 24 / Math.max(span, 1))); }
   const base = Math.min(w, h) * 0.42, proj = d3.geoOrthographic().clipAngle(90).precision(0.4), grat = d3.geoGraticule10();
@@ -806,7 +807,7 @@ async function runGlobe(slide, c, run) {
         x.lineWidth = 3; x.strokeStyle = `rgba(7,8,12,${a3 * .6})`; x.strokeText(cap.name, cx2, cy2);
         x.fillStyle = `rgba(255,255,255,${a3})`; x.fillText(cap.name, cx2, cy2);
         x.font = '700 10px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = `rgba(200,245,96,${a3})`;
-        x.fillText(t("cap_lbl").toUpperCase(), cx2, cy2 + 14);
+        x.fillText(capLbl, cx2, cy2 + 14);
       }
     }
     if (t < 1 || !REDUCED) requestAnimationFrame(frame); // keep the marker pulsing while the card is on screen

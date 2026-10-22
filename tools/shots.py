@@ -27,7 +27,7 @@ def run(p, engine, lang):
         el = pg.query_selector(sel)
         if el and el.is_visible(): el.click(); pg.wait_for_timeout(800)
     pg.wait_for_timeout(2500)
-    for i in range(1, 19):
+    for i in range(1, 15):
         info = pg.evaluate("(()=>{const s=document.querySelector('.slide.playing'); if(!s) return null; const c=S.cards[+s.dataset.i]; return c?{kind:c.kind, vis:c.vis||null, ftype:c.ftype||null, audio:!!c.audio, title:(c.title||c.q||'').slice(0,80)}:null})()")
         wait = 7500 if info and info.get("vis") == "globe" else 5000 if info and info.get("vis") == "chart" else 3000
         pg.wait_for_timeout(wait)
@@ -39,10 +39,10 @@ def run(p, engine, lang):
     t = pg.query_selector("[data-feed=news]")
     if t:
         t.click(); pg.wait_for_timeout(2500)
-        for k in range(1, 5):
-            info = pg.evaluate("(()=>{const s=document.querySelector('.slide.playing'); if(!s) return null; const c=S.cards[+s.dataset.i]; return c?{kind:c.kind, vis:c.vis||null, img:!!c.img, audio:!!c.audio, title:(c.title||c.q||'').slice(0,80)}:null})()")
-            pg.wait_for_timeout(7000 if info and info.get("vis") == "globe" else 2500)
-            pg.screenshot(path=str(OUT / f"{engine}-{lang}-news-{k}.png"))
+        for k in range(1, 9):
+            info = pg.evaluate("(()=>{const s=document.querySelector('.slide.playing'); if(!s) return null; const c=S.cards[+s.dataset.i]; return c?{kind:c.kind, vis:c.vis||null, img:!!c.img, audio:!!c.audio, place:c.place||null, country:c.country||null, lang:c.lang||null, title:(c.title||c.q||'').slice(0,80)}:null})()")
+            pg.wait_for_timeout(7500 if info and info.get("vis") == "globe" else 3000)
+            pg.screenshot(path=str(OUT / f"{engine}-{lang}-news-{k}-{(info or {}).get('vis') or 'plain'}.png"))
             log.append(f"[{engine}/{lang}] news {k}: {json.dumps(info, ensure_ascii=False)}")
             pg.evaluate("document.getElementById('feed').scrollBy(0, innerHeight)"); pg.wait_for_timeout(900)
     log.append(f"[{engine}/{lang}] content ok: {pg.evaluate('CONTENT.ok')}, topics: {pg.evaluate('CONTENT.topics.length')}, with audio: {pg.evaluate('CONTENT.topics.filter(c=>c.audio).length')}")

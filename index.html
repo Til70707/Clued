@@ -549,7 +549,10 @@ function visFor(c, topic) {
     if (c.coords && c.img) return "locator";              // small places: their photo + a little globe showing where
     if (c.coords) return "globe";
   }
-  if (c.kind === "news" && !c.img && c.globeName && HAS_GEO) return "globe"; // no photo of the event: show where it happened
+  if (c.kind === "news" && HAS_GEO && (c.globeName || c.coords)) { // where it happened: a globe, or a little one over the photo
+    if (!c.img) return "globe";
+    if (c.coords) return "locator";
+  }
   if (topic && CHARTS[topic]) return "chart";
   return null;
 }
@@ -674,7 +677,10 @@ async function runGlobe(slide, c, run) {
   if (hit) { const b = d3.geoBounds(hit), span = Math.max(Math.abs(b[1][0] - b[0][0]) * Math.cos(target[1] * Math.PI / 180), Math.abs(b[1][1] - b[0][1])); zoomK = Math.max(1.4, Math.min(2.5, 24 / Math.max(span, 1))); }
   const base = Math.min(w, h) * 0.42, proj = d3.geoOrthographic().clipAngle(90).precision(0.4), grat = d3.geoGraticule10();
   const stars = Array.from({ length: 70 }, (_, i) => [((i * 97) % 100) / 100 * w, ((i * 53) % 100) / 100 * h * 0.6, (i % 3) * 0.5 + 0.5]);
-  const label = c.globeName ? (COUNTRY_LABEL[c.globeName] || c.globeName) : c.name, contName = continentOf({ ...c, coords: c.coords || target }), coordTxt = (contName ? t(contName) + "  ·  " : "") + `${Math.abs(target[1]).toFixed(0)}°${target[1] >= 0 ? "N" : "S"}  ${Math.abs(target[0]).toFixed(0)}°${target[0] >= 0 ? "E" : "W"}`;
+  const ctryLabel = c.globeName ? (COUNTRY_LABEL[c.globeName] || c.globeName) : null, keepPin = !!c.place; // a town in the news: keep the pin on it
+  const label = c.place || ctryLabel || c.name, contName = continentOf({ ...c, coords: c.coords || target });
+  const coordTxt = keepPin && ctryLabel ? ctryLabel + (contName ? "  ·  " + t(contName) : "")
+    : (contName ? t(contName) + "  ·  " : "") + `${Math.abs(target[1]).toFixed(0)}°${target[1] >= 0 ? "N" : "S"}  ${Math.abs(target[0]).toFixed(0)}°${target[0] >= 0 ? "E" : "W"}`;
   const ease = t => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
   // everything except the pulsing marker
   const cont = continentOf({ ...c, coords: c.coords || target });
@@ -757,7 +763,7 @@ async function runGlobe(slide, c, run) {
     } else drawBase(x, (t2 > 0 && fine ? fine : world).countries, shape, Math.min(1, t * 1.6) * (1 - (shapeK > 1.05 ? ease(t2) : 0)));
     if (t > .55) {
       const p = proj(target), a = Math.min(1, (t - .55) / .25), pulse = (Math.max(0, now - t0) / 1300) % 1;
-      const ringA = a * (1 - (shapeK > 1.05 ? ease(t2) : 0)); // the ring fades as the country's own outline takes over
+      const ringA = keepPin ? a : a * (1 - (shapeK > 1.05 ? ease(t2) : 0)); // the ring fades as the country's own outline takes over
       if (p) {
         if (ringA > .01) {
           x.strokeStyle = `rgba(200,245,96,${(1 - pulse) * ringA})`; x.lineWidth = 2; x.beginPath(); x.arc(p[0], p[1], 7 + pulse * 24, 0, 7); x.stroke();
@@ -765,7 +771,7 @@ async function runGlobe(slide, c, run) {
         }
         x.font = '700 17px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = `rgba(255,255,255,${a})`;
         let lx = p[0] + 14 + x.measureText(label).width > w - 76 ? p[0] - 14 - x.measureText(label).width : p[0] + 14, ly = p[1] - 9;
-        if (shape && t2 > 0) { // zoomed onto the country: move the name above its outline
+        if (shape && t2 > 0 && !keepPin) { // zoomed onto the country: move the name above its outline
           const bb = d3.geoPath(proj).bounds(shape), e2 = ease(t2);
           const ax = Math.max(16, Math.min(w - 76 - x.measureText(label).width, bb[0][0])), ay = Math.max(96, bb[0][1] - 30);
           lx += (ax - lx) * e2; ly += (ay - ly) * e2;
@@ -1041,7 +1047,7 @@ function appendCards(cards) {
 // Content prepared every morning by GitHub (tools/build_content.py): texts, shapes and natural-voice audio.
 const CONTENT = { ok: false, news: [], photo: null, topics: [], cur: 0, newsGiven: false };
 function prepCard(c) {
-  if (c.kind === "news" && !c.img && c.country) c.globeName = c.country;
+  if (c.kind === "news" && c.country) c.globeName = c.country;
   c.vis = visFor(c, c.en);
   return c;
 }
@@ -1050,6 +1056,10 @@ async function loadContent() {
     const stamp = new Date().toISOString().slice(0, 10);
     const [n, tp] = await Promise.all([getJSON(`content/${LANG}/news.json?d=${stamp}`), getJSON(`content/${LANG}/topics.json?d=${stamp}`)]);
     CONTENT.news = (n.news || []).map(prepCard); CONTENT.photo = n.photo ? prepCard(n.photo) : null;
+    if (LANG !== "en" && CONTENT.news.some(c => c.lang === "en" && !c.audio)) { // untranslated stories: use the English narration
+      getJSON(`content/en/news.json?d=${stamp}`).then(en => { const a = {}; (en.news || []).forEach(x => { if (x.audio) a[x.id] = x.audio; });
+        CONTENT.news.forEach(c => { if (c.lang === "en" && !c.audio && a[c.id]) c.audio = a[c.id]; }); }).catch(() => {});
+    }
     CONTENT.topics = shuffle((tp.topics || []).map(prepCard));
     CONTENT.ok = CONTENT.topics.length > 0 || CONTENT.news.length > 0;
   } catch { CONTENT.ok = false; }

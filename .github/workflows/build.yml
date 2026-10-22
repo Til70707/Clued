@@ -34,8 +34,10 @@ jobs:
           pip install -q shapely soundfile numpy
           case "${{ matrix.lang }}" in
             en|es|it) pip install -q torch --index-url https://download.pytorch.org/whl/cpu && pip install -q "kokoro==0.9.4" ;;
-            *) pip install -q "piper-tts==1.3.0" ;;
+            *) pip install -q torch --index-url https://download.pytorch.org/whl/cpu && pip install -q "piper-tts==1.3.0" ;;
           esac
+          # translator for English world news (NLLB-200); every language except English
+          if [ "${{ matrix.lang }}" != "en" ]; then pip install -q transformers sentencepiece protobuf; fi
       - name: Restore previous content and voice clips
         uses: actions/cache@v4
         with:

@@ -200,7 +200,7 @@ const LANGS = {
     news: "World news", geo: "Geography", econ: "Economics", photo: "Picture of the day", history: "On this day", trend: "Trending", deep: "Deep dive", fact: "Did you know",
     like: "Like", liked: "Liked", save: "Save", saved: "Saved", share: "Share", read: "Read", post: "Post", more: "more", less: "less",
     quick_quiz: "Quick quiz", skip: "Swipe up to skip", correct: "Correct!", wrong: "Not quite.",
-    q_capital: "What is the capital of {x}?", ex_capital: "The capital of {x} is {y}.", q_desc: "Which one is “{x}”?",
+    cap_lbl: "capital", q_capital: "What is the capital of {x}?", ex_capital: "The capital of {x} is {y}.", q_desc: "Which one is “{x}”?",
     q_news: "Today's news: “{x}” Which topic is this story about?", q_year: "In which year did this happen? “{x}”", ex_year: "It happened in {x}.",
     t_saved: "Saved", t_removed: "Removed from saved", t_copied: "Copied", t_paused: "Paused",
     you: "You", you_lead: "Small daily swipes add up.", streak: "day streak", learned: "learned today", score: "quiz score",
@@ -224,7 +224,7 @@ const LANGS = {
     news: "Svetovne novice", geo: "Geografija", econ: "Ekonomija", photo: "Slika dneva", history: "Na današnji dan", trend: "Trendi", deep: "Poglobljeno", fact: "Ali veš",
     like: "Všeč", liked: "Všeč mi je", save: "Shrani", saved: "Shranjeno", share: "Deli", read: "Beri", post: "Objava", more: "več", less: "manj",
     quick_quiz: "Hitri kviz", skip: "Povleci gor za preskok", correct: "Pravilno!", wrong: "Ne čisto.",
-    q_capital: "Katera je prestolnica države {x}?", ex_capital: "Prestolnica države {x} je {y}.", q_desc: "Kaj od tega je »{x}«?",
+    cap_lbl: "glavno mesto", q_capital: "Katera je prestolnica države {x}?", ex_capital: "Prestolnica države {x} je {y}.", q_desc: "Kaj od tega je »{x}«?",
     q_news: "Današnja novica: »{x}« O kateri temi govori?", q_year: "V katerem letu se je to zgodilo? »{x}«", ex_year: "Zgodilo se je leta {x}.",
     t_saved: "Shranjeno", t_removed: "Odstranjeno iz shranjenih", t_copied: "Kopirano", t_paused: "Ustavljeno",
     you: "Ti", you_lead: "Majhni dnevni potegi se seštevajo.", streak: "dni zapored", learned: "naučeno danes", score: "uspeh v kvizih",
@@ -248,7 +248,7 @@ const LANGS = {
     news: "Weltnachrichten", geo: "Geografie", econ: "Wirtschaft", photo: "Bild des Tages", history: "An diesem Tag", trend: "Im Trend", deep: "Im Detail", fact: "Wusstest du",
     like: "Gefällt", liked: "Gefällt mir", save: "Merken", saved: "Gemerkt", share: "Teilen", read: "Lesen", post: "Post", more: "mehr", less: "weniger",
     quick_quiz: "Schnelles Quiz", skip: "Nach oben wischen zum Überspringen", correct: "Richtig!", wrong: "Nicht ganz.",
-    q_capital: "Was ist die Hauptstadt von {x}?", ex_capital: "Die Hauptstadt von {x} ist {y}.", q_desc: "Was davon ist „{x}“?",
+    cap_lbl: "Hauptstadt", q_capital: "Was ist die Hauptstadt von {x}?", ex_capital: "Die Hauptstadt von {x} ist {y}.", q_desc: "Was davon ist „{x}“?",
     q_news: "Heutige Nachricht: „{x}“ Um welches Thema geht es?", q_year: "In welchem Jahr geschah das? „{x}“", ex_year: "Es geschah {x}.",
     t_saved: "Gemerkt", t_removed: "Entfernt", t_copied: "Kopiert", t_paused: "Pausiert",
     you: "Du", you_lead: "Kleine tägliche Swipes summieren sich.", streak: "Tage in Folge", learned: "heute gelernt", score: "Quiz-Quote",
@@ -272,7 +272,7 @@ const LANGS = {
     news: "Noticias del mundo", geo: "Geografía", econ: "Economía", photo: "Imagen del día", history: "Un día como hoy", trend: "Tendencia", deep: "En profundidad", fact: "Sabías que",
     like: "Me gusta", liked: "Te gusta", save: "Guardar", saved: "Guardado", share: "Compartir", read: "Leer", post: "Post", more: "más", less: "menos",
     quick_quiz: "Quiz rápido", skip: "Desliza hacia arriba para saltar", correct: "¡Correcto!", wrong: "Casi.",
-    q_capital: "¿Cuál es la capital de {x}?", ex_capital: "La capital de {x} es {y}.", q_desc: "¿Cuál de estos es «{x}»?",
+    cap_lbl: "capital", q_capital: "¿Cuál es la capital de {x}?", ex_capital: "La capital de {x} es {y}.", q_desc: "¿Cuál de estos es «{x}»?",
     q_news: "Noticia de hoy: «{x}» ¿De qué tema trata?", q_year: "¿En qué año ocurrió esto? «{x}»", ex_year: "Ocurrió en {x}.",
     t_saved: "Guardado", t_removed: "Eliminado de guardados", t_copied: "Copiado", t_paused: "En pausa",
     you: "Tú", you_lead: "Pequeños deslizamientos diarios suman.", streak: "días seguidos", learned: "aprendido hoy", score: "aciertos",
@@ -296,7 +296,7 @@ const LANGS = {
     news: "Actualité mondiale", geo: "Géographie", econ: "Économie", photo: "Image du jour", history: "Ce jour-là", trend: "Tendance", deep: "En détail", fact: "Le savais-tu",
     like: "J'aime", liked: "Aimé", save: "Garder", saved: "Gardé", share: "Partager", read: "Lire", post: "Post", more: "plus", less: "moins",
     quick_quiz: "Quiz rapide", skip: "Glisse vers le haut pour passer", correct: "Correct !", wrong: "Pas tout à fait.",
-    q_capital: "Quelle est la capitale de {x} ?", ex_capital: "La capitale de {x} est {y}.", q_desc: "Lequel est « {x} » ?",
+    cap_lbl: "capitale", q_capital: "Quelle est la capitale de {x} ?", ex_capital: "La capitale de {x} est {y}.", q_desc: "Lequel est « {x} » ?",
     q_news: "Actu du jour : « {x} » De quel sujet parle-t-elle ?", q_year: "En quelle année est-ce arrivé ? « {x} »", ex_year: "C'est arrivé en {x}.",
     t_saved: "Gardé", t_removed: "Retiré", t_copied: "Copié", t_paused: "En pause",
     you: "Toi", you_lead: "Les petits swipes quotidiens s'additionnent.", streak: "jours d'affilée", learned: "appris aujourd'hui", score: "réussite aux quiz",
@@ -320,7 +320,7 @@ const LANGS = {
     news: "Notizie dal mondo", geo: "Geografia", econ: "Economia", photo: "Immagine del giorno", history: "Accadde oggi", trend: "Di tendenza", deep: "Approfondimento", fact: "Lo sapevi",
     like: "Mi piace", liked: "Ti piace", save: "Salva", saved: "Salvato", share: "Condividi", read: "Leggi", post: "Post", more: "altro", less: "meno",
     quick_quiz: "Quiz veloce", skip: "Scorri in su per saltare", correct: "Giusto!", wrong: "Non proprio.",
-    q_capital: "Qual è la capitale di {x}?", ex_capital: "La capitale di {x} è {y}.", q_desc: "Quale di questi è «{x}»?",
+    cap_lbl: "capitale", q_capital: "Qual è la capitale di {x}?", ex_capital: "La capitale di {x} è {y}.", q_desc: "Quale di questi è «{x}»?",
     q_news: "Notizia di oggi: «{x}» Di quale argomento parla?", q_year: "In che anno è successo? «{x}»", ex_year: "È successo nel {x}.",
     t_saved: "Salvato", t_removed: "Rimosso dai salvati", t_copied: "Copiato", t_paused: "In pausa",
     you: "Tu", you_lead: "Piccoli swipe quotidiani fanno la differenza.", streak: "giorni di fila", learned: "imparato oggi", score: "risposte giuste",
@@ -672,7 +672,11 @@ async function runGlobe(slide, c, run) {
   if (world.precise) loadWorld("50m").then(wd => { if (wd && run === visRun) { fine = wd; fineHit = feat || findIn(wd); } });
   if (w10state === "loading") loadWorld10().then(z => { w10 = z; w10state = z ? "ready" : "none"; });
   const get10 = f => (w10 && (w10.get(f.properties.name) || null)) || f;
-  const start = [target[0] - 70, 12];
+  // every globe flies in a little differently (from the west, east, north …), chosen by the card so it stays the same on a revisit
+  const seed = [...String(c.id || name || "")].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) >>> 0, 7);
+  const START = [[-70, 12], [75, -8], [-30, 50], [40, 35], [-55, -30]], so = START[seed % START.length];
+  const start = [target[0] + so[0], Math.max(-55, Math.min(60, target[1] * 0.3 + so[1]))];
+  const cap = c.capital && c.capital.coords ? c.capital : null; // countries: after the outline, fly on to the capital
   let zoomK = 1.9;
   if (hit) { const b = d3.geoBounds(hit), span = Math.max(Math.abs(b[1][0] - b[0][0]) * Math.cos(target[1] * Math.PI / 180), Math.abs(b[1][1] - b[0][1])); zoomK = Math.max(1.4, Math.min(2.5, 24 / Math.max(span, 1))); }
   const base = Math.min(w, h) * 0.42, proj = d3.geoOrthographic().clipAngle(90).precision(0.4), grat = d3.geoGraticule10();
@@ -731,11 +735,11 @@ async function runGlobe(slide, c, run) {
     g.fillStyle = sh; g.beginPath(); path({ type: "Sphere" }); g.fill();
     drawLabels(g, labelA);
   };
-  const t0 = performance.now(), DUR = REDUCED ? 1 : 4200, DUR2 = REDUCED ? 1 : 2200;
+  const t0 = performance.now(), DUR = REDUCED ? 1 : 4200, DUR2 = REDUCED ? 1 : 2200, DUR3 = REDUCED ? 1 : 2400, GAP3 = REDUCED ? 0 : 700;
   let last = 0, shapeK = null; // shapeK: extra zoom so the country's real outline fills ~half the screen
   const frame = now => {
     if (run !== visRun) return;
-    const settled = now - t0 > DUR + (shapeK && shapeK > 1.05 ? DUR2 : 0);
+    const settled = now - t0 > DUR + (shapeK && shapeK > 1.05 ? DUR2 : 0) + (cap && shapeK ? GAP3 + DUR3 : 0);
     if (settled && now - last < 45) { requestAnimationFrame(frame); return; } // after the intro only the pulse moves: ~22 fps saves battery
     last = now;
     const t = Math.max(0, Math.min(1, (now - t0) / DUR)), k = ease(t);
@@ -750,7 +754,14 @@ async function runGlobe(slide, c, run) {
     }
     const t2 = shapeK > 1.05 ? Math.max(0, Math.min(1, (now - t0 - DUR) / DUR2)) : 0;
     if (t2 > 0) { scale *= 1 + (shapeK - 1) * ease(t2); proj.scale(scale); }
-    const done = t >= 1 && (shapeK <= 1.05 || t2 >= 1);
+    const shapeDone = t >= 1 && shapeK !== null && (shapeK <= 1.05 || t2 >= 1);
+    const t3 = cap && shapeDone ? Math.max(0, Math.min(1, (now - t0 - DUR - (shapeK > 1.05 ? DUR2 : 0) - GAP3) / DUR3)) : 0;
+    if (t3 > 0) { // glide towards the capital and come a little closer
+      const e3 = ease(t3), dl = ((cap.coords[0] - target[0] + 540) % 360) - 180;
+      proj.rotate([-(target[0] + dl * .55 * e3), -(target[1] + (cap.coords[1] - target[1]) * .55 * e3)]);
+      scale *= 1 + .4 * e3; proj.scale(scale);
+    }
+    const done = t >= 1 && (shapeK <= 1.05 || t2 >= 1) && (!cap || !shapeK || t3 >= 1);
     if (done && fine && w10state !== "loading") {
       // settled: draw the detailed map once (1:10m for everything on screen), then only repaint the marker on top of it
       if (!cache) {
@@ -779,6 +790,23 @@ async function runGlobe(slide, c, run) {
         lx = Math.max(16, Math.min(w - 76 - x.measureText(label).width, lx)); // never cut off at the screen edge
         x.fillText(label, lx, ly);
         x.font = '500 12px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = `rgba(244,245,247,${a * .7})`; x.fillText(coordTxt, lx, ly + 17);
+      }
+    }
+    if (t3 > 0) { // the capital: a star and its name
+      const cp = proj(cap.coords), a3 = Math.min(1, t3 * 1.8);
+      if (cp) {
+        const pulse = (Math.max(0, now - t0) / 1600) % 1;
+        x.strokeStyle = `rgba(255,255,255,${(1 - pulse) * a3 * .8})`; x.lineWidth = 1.5; x.beginPath(); x.arc(cp[0], cp[1], 8 + pulse * 18, 0, 7); x.stroke();
+        x.beginPath();
+        for (let i = 0; i < 10; i++) { const r = i % 2 ? 3.4 : 8, an = -Math.PI / 2 + i * Math.PI / 5; x.lineTo(cp[0] + r * Math.cos(an), cp[1] + r * Math.sin(an)); }
+        x.closePath(); x.fillStyle = `rgba(255,255,255,${a3})`; x.strokeStyle = `rgba(7,8,12,${a3 * .7})`; x.lineWidth = 2; x.stroke(); x.fill();
+        x.font = '700 15px "Familjen Grotesk", system-ui, sans-serif';
+        const cw = x.measureText(cap.name).width, right = cp[0] + 14 + cw < w - 76;
+        const cx2 = right ? cp[0] + 13 : cp[0] - 13 - cw, cy2 = cp[1] + 5;
+        x.lineWidth = 3; x.strokeStyle = `rgba(7,8,12,${a3 * .6})`; x.strokeText(cap.name, cx2, cy2);
+        x.fillStyle = `rgba(255,255,255,${a3})`; x.fillText(cap.name, cx2, cy2);
+        x.font = '700 10px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = `rgba(200,245,96,${a3})`;
+        x.fillText(t("cap_lbl").toUpperCase(), cx2, cy2 + 14);
       }
     }
     if (t < 1 || !REDUCED) requestAnimationFrame(frame); // keep the marker pulsing while the card is on screen
@@ -1138,7 +1166,7 @@ function playAudio(c, slide, bar) {
   AUDIO.src = c.audio; AUDIO.playbackRate = store.get("arate", 1);
   const words = slide ? [...slide.querySelectorAll(".cap .w")] : [];
   const capLen = slide ? slide.querySelector(".cap")?.textContent.length || 1 : 1;
-  const lead = c.kind === "news" || c.kind === "photo" ? 0 : (c.title.length + 2) / (c.title.length + 2 + capLen); // the title is read first
+  const lead = c.kind === "news" || c.kind === "photo" || c.sayTitle === false ? 0 : (c.title.length + 2) / (c.title.length + 2 + capLen); // the title is read first
   const starts = []; if (words.length) { let pos = 0; const txt = slide.querySelector(".cap").textContent; words.forEach(w => { const at = txt.indexOf(w.textContent, pos); starts.push(at); pos = at + w.textContent.length; }); }
   let lastOn = null;
   clearInterval(audioTimer);

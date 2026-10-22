@@ -524,6 +524,16 @@ PLACE_AT = {"Prime meridian": [0, 51.48], "Equator": [-78.45, 0], "International
             "Monsoon": [80, 18], "Mariana Trench": [142.2, 11.35], "Sahel": [5, 14], "Horn of Africa": [45, 8], "Siberia": [100, 62],
             "Balkans": [20, 43], "Scandinavia": [15, 63], "Caucasus": [44, 42.5], "Patagonia": [-69, -45], "Great Barrier Reef": [147, -18]}
 
+# capital of each country: its position and its name in this language (shown with a star on the globe)
+CAP_LOC = {}
+def add_capital(c, country):
+    en = CAPITALS[country]
+    s = summary("en", en)
+    co = _co(s or {})
+    if not co: return
+    name = re.sub(r"\s*\(.*?\)$", "", CAP_LOC.get(en) or en).split(",")[0].strip()
+    c["capital"] = {"name": name, "coords": co}
+
 # ---------- build ----------
 def main():
     t0 = time.time()
@@ -575,12 +585,13 @@ def main():
     prev_file = CACHE / "topics.json"
     prev = {c["en"]: c for c in json.loads(prev_file.read_text(encoding="utf-8"))} if prev_file.exists() else {}
     titles = lang_titles([t for t, _ in TOPICS])
+    CAP_LOC.update(lang_titles(sorted(set(CAPITALS.values()))))
     topics = []
     for t, kind in TOPICS:
         lt = titles.get(t)
         if not lt: continue
         old = prev.get(t)
-        if old and old.get("_v") == 2 and old.get("_at", 0) > time.time() - 7 * 86400:
+        if old and old.get("_v") == 3 and old.get("_at", 0) > time.time() - 7 * 86400:
             for k in ("ftype", "geom", "bbox"): old.pop(k, None)
             f = find_feature(t)                      # shapes are cheap: always use the newest matching rules
             if f: old.update(f)
@@ -591,8 +602,12 @@ def main():
         if kind == "geo" and not c.get("coords") and t in PLACE_AT: c["coords"] = PLACE_AT[t]
         f = find_feature(t)
         if f: c.update(f)
-        c["say"] = for_speech(f"{c['title']}. {c['text']}")
-        c["_at"] = time.time(); c["_v"] = 2
+        if t in CAPITALS: add_capital(c, t)
+        # "Singapore. Singapore, officially …" sounds clumsy: read the title only when the text doesn't start with it anyway
+        first = re.sub(r"\s*\(.*?\)", "", c["title"]).split()[0].lower() if c["title"] else ""
+        c["sayTitle"] = not (len(first) >= 3 and first[:max(3, len(first) - 2)] in c["text"][:80].lower())
+        c["say"] = for_speech(f"{c['title']}. {c['text']}" if c["sayTitle"] else c["text"])
+        c["_at"] = time.time(); c["_v"] = 3
         topics.append(c)
         time.sleep(0.05)
     prev_file.write_text(json.dumps(topics, ensure_ascii=False), encoding="utf-8")

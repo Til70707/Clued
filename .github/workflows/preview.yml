@@ -1,0 +1,31 @@
+name: preview
+on:
+  push:
+    branches: [dev]
+    paths-ignore: ["shots/**", "content/**"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: { group: preview, cancel-in-progress: true }
+jobs:
+  shots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Install browser
+        run: |
+          pip install playwright==1.48.0
+          python -m playwright install --with-deps webkit chromium
+      - name: Take real-data screenshots (iPhone)
+        run: python tools/shots.py
+      - name: Save screenshots to the dev branch
+        run: |
+          git config user.name "clued-bot"
+          git config user.email "clued-bot@users.noreply.github.com"
+          git add -f shots
+          git commit -m "Real-data screenshots" || echo "nothing to commit"
+          git pull --rebase origin dev || true
+          git push origin HEAD:dev

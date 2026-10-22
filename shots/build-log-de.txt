@@ -21,4 +21,4 @@ de: news 3 own + 15 from English; with place: 15, photo: 2, untranslated: 0
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
 de: 289 topics, 43 with shapes
 de: voice piper-de_DE-thorsten-high, 0 new clips, 307/307 cards with audio, voice ok: True
-de: done in 7s
+de: done in 11s

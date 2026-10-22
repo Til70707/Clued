@@ -5,8 +5,8 @@ it: news 0 own + 16 from English; with place: 15, photo: 1, untranslated: 0
     [itn]       -                    Saudi Arabia   Gli Houthi lanciano una serie di attacchi sugli aeroporti dell'Arabia Saudita, uccidendo a
     [Armed co]  -                    Israel         Le forze di difesa israeliane (IDF) e lo Shin Bet affermano di aver ucciso un militante de
     [Internat]  -                    Indonesia      L'Indonesia, il Pakistan, il Qatar e la Turchia firmano congiuntamente il Memorandum of Un
-    [Politics]  Salonicco            Greece         Migliaia di studenti e insegnanti hanno marciato attraverso Atene, Salonicco e Patrasso in
-    [Disaster]  -                    Bangladesh     Almeno 14 persone sono morte e altre 20 sono rimaste ferite dopo che un autobus e un camio
+    [Politics]  Atene                Greece         Migliaia di studenti e insegnanti hanno marciato attraverso Atene, Salonicco e Patrasso in
+    [Disaster]  Distretto di Natore  Bangladesh     Almeno 14 persone sono morte e altre 20 sono rimaste ferite dopo che un autobus e un camio
     [Business]  -                    South Africa   Il Sudafrica taglia i prelievi sul carburante di R3.00 (US$0.18) per litro di diesel e di 
     [Science ]  Centro spaziale di T Japan          JAXA lancia il veicolo spaziale Martian Moons eXploration dal Centro Spaziale Tanegashima 
     [Health a]  -                    Nigeria        La Nigeria annuncia il suo primo caso di virus Ebola nell'epidemia.
@@ -19,4 +19,4 @@ it: news 0 own + 16 from English; with place: 15, photo: 1, untranslated: 0
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
 it: 279 topics, 41 with shapes
 it: voice kokoro-im_nicola, 0 new clips, 295/295 cards with audio, voice ok: True
-it: done in 37s
+it: done in 14s

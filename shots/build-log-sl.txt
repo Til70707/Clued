@@ -1,6 +1,8 @@
   current events: Armed 8, International 4, Politics 4, Disasters 3, Business 2, Science 2, Health 1, Law 7
-  translator ready: facebook/nllb-200-distilled-1.3B
-sl: news 0 own + 16 from English; with place: 16, photo: 0, untranslated: 0
+sl: news 0 own + 16 from English; with place: 15, photo: 1, untranslated: 0
+    [itn]       Hôtel de Ville, Limo France         Hôtel de Ville v Limoges je delno uničen zaradi požara, saj gorivo in študentski protesti 
+    [itn]       -                    -              Mednarodni urad za mere in uteži je odločil, da bo odpravil prestopno sekundo zaradi težav
+    [itn]       -                    Saudi Arabia   Husi so izvedli serijo napadov na letališča v Savdski Arabiji, kjer je bilo ubitih vsaj 20
     [Armed co]  -                    Israel         Izraelske obrambne sile (IDF) in Shin Bet pravijo, da so ubili militanta Hamasovih sil Nuk
     [Internat]  -                    Indonesia      Indonezija, Pakistan, Katar in Turčija skupaj podpišejo Memorandum o razumevanju Badr, pom
     [Politics]  Atene                Greece         Na tisoče študentov in učiteljev po Atenah, Solunu in Patrasu v Grčiji protestira proti na
@@ -14,10 +16,7 @@ sl: news 0 own + 16 from English; with place: 16, photo: 0, untranslated: 0
     [Politics]  -                    Canada         Paul St-Pierre Plamondon je prisegel kot 34. premier Quebeca v Kanadi po zmagi Parti Québé
     [Disaster]  Kairo                Egypt          Dvanajst ljudi je umrlo, 30 je bilo ranjenih, ko se je avtobus v bližini Kaira v Egiptu zb
     [Business]  -                    United Kingdom Urad za prehod na Severno morje (NSTA) Združenega kraljestva odobri proizvodnjo iz plinske
-    [Science ]  -                    India          Indijska certifikacijska agencija eMudhra je imela ogrožene svoje zasebne ključe, kar je r
-    [Law and ]  Nova Mehika          United States  Okrožni sodnik v državi New Mexico v ZDA je Meta naložil plačilo 25 milijard dolarjev, pot
-    [Armed co]  -                    El Salvador    Predsednik Salvadora Nayib Bukele je napovedal začetek vojaške operacije za reševanje štir
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
 sl: 228 topics, 40 with shapes
-sl: voice piper-sl_SI-artur-medium, 3 new clips, 244/244 cards with audio, voice ok: True
-sl: done in 97s
+sl: voice piper-sl_SI-artur-medium, 0 new clips, 244/244 cards with audio, voice ok: True
+sl: done in 12s

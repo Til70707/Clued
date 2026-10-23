@@ -1,24 +1,31 @@
-  current events: Armed 2, International 2, Politics 0, Disasters 2, Business 0, Science 1, Health 1, Law 2; skipped 4 without a trusted source
+  current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 7; skipped 10 without a trusted source
     untrusted: A merchant ship is hit by drones of unknown origins in Romania's Black
     untrusted: Al-Qaeda gunmen ambushes troops of the Yemeni Armed Forces at a mounta
     untrusted: The Sudanese Armed Forces recaptures two strategic areas in Sudan's Bl
     untrusted: At least six people are killed and 25 others are injured when a bus co
-en: news 0 own + 13 from English; with place: 11, photo: 2, untranslated: 0
+    untrusted: Two people are killed and two others are injured by debris after a sus
+    untrusted: The Israel Defense Forces (IDF) and Shin Bet say that they have killed
+    untrusted: The North Sea Transition Authority (NSTA) of the United Kingdom approv
+    untrusted: Italian interior minister Matteo Piantedosi announces a crackdown on t
+en: news 0 own + 16 from English; with place: 14, photo: 2, untranslated: 0
     [itn]       -                    -              Two high-impact security vulnerabilities in PHP cause disruptions to many online services.
     [itn]       Hôtel de Ville, Limo France         The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and student protests
     [itn]       -                    -              The International Bureau of Weights and Measures votes to effectively abolish the leap sec
     [itn]       -                    Saudi Arabia   The Houthis launch a series of attacks on Saudi Arabian airports, killing at least 20 peop
     [Armed co]  Strait of Hormuz     Oman           Iran's Islamic Revolutionary Guard Corps reports that seven oil tankers have been hit in t
     [Internat]  -                    Canada         Canada and Turkey open negotiations for a free trade agreement during Canadian prime minis
+    [Politics]  Athens               Greece         Thousands of students and teachers march through Athens, Thessaloniki, and Patras in Greec
     [Disaster]  Bouches-du-Rhône     France         At least four people are killed and one other is injured by flooding caused by Storm Adam 
+    [Business]  -                    South Africa   South Africa cuts fuel levies by R3.00 (US$0.18) per litre of diesel and R1.50 ($0.09) per
     [Science ]  Onkalo spent nuclear Finland        The Finnish Government grants Posiva an operating license for the Onkalo spent nuclear fue
-    [Law and ]  -                    Guatemala      A Guatemalan court sentences seven former police officers to prison terms of up to 60 year
     [Armed co]  -                    El Salvador    El Salvador deploys 100 special forces soldiers to Haiti to assist in the search efforts f
     [Internat]  -                    United Arab Em Emirati diplomat Lana Nusseibeh announces her candidacy for Secretary-General of the Unite
     [Disaster]  Nagqu                China          A Mw 7.0 earthquake strikes Tibet, with an epicenter in Nagqu, killing 16 people and wound
-    [Law and ]  -                    Ecuador        Ecuadorian opposition leader and former presidential candidate Luisa González is arrested 
+    [Law and ]  -                    Guatemala      A Guatemalan court sentences seven former police officers to prison terms of up to 60 year
+    [Armed co]  King Fahd Internatio Saudi Arabia   Two people are killed and eight others are injured in a Houthi attack on King Fahd Interna
+    [Internat]  -                    Indonesia      Indonesia, Pakistan, Qatar, and Turkey jointly sign the Badr Memorandum of Understanding, 
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
-en: 11 articles had fresh edits, so their 3-day-old version was used
+en: 12 articles had fresh edits, so their 3-day-old version was used
 en: 291 topics, 43 with shapes
-en: voice kokoro-am_michael, 1 new clips, 304/304 cards with audio, voice ok: True
-en: done in 64s
+en: voice kokoro-am_michael, 0 new clips, 307/307 cards with audio, voice ok: True
+en: done in 17s

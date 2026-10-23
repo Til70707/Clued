@@ -1,4 +1,4 @@
-  current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 6; skipped 10 without a trusted source
+  current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 7; skipped 10 without a trusted source
     untrusted: A merchant ship is hit by drones of unknown origins in Romania's Black
     untrusted: Al-Qaeda gunmen ambushes troops of the Yemeni Armed Forces at a mounta
     untrusted: The Sudanese Armed Forces recaptures two strategic areas in Sudan's Bl
@@ -17,15 +17,15 @@ it: news 0 own + 16 from English; with place: 14, photo: 2, untranslated: 0
     [Politics]  Atene                Greece         Migliaia di studenti e insegnanti hanno marciato attraverso Atene, Salonicco e Patrasso in
     [Disaster]  Bocche del Rodano (d France         Almeno quattro persone sono morte e un'altra è ferita dalle inondazioni causate dalla temp
     [Business]  -                    South Africa   Il Sudafrica taglia i prelievi sul carburante di R3.00 (US$0.18) per litro di diesel e di 
-    [Science ]  Eurajoki             Finland        Il governo finlandese concede a Posiva una licenza di esercizio per il deposito di combust
-    [Law and ]  -                    Guatemala      Un tribunale guatemalteco ha condannato sette ex poliziotti a pene detentive fino a 60 ann
+    [Science ]  Deposito geologico d Finland        Il governo finlandese concede a Posiva una licenza di esercizio per il deposito di combust
     [Armed co]  -                    El Salvador    El Salvador ha inviato 100 soldati delle forze speciali ad Haiti per aiutare nella ricerca
     [Internat]  -                    United Arab Em La diplomatica degli Emirati Lana Nusseibeh annuncia la sua candidatura a Segretario Gener
     [Disaster]  Prefettura di Nagqu  China          Un terremoto da 7,0 Mw colpisce il Tibet, con epicentro a Nagqu, uccidendo 16 persone e fe
-    [Law and ]  -                    Ecuador        Il leader dell'opposizione ecuadoriana e ex candidata presidenziale Luisa González è arres
+    [Law and ]  -                    Guatemala      Un tribunale guatemalteco ha condannato sette ex poliziotti a pene detentive fino a 60 ann
     [Armed co]  Aeroporto Internazio Saudi Arabia   Due persone vengono uccise e altre otto ferite in un attacco degli Houthi all'aeroporto in
+    [Internat]  -                    Indonesia      L'Indonesia, il Pakistan, il Qatar e la Turchia firmano congiuntamente il Memorandum of Un
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
 it: 14 articles had fresh edits, so their 3-day-old version was used
 it: 279 topics, 41 with shapes
-it: voice kokoro-im_nicola, 1 new clips, 295/295 cards with audio, voice ok: True
-it: done in 57s
+it: voice kokoro-im_nicola, 0 new clips, 295/295 cards with audio, voice ok: True
+it: done in 10s

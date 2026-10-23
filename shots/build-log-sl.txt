@@ -1,4 +1,4 @@
-  current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 6; skipped 10 without a trusted source
+  current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 7; skipped 10 without a trusted source
     untrusted: A merchant ship is hit by drones of unknown origins in Romania's Black
     untrusted: Al-Qaeda gunmen ambushes troops of the Yemeni Armed Forces at a mounta
     untrusted: The Sudanese Armed Forces recaptures two strategic areas in Sudan's Bl
@@ -18,14 +18,14 @@ sl: news 0 own + 16 from English; with place: 14, photo: 2, untranslated: 0
     [Disaster]  Bouches-du-Rhône     France         V poplavah, ki jih je povzročil nevihta Adam, so v Bouches-du-Rhôneju v Franciji umrle vsa
     [Business]  -                    South Africa   Južnoafriška republika je od 4. novembra do 1. decembra znižala dajatve za gorivo za R3,00
     [Science ]  Onkalo spent nuclear Finland        Finska vlada podeli podjetju Posiva licenco za obratovanje skladišča izrabljenega jedrskeg
-    [Law and ]  -                    Guatemala      Gvatemalsko sodišče je sedem nekdanjih policistov obsodilo na do 60 let zapora zaradi kazn
     [Armed co]  -                    El Salvador    El Salvador je na Haiti poslal 100 pripadnikov posebnih sil, da bi pomagali pri iskanju št
     [Internat]  -                    United Arab Em Emiratijska diplomatka Lana Nusseibeh napoveduje svojo kandidaturo za generalnega sekretar
     [Disaster]  Nagqu                China          V Tibetu se je zgodil potres s magnitudo 7,0 in epicenter v Nagquju, pri čemer je umrlo 16
-    [Law and ]  -                    Ecuador        Ekvadorska opozicijska vodja in nekdanja predsedniška kandidatka Luisa González je aretira
+    [Law and ]  -                    Guatemala      Gvatemalsko sodišče je sedem nekdanjih policistov obsodilo na do 60 let zapora zaradi kazn
     [Armed co]  King Fahd Internatio Saudi Arabia   V napadu husijev na mednarodno letališče kralja Fahda v Dammamu v Savdski Arabiji so umrli
+    [Internat]  -                    Indonesia      Indonezija, Pakistan, Katar in Turčija skupaj podpišejo Memorandum o razumevanju Badr, pom
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
-sl: 10 articles had fresh edits, so their 3-day-old version was used
+sl: 12 articles had fresh edits, so their 3-day-old version was used
 sl: 228 topics, 40 with shapes
 sl: voice piper-sl_SI-artur-medium, 0 new clips, 244/244 cards with audio, voice ok: True
-sl: done in 49s
+sl: done in 19s

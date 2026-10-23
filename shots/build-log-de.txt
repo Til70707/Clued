@@ -1,4 +1,4 @@
-  current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 6; skipped 10 without a trusted source
+  current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 7; skipped 10 without a trusted source
     untrusted: A merchant ship is hit by drones of unknown origins in Romania's Black
     untrusted: Al-Qaeda gunmen ambushes troops of the Yemeni Armed Forces at a mounta
     untrusted: The Sudanese Armed Forces recaptures two strategic areas in Sudan's Bl
@@ -21,14 +21,14 @@ de: news 3 own + 16 from English; with place: 15, photo: 3, untranslated: 0
     [Disaster]  Département Bouches- France         Mindestens vier Menschen sind bei Überschwemmungen durch den Sturm Adam in Bouches-du-Rhôn
     [Business]  -                    South Africa   Südafrika senkt die Treibstoffgebühren von 4. November bis 1. Dezember um R3.00 (US$0.18) 
     [Science ]  Endlager Olkiluoto   Finland        Die finnische Regierung erteilt Posiva eine Betriebsgenehmigung für das Onkalo-Abgaslager 
-    [Law and ]  -                    Guatemala      Ein gericht in guatemala verurteilt sieben ehemalige polizisten zu haftstrafen von bis zu 
     [Armed co]  -                    El Salvador    El Salvador entsendet 100 Soldaten der Spezialeinheiten nach Haiti, um bei der Suche nach 
     [Internat]  -                    United Arab Em Die Diplomatin der Vereinigten Arabischen Emirate Lana Nusseibeh kündigt ihre Kandidatur f
     [Disaster]  Nagqu                China          Ein Erdbeben von 7,0 Magnitude trifft Tibet, mit einem Epizentrum in Nagqu, bei dem 16 Men
-    [Law and ]  -                    Ecuador        Die ecuadorianische Oppositionsführerin und ehemalige Präsidentschaftskandidatin Luisa Gon
+    [Law and ]  -                    Guatemala      Ein gericht in guatemala verurteilt sieben ehemalige polizisten zu haftstrafen von bis zu 
     [Armed co]  Flughafen Dammam     Saudi Arabia   Zwei Menschen sind bei einem Houthi-Angriff auf den King Fahd International Airport in Dam
+    [Internat]  -                    Indonesia      Indonesien, Pakistan, Katar und die Türkei unterzeichnen gemeinsam das Memorandum of Under
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
-de: 15 articles had fresh edits, so their 3-day-old version was used
+de: 16 articles had fresh edits, so their 3-day-old version was used
 de: 289 topics, 43 with shapes
-de: voice piper-de_DE-thorsten-high, 3 new clips, 308/308 cards with audio, voice ok: True
-de: done in 64s
+de: voice piper-de_DE-thorsten-high, 0 new clips, 308/308 cards with audio, voice ok: True
+de: done in 10s

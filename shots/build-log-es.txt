@@ -1,4 +1,4 @@
-  current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 6; skipped 10 without a trusted source
+  current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 7; skipped 10 without a trusted source
     untrusted: A merchant ship is hit by drones of unknown origins in Romania's Black
     untrusted: Al-Qaeda gunmen ambushes troops of the Yemeni Armed Forces at a mounta
     untrusted: The Sudanese Armed Forces recaptures two strategic areas in Sudan's Bl
@@ -18,14 +18,14 @@ es: news 0 own + 16 from English; with place: 14, photo: 2, untranslated: 0
     [Disaster]  Bocas del Ródano     France         Al menos cuatro personas mueren y otra resulta herida por las inundaciones causadas por la
     [Business]  -                    South Africa   Sudáfrica reduce los gravámenes de combustible en R3.00 (US$0.18) por litro de diésel y R1
     [Science ]  Depósito de combusti Finland        El Gobierno finlandés concede a Posiva una licencia de explotación para el depósito de com
-    [Law and ]  -                    Guatemala      Un tribunal guatemalteco condenó a siete ex oficiales de policía a penas de prisión de has
     [Armed co]  -                    El Salvador    El Salvador despliega 100 soldados de las fuerzas especiales a Haití para ayudar en los es
     [Internat]  -                    United Arab Em La diplomática emiratí Lana Nusseibeh anuncia su candidatura para el puesto de Secretaria 
     [Disaster]  Nagqu                China          Un terremoto de 7.0 Mw golpea el Tíbet, con un epicentro en Nagqu, matando a 16 personas e
-    [Law and ]  -                    Ecuador        La líder de la oposición ecuatoriana y ex candidata presidencial Luisa González es arresta
+    [Law and ]  -                    Guatemala      Un tribunal guatemalteco condenó a siete ex oficiales de policía a penas de prisión de has
     [Armed co]  Aeropuerto Internaci Saudi Arabia   Dos personas mueren y otras ocho resultan heridas en un ataque hutí contra el Aeropuerto I
+    [Internat]  -                    Indonesia      Indonesia, Pakistán, Qatar y Turquía firman conjuntamente el Memorando de Entendimiento Ba
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
-es: 20 articles had fresh edits, so their 3-day-old version was used
+es: 19 articles had fresh edits, so their 3-day-old version was used
 es: 291 topics, 43 with shapes
 es: voice kokoro-em_alex, 0 new clips, 307/307 cards with audio, voice ok: True
-es: done in 16s
+es: done in 41s

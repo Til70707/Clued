@@ -50,7 +50,8 @@ def strip_html(h):
 def trim(t, mx=420):
     t = re.sub(r"\s+", " ", t or "").strip()
     t = re.sub(r"\s*\(\s*\{\{[^)]*\)", "", t)          # leftover wiki templates like "({{ety|ar|…}})"
-    t = re.sub(r"\{\{[^}]*\}\}|\{\{|\}\}", "", t)
+    t = re.sub(r"\s*\}\}\)?", "", t)
+    t = re.sub(r"\{\{[^}]*\}\}|\{\{", "", t)
     if len(t) <= mx: return t
     cut = t[:mx]; dot = max(cut.rfind(". "), cut.rfind("! "), cut.rfind("? "))
     return cut[:dot + 1] if dot > mx * 0.45 else re.sub(r"\s+\S*$", "", cut) + "…"
@@ -594,7 +595,7 @@ def add_capital(c, country):
     im = good_image(s or {})        # usually a skyline, the main square or a landmark: shown as a postcard on the globe
     if im:
         th = im["thumb"]
-        c["capital"]["img"] = re.sub(r"/\d+px-", "/640px-", th) if re.search(r"/\d+px-", th) else im["img"]
+        c["capital"]["img"] = re.sub(r"/\d+px-", "/1280px-", th) if re.search(r"/\d+px-", th) else im["img"]
         c["capital"]["img"] = re.sub(r"\?.*$", "", c["capital"]["img"]).replace("//thumb.wikimedia.org/", "//upload.wikimedia.org/")
 
 # ---------- build ----------

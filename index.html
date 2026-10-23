@@ -706,9 +706,9 @@ async function runGlobe(slide, c, run) {
   // on about half of the countries the globe dives on into the capital and shows a postcard photo of it
   const wantPic = !!(cap && cap.img && seed % 2 === 0); let picImg = null, picAt = null;
   if (wantPic) { // the same file from upload.wikimedia.org (which allows cross-origin use); else plain, which still draws
-    const u = cap.img.replace("//thumb.wikimedia.org/", "//upload.wikimedia.org/").replace(/\?.*$/, "");
+    const u = cap.img.replace("//thumb.wikimedia.org/", "//upload.wikimedia.org/").replace(/\?.*$/, "").replace(/\/\d+px-/, "/1280px-"); // Wikimedia only serves standard thumbnail sizes
     loadImg(u).catch(() => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = u; }))
-      .then(i => { picImg = i; }).catch(() => {});
+      .then(i => { picImg = i; }).catch(() => { console.warn("postcard photo failed: " + u); });
   }
   let zoomK = 1.9;
   if (hit) { const b = d3.geoBounds(hit), span = Math.max(Math.abs(b[1][0] - b[0][0]) * Math.cos(target[1] * Math.PI / 180), Math.abs(b[1][1] - b[0][1])); zoomK = Math.max(1.4, Math.min(2.5, 24 / Math.max(span, 1))); }

@@ -595,6 +595,7 @@ def add_capital(c, country):
     if im:
         th = im["thumb"]
         c["capital"]["img"] = re.sub(r"/\d+px-", "/640px-", th) if re.search(r"/\d+px-", th) else im["img"]
+        c["capital"]["img"] = re.sub(r"\?.*$", "", c["capital"]["img"]).replace("//thumb.wikimedia.org/", "//upload.wikimedia.org/")
 
 # ---------- build ----------
 def main():

@@ -705,7 +705,11 @@ async function runGlobe(slide, c, run) {
   const capLbl = cap ? t("cap_lbl").toUpperCase() : ""; // (inside the frame loop "t" is the animation time)
   // on about half of the countries the globe dives on into the capital and shows a postcard photo of it
   const wantPic = !!(cap && cap.img && seed % 2 === 0); let picImg = null, picAt = null;
-  if (wantPic) loadImg(cap.img).then(i => { picImg = i; }).catch(() => {});
+  if (wantPic) { // the same file from upload.wikimedia.org (which allows cross-origin use); else plain, which still draws
+    const u = cap.img.replace("//thumb.wikimedia.org/", "//upload.wikimedia.org/").replace(/\?.*$/, "");
+    loadImg(u).catch(() => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = u; }))
+      .then(i => { picImg = i; }).catch(() => {});
+  }
   let zoomK = 1.9;
   if (hit) { const b = d3.geoBounds(hit), span = Math.max(Math.abs(b[1][0] - b[0][0]) * Math.cos(target[1] * Math.PI / 180), Math.abs(b[1][1] - b[0][1])); zoomK = Math.max(1.4, Math.min(2.5, 24 / Math.max(span, 1))); }
   const base = Math.min(w, h) * 0.42, proj = d3.geoOrthographic().clipAngle(90).precision(0.4), grat = d3.geoGraticule10();

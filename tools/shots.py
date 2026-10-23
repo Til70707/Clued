@@ -46,6 +46,19 @@ def run(p, engine, lang):
             pg.screenshot(path=str(OUT / f"{engine}-{lang}-news-{k}-{(info or {}).get('vis') or 'plain'}.png"))
             log.append(f"[{engine}/{lang}] news {k}: {json.dumps(info, ensure_ascii=False)}")
             pg.evaluate("document.getElementById('feed').scrollBy(0, innerHeight)"); pg.wait_for_timeout(900)
+    # capital postcards: jump to a few countries that dive into their capital and wait for the photo
+    try:
+        t = pg.query_selector("[data-feed=all]")
+        if t: t.click(); pg.wait_for_timeout(1500)
+        ids = pg.evaluate("""(()=>{const sd=s=>[...String(s)].reduce((a,ch)=>(a*31+ch.charCodeAt(0))>>>0,7);
+          const l=CONTENT.topics.filter(c=>c.capital&&c.capital.img&&sd(c.id)%2===0).slice(0,3); appendCards(l); return l.map(c=>c.id)})()""")
+        for k, cid in enumerate(ids):
+            pg.evaluate("(id)=>{const i=S.cards.findIndex(c=>c.id===id); const el=document.querySelector(`.slide[data-i='${i}']`); el&&el.scrollIntoView()}", cid)
+            pg.wait_for_timeout(17000)
+            pg.screenshot(path=str(OUT / f"{engine}-{lang}-postcard-{k + 1}.png"))
+            log.append(f"[{engine}/{lang}] postcard {k + 1}: {cid}")
+    except Exception:
+        log.append(f"[{engine}/{lang}] postcard CRASH {traceback.format_exc()[-300:]}")
     log.append(f"[{engine}/{lang}] content ok: {pg.evaluate('CONTENT.ok')}, topics: {pg.evaluate('CONTENT.topics.length')}, with audio: {pg.evaluate('CONTENT.topics.filter(c=>c.audio).length')}")
     ctx.close(); b.close()
 

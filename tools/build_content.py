@@ -49,6 +49,8 @@ def strip_html(h):
 
 def trim(t, mx=420):
     t = re.sub(r"\s+", " ", t or "").strip()
+    t = re.sub(r"\s*\(\s*\{\{[^)]*\)", "", t)          # leftover wiki templates like "({{ety|ar|…}})"
+    t = re.sub(r"\{\{[^}]*\}\}|\{\{|\}\}", "", t)
     if len(t) <= mx: return t
     cut = t[:mx]; dot = max(cut.rfind(". "), cut.rfind("! "), cut.rfind("? "))
     return cut[:dot + 1] if dot > mx * 0.45 else re.sub(r"\s+\S*$", "", cut) + "…"

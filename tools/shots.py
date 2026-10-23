@@ -30,7 +30,7 @@ def run(p, engine, lang):
     pg.wait_for_timeout(2500)
     for i in range(1, 15):
         info = pg.evaluate("(()=>{const s=document.querySelector('.slide.playing'); if(!s) return null; const c=S.cards[+s.dataset.i]; return c?{kind:c.kind, vis:c.vis||null, ftype:c.ftype||null, audio:!!c.audio, title:(c.title||c.q||'').slice(0,80)}:null})()")
-        wait = 10500 if info and info.get("vis") == "globe" else 5000 if info and info.get("vis") == "chart" else 3000
+        wait = 14000 if info and info.get("vis") == "globe" else 5000 if info and info.get("vis") == "chart" else 3000
         pg.wait_for_timeout(wait)
         name = f"{engine}-{lang}-{i:02d}-{(info or {}).get('kind','x')}-{(info or {}).get('vis') or 'plain'}.png"
         pg.screenshot(path=str(OUT / name))

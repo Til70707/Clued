@@ -1,4 +1,5 @@
-  current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 6; skipped 9 without a trusted source
+  current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 6; skipped 10 without a trusted source
+    untrusted: A merchant ship is hit by drones of unknown origins in Romania's Black
     untrusted: Al-Qaeda gunmen ambushes troops of the Yemeni Armed Forces at a mounta
     untrusted: The Sudanese Armed Forces recaptures two strategic areas in Sudan's Bl
     untrusted: At least six people are killed and 25 others are injured when a bus co
@@ -6,7 +7,6 @@
     untrusted: The Israel Defense Forces (IDF) and Shin Bet say that they have killed
     untrusted: The North Sea Transition Authority (NSTA) of the United Kingdom approv
     untrusted: Italian interior minister Matteo Piantedosi announces a crackdown on t
-    untrusted: A Tunisian military court sentences politician and businesswoman Olfa 
 es: news 0 own + 16 from English; with place: 14, photo: 2, untranslated: 0
     [itn]       -                    -              Dos vulnerabilidades de seguridad de alto impacto en PHP causan interrupciones en muchos s
     [itn]       Ayuntamiento de Limo France         El Hôtel de Ville en Limoges es parcialmente destruido por un incendio provocado por el co
@@ -25,7 +25,7 @@ es: news 0 own + 16 from English; with place: 14, photo: 2, untranslated: 0
     [Law and ]  -                    Ecuador        La líder de la oposición ecuatoriana y ex candidata presidencial Luisa González es arresta
     [Armed co]  Aeropuerto Internaci Saudi Arabia   Dos personas mueren y otras ocho resultan heridas en un ataque hutí contra el Aeropuerto I
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
-es: 28 articles had fresh edits, so their 3-day-old version was used
+es: 20 articles had fresh edits, so their 3-day-old version was used
 es: 291 topics, 43 with shapes
-es: voice kokoro-em_alex, 2 new clips, 307/307 cards with audio, voice ok: True
-es: done in 107s
+es: voice kokoro-em_alex, 0 new clips, 307/307 cards with audio, voice ok: True
+es: done in 16s

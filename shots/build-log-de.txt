@@ -1,4 +1,5 @@
-  current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 6; skipped 9 without a trusted source
+  current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 6; skipped 10 without a trusted source
+    untrusted: A merchant ship is hit by drones of unknown origins in Romania's Black
     untrusted: Al-Qaeda gunmen ambushes troops of the Yemeni Armed Forces at a mounta
     untrusted: The Sudanese Armed Forces recaptures two strategic areas in Sudan's Bl
     untrusted: At least six people are killed and 25 others are injured when a bus co
@@ -6,8 +7,7 @@
     untrusted: The Israel Defense Forces (IDF) and Shin Bet say that they have killed
     untrusted: The North Sea Transition Authority (NSTA) of the United Kingdom approv
     untrusted: Italian interior minister Matteo Piantedosi announces a crackdown on t
-    untrusted: A Tunisian military court sentences politician and businesswoman Olfa 
-de: news 3 own + 16 from English; with place: 14, photo: 4, untranslated: 0
+de: news 3 own + 16 from English; with place: 15, photo: 3, untranslated: 0
     [itn]       -                    -              Luca Niculescu ist zum Ministerpräsidenten Rumäniens gewählt worden.
     [itn]       -                    -              Warnungen vor Cyber­angriffen, die auf der Sicher­heits­lücke PHP2Shell basieren, haben we
     [itn]       Tanegashima Space Ce Japan          Die Raum­fahrt­mission MMX zu den Mars­monden Phobos und Deimos ist vom japanischen Welt­r
@@ -24,11 +24,11 @@ de: news 3 own + 16 from English; with place: 14, photo: 4, untranslated: 0
     [Law and ]  -                    Guatemala      Ein gericht in guatemala verurteilt sieben ehemalige polizisten zu haftstrafen von bis zu 
     [Armed co]  -                    El Salvador    El Salvador entsendet 100 Soldaten der Spezialeinheiten nach Haiti, um bei der Suche nach 
     [Internat]  -                    United Arab Em Die Diplomatin der Vereinigten Arabischen Emirate Lana Nusseibeh kündigt ihre Kandidatur f
-    [Disaster]  -                    -              Ein Erdbeben von 7,0 Magnitude trifft Tibet, mit einem Epizentrum in Nagqu, bei dem 16 Men
+    [Disaster]  Nagqu                China          Ein Erdbeben von 7,0 Magnitude trifft Tibet, mit einem Epizentrum in Nagqu, bei dem 16 Men
     [Law and ]  -                    Ecuador        Die ecuadorianische Oppositionsführerin und ehemalige Präsidentschaftskandidatin Luisa Gon
     [Armed co]  Flughafen Dammam     Saudi Arabia   Zwei Menschen sind bei einem Houthi-Angriff auf den King Fahd International Airport in Dam
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
-de: 13 articles had fresh edits, so their 3-day-old version was used
+de: 15 articles had fresh edits, so their 3-day-old version was used
 de: 289 topics, 43 with shapes
-de: voice piper-de_DE-thorsten-high, 2 new clips, 308/308 cards with audio, voice ok: True
+de: voice piper-de_DE-thorsten-high, 3 new clips, 308/308 cards with audio, voice ok: True
 de: done in 64s

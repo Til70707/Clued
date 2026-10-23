@@ -1,5 +1,5 @@
   current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 6; skipped 9 without a trusted source
-    untrusted: An al-Qaeda in the Arabian Peninsula attack in Shabwah Governorate kil
+    untrusted: Al-Qaeda gunmen ambushes troops of the Yemeni Armed Forces at a mounta
     untrusted: The Sudanese Armed Forces recaptures two strategic areas in Sudan's Bl
     untrusted: At least six people are killed and 25 others are injured when a bus co
     untrusted: Two people are killed and two others are injured by debris after a sus
@@ -25,7 +25,7 @@ en: news 0 own + 16 from English; with place: 14, photo: 2, untranslated: 0
     [Law and ]  -                    Ecuador        Ecuadorian opposition leader and former presidential candidate Luisa González is arrested 
     [Armed co]  King Fahd Internatio Saudi Arabia   Two people are killed and eight others are injured in a Houthi attack on King Fahd Interna
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
-en: 102 articles had fresh edits, so their 3-day-old version was used
+en: 11 articles had fresh edits, so their 3-day-old version was used
 en: 291 topics, 43 with shapes
-en: voice kokoro-am_michael, 9 new clips, 307/307 cards with audio, voice ok: True
-en: done in 291s
+en: voice kokoro-am_michael, 0 new clips, 307/307 cards with audio, voice ok: True
+en: done in 12s

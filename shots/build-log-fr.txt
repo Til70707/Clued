@@ -1,5 +1,5 @@
   current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 6; skipped 9 without a trusted source
-    untrusted: An al-Qaeda in the Arabian Peninsula attack in Shabwah Governorate kil
+    untrusted: Al-Qaeda gunmen ambushes troops of the Yemeni Armed Forces at a mounta
     untrusted: The Sudanese Armed Forces recaptures two strategic areas in Sudan's Bl
     untrusted: At least six people are killed and 25 others are injured when a bus co
     untrusted: Two people are killed and two others are injured by debris after a sus
@@ -7,7 +7,6 @@
     untrusted: The North Sea Transition Authority (NSTA) of the United Kingdom approv
     untrusted: Italian interior minister Matteo Piantedosi announces a crackdown on t
     untrusted: A Tunisian military court sentences politician and businesswoman Olfa 
-  translator ready: facebook/nllb-200-distilled-1.3B
 fr: news 0 own + 16 from English; with place: 14, photo: 2, untranslated: 0
     [itn]       -                    -              Deux vulnérabilités de sécurité à fort impact dans PHP causent des perturbations à de nomb
     [itn]       Hôtel de ville de Li France         L'Hôtel de Ville à Limoges est partiellement détruit par un incendie criminel alors que le
@@ -26,7 +25,7 @@ fr: news 0 own + 16 from English; with place: 14, photo: 2, untranslated: 0
     [Law and ]  -                    Ecuador        Le chef de l'opposition équatorienne et ancienne candidate à la présidentielle Luisa Gonzá
     [Armed co]  Aéroport internation Saudi Arabia   Deux personnes sont tuées et huit autres blessées dans une attaque des Houthis contre l'aé
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
-fr: 55 articles had fresh edits, so their 3-day-old version was used
-fr: 284 topics, 43 with shapes
-fr: voice piper-fr_FR-tom-medium, 8 new clips, 300/300 cards with audio, voice ok: True
-fr: done in 270s
+fr: 16 articles had fresh edits, so their 3-day-old version was used
+fr: 287 topics, 43 with shapes
+fr: voice piper-fr_FR-tom-medium, 2 new clips, 303/303 cards with audio, voice ok: True
+fr: done in 56s

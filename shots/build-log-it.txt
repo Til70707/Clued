@@ -1,5 +1,5 @@
   current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 6; skipped 9 without a trusted source
-    untrusted: An al-Qaeda in the Arabian Peninsula attack in Shabwah Governorate kil
+    untrusted: Al-Qaeda gunmen ambushes troops of the Yemeni Armed Forces at a mounta
     untrusted: The Sudanese Armed Forces recaptures two strategic areas in Sudan's Bl
     untrusted: At least six people are killed and 25 others are injured when a bus co
     untrusted: Two people are killed and two others are injured by debris after a sus
@@ -7,7 +7,6 @@
     untrusted: The North Sea Transition Authority (NSTA) of the United Kingdom approv
     untrusted: Italian interior minister Matteo Piantedosi announces a crackdown on t
     untrusted: A Tunisian military court sentences politician and businesswoman Olfa 
-  translator ready: facebook/nllb-200-distilled-1.3B
 it: news 0 own + 16 from English; with place: 14, photo: 2, untranslated: 0
     [itn]       -                    -              Due vulnerabilità di sicurezza di alto impatto in PHP causano interruzioni a molti servizi
     [itn]       Municipio di Limoges France         L'Hôtel de Ville di Limoges è stato parzialmente distrutto da un incendio doloso mentre le
@@ -26,7 +25,7 @@ it: news 0 own + 16 from English; with place: 14, photo: 2, untranslated: 0
     [Law and ]  -                    Ecuador        Il leader dell'opposizione ecuadoriana e ex candidata presidenziale Luisa González è arres
     [Armed co]  Aeroporto Internazio Saudi Arabia   Due persone vengono uccise e altre otto ferite in un attacco degli Houthi all'aeroporto in
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
-it: 45 articles had fresh edits, so their 3-day-old version was used
-it: 263 topics, 38 with shapes
-it: voice kokoro-im_nicola, 8 new clips, 279/279 cards with audio, voice ok: True
-it: done in 472s
+it: 16 articles had fresh edits, so their 3-day-old version was used
+it: 279 topics, 41 with shapes
+it: voice kokoro-im_nicola, 0 new clips, 295/295 cards with audio, voice ok: True
+it: done in 20s

@@ -1,22 +1,20 @@
-[webkit/en] card 1: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "What is the capital of Slovenia?"}
-[webkit/en] card 2: {"kind": "photo", "vis": null, "ftype": null, "audio": true, "title": "Vodno Telecommunication Tower under construction in Skopje, North Macedonia."}
+[webkit/en] card 1: {"kind": "photo", "vis": null, "ftype": null, "audio": true, "title": "Vodno Telecommunication Tower under construction in Skopje, North Macedonia."}
+[webkit/en] card 2: {"kind": "geo", "vis": "globe", "ftype": "sea", "audio": true, "title": "Atlantic Ocean"}
+[webkit/en] card 3: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Index fund"}
+[webkit/en] card 4: {"kind": "geo", "vis": "chart", "ftype": null, "audio": true, "title": "Urbanization"}
 [webkit/en] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
-[webkit/en] card 3: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "South Korea"}
-[webkit/en] card 4: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Economy of Japan"}
-[webkit/en] card 5: {"kind": "geo", "vis": "globe", "ftype": "region", "audio": true, "title": "Alps"}
-[webkit/en] card 6: {"kind": "geo", "vis": "globe", "ftype": "river", "audio": true, "title": "Nile"}
-[webkit/en] card 7: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Fiscal policy"}
-[webkit/en] card 8: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Germany"}
-[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/9/9d/Dr_Ruja_Ignatova_Nairobi_Islamic_Microfinance_Forum.webm/Dr_Ruja_Ignatova_Nai Load request cancelled
-[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/9/9d/Dr_Ruja_Ignatova_Nairobi_Islamic_Microfinance_Forum.webm/Dr_Ruja_Ignatova_Nai Load request cancelled
-[webkit/en] card 9: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Microfinance"}
-[webkit/en] card 10: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Pakistan"}
-[webkit/en] card 11: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Which one is “Major mountain range in Central Europe”?"}
+[webkit/en] card 5: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Nepal"}
+[webkit/en] card 6: {"kind": "geo", "vis": "globe", "ftype": "region", "audio": true, "title": "Caucasus"}
 [webkit/en] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
-[webkit/en] card 12: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Iceland"}
-[webkit/en] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
-[webkit/en] card 13: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Hungary"}
-[webkit/en] card 14: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Compound interest"}
+[webkit/en] card 7: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Slovakia"}
+[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/8/83/Locks_protecting_Port_of_Rotterdam.webm/Locks_protecting_Port_of_Rotterdam.we Load request cancelled
+[webkit/en] card 8: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Port of Rotterdam"}
+[webkit/en] card 9: {"kind": "geo", "vis": null, "ftype": null, "audio": true, "title": "Landlocked country"}
+[webkit/en] card 10: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Which one is “Region spanning Europe and Asia”?"}
+[webkit/en] card 11: {"kind": "geo", "vis": "globe", "ftype": "sea", "audio": true, "title": "Adriatic Sea"}
+[webkit/en] card 12: {"kind": "geo", "vis": "globe", "ftype": "river", "audio": true, "title": "Mekong"}
+[webkit/en] card 13: {"kind": "geo", "vis": "globe", "ftype": "lake", "audio": true, "title": "Lake Baikal"}
+[webkit/en] card 14: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Ghana"}
 [webkit/en] news 1: {"kind": "news", "vis": null, "img": true, "audio": true, "place": null, "country": null, "lang": null, "title": "Two high-impact security vulnerabilities in PHP cause disruptions to many online"}
 [webkit/en] news 2: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Hôtel de Ville, Limoges", "country": "France", "lang": null, "title": "The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and studen"}
 [webkit/en] news 3: {"kind": "news", "vis": null, "img": true, "audio": true, "place": null, "country": null, "lang": null, "title": "The International Bureau of Weights and Measures votes to effectively abolish th"}
@@ -25,25 +23,30 @@
 [webkit/en] news 6: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Canada", "lang": null, "title": "Canada and Turkey open negotiations for a free trade agreement during Canadian p"}
 [webkit/en] news 7: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Athens", "country": "Greece", "lang": null, "title": "Thousands of students and teachers march through Athens, Thessaloniki, and Patra"}
 [webkit/en] news 8: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Bouches-du-Rhône", "country": "France", "lang": null, "title": "At least four people are killed and one other is injured by flooding caused by S"}
+[webkit/en] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+[webkit/en] postcard 1: geo:Nepal
+[webkit/en] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+[webkit/en] postcard 2: geo:Slovakia
+[webkit/en] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+[webkit/en] postcard 3: geo:Israel
 [webkit/en] content ok: True, topics: 291, with audio: 291
 [webkit/sl] card 1: {"kind": "photo", "vis": null, "ftype": null, "audio": true, "title": "Telekomunikacijski stolp Vodno v gradnji v Skopju, Severna Makedonija."}
-[webkit/sl] card 2: {"kind": "geo", "vis": null, "ftype": null, "audio": true, "title": "Rečna delta"}
-[webkit/sl] card 3: {"kind": "geo", "vis": "globe", "ftype": "sea", "audio": true, "title": "Melaški preliv"}
-[webkit/sl] card 4: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Gana"}
+[webkit/sl] card 2: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Globalizacija"}
+[webkit/sl] card 3: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Japonska"}
+[webkit/sl] card 4: {"kind": "geo", "vis": "locator", "ftype": null, "audio": true, "title": "Ekvator"}
 [webkit/sl] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
-[webkit/sl] card 5: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Vietnam"}
-[webkit/sl] card 6: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Ginijev koeficient"}
-[webkit/sl] FAILED https://api.worldbank.org/v2/country/ZAF;BRA;USA;CHN;ITA;DEU;SVN/indicator/SI.POV.GINI?format=json&per_page=100&mrnev=1 Load request cancelled
-[webkit/sl] card 7: {"kind": "geo", "vis": "globe", "ftype": "region", "audio": true, "title": "Sahel"}
-[webkit/sl] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
-[webkit/sl] card 8: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Bolivija"}
-[webkit/sl] card 9: {"kind": "geo", "vis": "globe", "ftype": "sea", "audio": true, "title": "Kaspijsko jezero"}
-[webkit/sl] card 10: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Kaj od tega je »merilo neenakosti v porazdelitvi dohodka ali premoženja«?"}
-[webkit/sl] card 11: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Stagflacija"}
-[webkit/sl] card 12: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Indonezija"}
-[webkit/sl] card 13: {"kind": "geo", "vis": "globe", "ftype": "lake", "audio": true, "title": "Aralsko jezero"}
-[webkit/sl] card 14: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Produktivnost"}
-[webkit/sl] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+[webkit/sl] card 5: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Belgija"}
+[webkit/sl] card 6: {"kind": "geo", "vis": "globe", "ftype": "region", "audio": true, "title": "Kavkaška regija"}
+[webkit/sl] card 7: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Monopol"}
+[webkit/sl] card 8: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Obveznica"}
+[webkit/sl] card 9: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Recesija"}
+[webkit/sl] card 10: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Kaj od tega je »regija v Evraziji, ki na jugu meji na Iran, na jugozahodu na Tur"}
+[webkit/sl] card 11: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Indija"}
+[webkit/sl] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/c/cb/World_Economic_Forum_-_Center_for_the_Fourth_Industrial_Revolution.webm/World Load request cancelled
+[webkit/sl] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/c/cb/World_Economic_Forum_-_Center_for_the_Fourth_Industrial_Revolution.webm/World Load request cancelled
+[webkit/sl] card 12: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Industrijska revolucija"}
+[webkit/sl] card 13: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "John Maynard Keynes"}
+[webkit/sl] card 14: {"kind": "geo", "vis": "globe", "ftype": "sea", "audio": true, "title": "Sredozemsko morje"}
 [webkit/sl] news 1: {"kind": "news", "vis": null, "img": true, "audio": true, "place": null, "country": null, "lang": null, "title": "Dve varnostni ranljivosti v PHP-ju povzročajo motnje pri številnih spletnih stor"}
 [webkit/sl] news 2: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Hôtel de Ville, Limoges", "country": "France", "lang": null, "title": "Hôtel de Ville v Limoges je delno uničen zaradi požara, saj gorivo in študentski"}
 [webkit/sl] news 3: {"kind": "news", "vis": null, "img": true, "audio": true, "place": null, "country": null, "lang": null, "title": "Mednarodni urad za mere in uteži je odločil, da bo odpravil prestopno sekundo za"}
@@ -52,4 +55,10 @@
 [webkit/sl] news 6: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Canada", "lang": null, "title": "Kanada in Turčija med obiskom kanadskega predsednika Mark Carneyja v Ankari začn"}
 [webkit/sl] news 7: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Atene", "country": "Greece", "lang": null, "title": "Na tisoče študentov in učiteljev po Atenah, Solunu in Patrasu v Grčiji protestir"}
 [webkit/sl] news 8: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Bouches-du-Rhône", "country": "France", "lang": null, "title": "V poplavah, ki jih je povzročil nevihta Adam, so v Bouches-du-Rhôneju v Franciji"}
-[webkit/sl] content ok: True, topics: 220, with audio: 220
+[webkit/sl] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+[webkit/sl] postcard 1: geo:Belgija
+[webkit/sl] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+[webkit/sl] postcard 2: geo:Avstrija
+[webkit/sl] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+[webkit/sl] postcard 3: geo:Brazilija
+[webkit/sl] content ok: True, topics: 228, with audio: 228

@@ -1,34 +1,35 @@
-  current events: Armed 5, International 6, Politics 3, Disasters 2, Business 1, Science 2, Health 2, Law 8; skipped 13 without a trusted source
+  current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 6; skipped 9 without a trusted source
+    untrusted: An al-Qaeda in the Arabian Peninsula attack in Shabwah Governorate kil
+    untrusted: The Sudanese Armed Forces recaptures two strategic areas in Sudan's Bl
     untrusted: At least six people are killed and 25 others are injured when a bus co
     untrusted: Two people are killed and two others are injured by debris after a sus
     untrusted: The Israel Defense Forces (IDF) and Shin Bet say that they have killed
     untrusted: The North Sea Transition Authority (NSTA) of the United Kingdom approv
     untrusted: Italian interior minister Matteo Piantedosi announces a crackdown on t
     untrusted: A Tunisian military court sentences politician and businesswoman Olfa 
-    untrusted: Paul St-Pierre Plamondon is sworn in as the 34th premier of Quebec, Ca
-    untrusted: The death toll in the market drone attack in Abyei on the border of So
   translator ready: facebook/nllb-200-distilled-1.3B
-de: news 3 own + 15 from English; with place: 15, photo: 2, untranslated: 0
+de: news 3 own + 16 from English; with place: 15, photo: 3, untranslated: 0
     [itn]       -                    -              Luca Niculescu ist zum Ministerpräsidenten Rumäniens gewählt worden.
     [itn]       -                    -              Warnungen vor Cyber­angriffen, die auf der Sicher­heits­lücke PHP2Shell basieren, haben we
     [itn]       Tanegashima Space Ce Japan          Die Raum­fahrt­mission MMX zu den Mars­monden Phobos und Deimos ist vom japanischen Welt­r
+    [itn]       -                    -              Zwei Sicherheitslücken in PHP verursachen Störungen bei vielen Online-Diensten.
     [itn]       Hôtel de Ville (Limo France         Das Hôtel de Ville in Limoges wird teilweise durch Brandstiftung zerstört, während Brennst
     [itn]       -                    -              Das Internationale Büro für Gewichte und Maße beschließt, die Sprungsekunde wegen Störunge
     [itn]       -                    Saudi Arabia   Die Houthis starten eine Reihe von Angriffen auf saudische Flughäfen, bei denen mindestens
-    [Armed co]  Flughafen Dammam     Saudi Arabia   Zwei Menschen sind bei einem Houthi-Angriff auf den King Fahd International Airport in Dam
+    [Armed co]  Straße von Hormus    Oman           Der iranische Islamische Revolutionsgarde berichtet, dass sieben Öltanker in der Straße vo
     [Internat]  -                    Canada         Kanada und die Türkei eröffnen während des Besuchs des kanadischen Premierministers Mark C
     [Politics]  Athen                Greece         Tausende Studenten und Lehrer marschieren durch Athen, Thessaloniki und Patras in Griechen
-    [Disaster]  Nagqu                China          Ein Erdbeben von 7,0 Magnitude trifft Tibet, mit einem Epizentrum in Nagqu.
+    [Disaster]  Département Bouches- France         Mindestens vier Menschen sind bei Überschwemmungen durch den Sturm Adam in Bouches-du-Rhôn
     [Business]  -                    South Africa   Südafrika senkt die Treibstoffgebühren von 4. November bis 1. Dezember um R3.00 (US$0.18) 
     [Science ]  Endlager Olkiluoto   Finland        Die finnische Regierung erteilt Posiva eine Betriebsgenehmigung für das Onkalo-Abgaslager 
-    [Health a]  -                    France         Frankreich meldet den ersten menschlichen Fall des Vieh-Shamonda-Virus bei einem Patienten
     [Law and ]  -                    Guatemala      Ein gericht in guatemala verurteilt sieben ehemalige polizisten zu haftstrafen von bis zu 
-    [Armed co]  Embassy of the Unite Saudi Arabia   Das US-Außenministerium befiehlt den Mitarbeitern der US-Botschaft in Riad, das Land zu ve
-    [Internat]  -                    Indonesia      Indonesien, Pakistan, Katar und die Türkei unterzeichnen gemeinsam das Memorandum of Under
-    [Disaster]  Toledo (Ohio)        United States  Ein Leck von Glycidylmethacrylat aus einem Chemiebehälter am Flughafenterminal in Toledo (
-    [Health a]  -                    Nigeria        Nigeria gibt seinen ersten Fall des Ebola-Virus in der Epidemie bekannt. Das Opfer ist ein
+    [Armed co]  -                    El Salvador    El Salvador entsendet 100 Soldaten der Spezialeinheiten nach Haiti, um bei der Suche nach 
+    [Internat]  -                    United Arab Em Die Diplomatin der Vereinigten Arabischen Emirate Lana Nusseibeh kündigt ihre Kandidatur f
+    [Disaster]  Nagqu                China          Ein Erdbeben von 7,0 Magnitude trifft Tibet, mit einem Epizentrum in Nagqu, bei dem 16 Men
+    [Law and ]  -                    Ecuador        Die ecuadorianische Oppositionsführerin und ehemalige Präsidentschaftskandidatin Luisa Gon
+    [Armed co]  Flughafen Dammam     Saudi Arabia   Zwei Menschen sind bei einem Houthi-Angriff auf den King Fahd International Airport in Dam
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
-de: 14 articles had fresh edits, so their 3-day-old version was used
+de: 44 articles had fresh edits, so their 3-day-old version was used
 de: 289 topics, 43 with shapes
-de: voice piper-de_DE-thorsten-high, 7 new clips, 307/307 cards with audio, voice ok: True
-de: done in 205s
+de: voice piper-de_DE-thorsten-high, 8 new clips, 308/308 cards with audio, voice ok: True
+de: done in 293s

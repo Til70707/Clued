@@ -1,52 +1,55 @@
-[webkit/en] card 1: {"kind": "photo", "vis": null, "ftype": null, "audio": true, "title": "Jim Buckley’s Red Dragon sculpture from 1985 during River Lee flooding, October "}
-[webkit/en] card 2: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Free trade agreement"}
-[webkit/en] card 3: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Euro"}
-[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/5/58/Interactive_two_dimensional_map_with_the_number_of_public_private_partnership_projects_f Load request cancelled
-[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/5/58/Interactive_two_dimensional_map_with_the_number_of_public_private_partnership_projects_f Load request cancelled
-[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/5/58/Interactive_two_dimensional_map_with_the_number_of_public_private_partnership_projects_f Load request cancelled
-[webkit/en] card 4: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "World Bank Group"}
-[webkit/en] card 5: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Productivity"}
-[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/2/2f/President_Reagan%27s_Remarks_on_Signing_the_Trade_and_Tariff_Act_of_1984_on_O Load request cancelled
-[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/2/2f/President_Reagan%27s_Remarks_on_Signing_the_Trade_and_Tariff_Act_of_1984_on_O Load request cancelled
-[webkit/en] card 6: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Tariff"}
-[webkit/en] card 7: {"kind": "geo", "vis": "locator", "ftype": null, "audio": true, "title": "Monsoon"}
-[webkit/en] card 8: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Greenland"}
-[webkit/en] card 9: {"kind": "geo", "vis": "locator", "ftype": null, "audio": true, "title": "Ljubljana"}
-[webkit/en] card 10: {"kind": "geo", "vis": "locator", "ftype": null, "audio": true, "title": "Gulf Stream"}
-[webkit/en] card 11: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Unemployment"}
-[webkit/en] card 12: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Welfare state"}
-[webkit/en] card 13: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Argentina"}
-[webkit/en] card 14: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "What is the capital of Argentina?"}
-[webkit/en] news 1: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Hôtel de Ville, Limoges", "country": "France", "lang": null, "title": "The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and studen"}
-[webkit/en] news 2: {"kind": "news", "vis": null, "img": true, "audio": true, "place": null, "country": null, "lang": null, "title": "The International Bureau of Weights and Measures votes to effectively abolish th"}
-[webkit/en] news 3: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Saudi Arabia", "lang": null, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
-[webkit/en] news 4: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "King Fahd International Airport", "country": "Saudi Arabia", "lang": null, "title": "Two people are killed and eight others are injured in a Houthi attack on King Fa"}
-[webkit/en] news 5: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Canada", "lang": null, "title": "Canada and Turkey open negotiations for a free trade agreement during Canadian p"}
-[webkit/en] news 6: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Athens", "country": "Greece", "lang": null, "title": "Thousands of students and teachers march through Athens, Thessaloniki, and Patra"}
-[webkit/en] news 7: {"kind": "quiz", "vis": null, "img": false, "audio": false, "place": null, "country": null, "lang": null, "title": "What is the capital of Saudi Arabia?"}
-[webkit/en] news 8: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Nagqu", "country": "China", "lang": null, "title": "A Mw 7.0 earthquake strikes Tibet, with an epicenter in Nagqu."}
+[webkit/en] card 1: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "What is the capital of Slovenia?"}
+[webkit/en] card 2: {"kind": "photo", "vis": null, "ftype": null, "audio": true, "title": "Vodno Telecommunication Tower under construction in Skopje, North Macedonia."}
+[webkit/en] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+[webkit/en] card 3: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "South Korea"}
+[webkit/en] card 4: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Economy of Japan"}
+[webkit/en] card 5: {"kind": "geo", "vis": "globe", "ftype": "region", "audio": true, "title": "Alps"}
+[webkit/en] card 6: {"kind": "geo", "vis": "globe", "ftype": "river", "audio": true, "title": "Nile"}
+[webkit/en] card 7: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Fiscal policy"}
+[webkit/en] card 8: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Germany"}
+[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/9/9d/Dr_Ruja_Ignatova_Nairobi_Islamic_Microfinance_Forum.webm/Dr_Ruja_Ignatova_Nai Load request cancelled
+[webkit/en] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/9/9d/Dr_Ruja_Ignatova_Nairobi_Islamic_Microfinance_Forum.webm/Dr_Ruja_Ignatova_Nai Load request cancelled
+[webkit/en] card 9: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Microfinance"}
+[webkit/en] card 10: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Pakistan"}
+[webkit/en] card 11: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Which one is “Major mountain range in Central Europe”?"}
+[webkit/en] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+[webkit/en] card 12: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Iceland"}
+[webkit/en] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+[webkit/en] card 13: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Hungary"}
+[webkit/en] card 14: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Compound interest"}
+[webkit/en] news 1: {"kind": "news", "vis": null, "img": true, "audio": true, "place": null, "country": null, "lang": null, "title": "Two high-impact security vulnerabilities in PHP cause disruptions to many online"}
+[webkit/en] news 2: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Hôtel de Ville, Limoges", "country": "France", "lang": null, "title": "The Hôtel de Ville in Limoges is partially destroyed by arson as fuel and studen"}
+[webkit/en] news 3: {"kind": "news", "vis": null, "img": true, "audio": true, "place": null, "country": null, "lang": null, "title": "The International Bureau of Weights and Measures votes to effectively abolish th"}
+[webkit/en] news 4: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Saudi Arabia", "lang": null, "title": "The Houthis launch a series of attacks on Saudi Arabian airports, killing at lea"}
+[webkit/en] news 5: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Strait of Hormuz", "country": "Oman", "lang": null, "title": "Iran's Islamic Revolutionary Guard Corps reports that seven oil tankers have bee"}
+[webkit/en] news 6: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Canada", "lang": null, "title": "Canada and Turkey open negotiations for a free trade agreement during Canadian p"}
+[webkit/en] news 7: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Athens", "country": "Greece", "lang": null, "title": "Thousands of students and teachers march through Athens, Thessaloniki, and Patra"}
+[webkit/en] news 8: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Bouches-du-Rhône", "country": "France", "lang": null, "title": "At least four people are killed and one other is injured by flooding caused by S"}
 [webkit/en] content ok: True, topics: 291, with audio: 291
-[webkit/sl] card 1: {"kind": "photo", "vis": null, "ftype": null, "audio": true, "title": "Skulptura Rdeči zmaj Jima Buckleyja iz leta 1985 med poplavo reke Lee, oktober 2"}
-[webkit/sl] card 2: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Argentina"}
-[webkit/sl] card 3: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Indonezija"}
-[webkit/sl] card 4: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Maroko"}
-[webkit/sl] card 5: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Albanija"}
-[webkit/sl] card 6: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Phillipsova krivulja"}
-[webkit/sl] card 7: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Peru"}
-[webkit/sl] FAILED https://upload.wikimedia.org/wikipedia/commons/transcoded/6/6f/President_Biden_Joins_the_Virtual_CEO_Summit_on_Semiconductor_and_Supply_Chai Load request cancelled
-[webkit/sl] card 8: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Oskrbovalna veriga"}
-[webkit/sl] card 9: {"kind": "econ", "vis": null, "ftype": null, "audio": true, "title": "Mednarodni denarni sklad"}
-[webkit/sl] card 10: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Kaj od tega je »ekonomski model, ki ponazarja obratno sorazmerje med inflacijo i"}
-[webkit/sl] card 11: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Evroobmočje"}
-[webkit/sl] card 12: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Združeni arabski emirati"}
-[webkit/sl] card 13: {"kind": "geo", "vis": "globe", "ftype": "region", "audio": true, "title": "Kavkaška regija"}
-[webkit/sl] card 14: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Izrael"}
-[webkit/sl] news 1: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Hôtel de Ville, Limoges", "country": "France", "lang": null, "title": "Hôtel de Ville v Limoges je delno uničen zaradi požara, saj gorivo in študentski"}
-[webkit/sl] news 2: {"kind": "news", "vis": null, "img": true, "audio": true, "place": null, "country": null, "lang": null, "title": "Mednarodni urad za mere in uteži je odločil, da bo odpravil prestopno sekundo za"}
-[webkit/sl] news 3: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Saudi Arabia", "lang": null, "title": "Husi so izvedli serijo napadov na letališča v Savdski Arabiji, kjer je bilo ubit"}
-[webkit/sl] news 4: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "King Fahd International Airport", "country": "Saudi Arabia", "lang": null, "title": "V napadu husijev na mednarodno letališče kralja Fahda v Dammamu v Savdski Arabij"}
-[webkit/sl] news 5: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Canada", "lang": null, "title": "Kanada in Turčija med obiskom kanadskega predsednika Mark Carneyja v Ankari začn"}
-[webkit/sl] news 6: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Atene", "country": "Greece", "lang": null, "title": "Na tisoče študentov in učiteljev po Atenah, Solunu in Patrasu v Grčiji protestir"}
-[webkit/sl] news 7: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Nagqu", "country": "China", "lang": null, "title": "Zemeljski potres s magnitudo 7,0 se je zgodil v Tibetu, epicenter v Nagquju."}
-[webkit/sl] news 8: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "South Africa", "lang": null, "title": "Južnoafriška republika je od 4. novembra do 1. decembra znižala dajatve za goriv"}
-[webkit/sl] content ok: True, topics: 228, with audio: 228
+[webkit/sl] card 1: {"kind": "photo", "vis": null, "ftype": null, "audio": true, "title": "Telekomunikacijski stolp Vodno v gradnji v Skopju, Severna Makedonija."}
+[webkit/sl] card 2: {"kind": "geo", "vis": null, "ftype": null, "audio": true, "title": "Rečna delta"}
+[webkit/sl] card 3: {"kind": "geo", "vis": "globe", "ftype": "sea", "audio": true, "title": "Melaški preliv"}
+[webkit/sl] card 4: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Gana"}
+[webkit/sl] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+[webkit/sl] card 5: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Vietnam"}
+[webkit/sl] card 6: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Ginijev koeficient"}
+[webkit/sl] FAILED https://api.worldbank.org/v2/country/ZAF;BRA;USA;CHN;ITA;DEU;SVN/indicator/SI.POV.GINI?format=json&per_page=100&mrnev=1 Load request cancelled
+[webkit/sl] card 7: {"kind": "geo", "vis": "globe", "ftype": "region", "audio": true, "title": "Sahel"}
+[webkit/sl] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+[webkit/sl] card 8: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Bolivija"}
+[webkit/sl] card 9: {"kind": "geo", "vis": "globe", "ftype": "sea", "audio": true, "title": "Kaspijsko jezero"}
+[webkit/sl] card 10: {"kind": "quiz", "vis": null, "ftype": null, "audio": false, "title": "Kaj od tega je »merilo neenakosti v porazdelitvi dohodka ali premoženja«?"}
+[webkit/sl] card 11: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Stagflacija"}
+[webkit/sl] card 12: {"kind": "geo", "vis": "globe", "ftype": null, "audio": true, "title": "Indonezija"}
+[webkit/sl] card 13: {"kind": "geo", "vis": "globe", "ftype": "lake", "audio": true, "title": "Aralsko jezero"}
+[webkit/sl] card 14: {"kind": "econ", "vis": "chart", "ftype": null, "audio": true, "title": "Produktivnost"}
+[webkit/sl] console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+[webkit/sl] news 1: {"kind": "news", "vis": null, "img": true, "audio": true, "place": null, "country": null, "lang": null, "title": "Dve varnostni ranljivosti v PHP-ju povzročajo motnje pri številnih spletnih stor"}
+[webkit/sl] news 2: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Hôtel de Ville, Limoges", "country": "France", "lang": null, "title": "Hôtel de Ville v Limoges je delno uničen zaradi požara, saj gorivo in študentski"}
+[webkit/sl] news 3: {"kind": "news", "vis": null, "img": true, "audio": true, "place": null, "country": null, "lang": null, "title": "Mednarodni urad za mere in uteži je odločil, da bo odpravil prestopno sekundo za"}
+[webkit/sl] news 4: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Saudi Arabia", "lang": null, "title": "Husi so izvedli serijo napadov na letališča v Savdski Arabiji, kjer je bilo ubit"}
+[webkit/sl] news 5: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Hormuška ožina", "country": "Oman", "lang": null, "title": "Iranska islamska revolucijska straža poroča, da je bilo v Ormuškem prelivu napad"}
+[webkit/sl] news 6: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": null, "country": "Canada", "lang": null, "title": "Kanada in Turčija med obiskom kanadskega predsednika Mark Carneyja v Ankari začn"}
+[webkit/sl] news 7: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Atene", "country": "Greece", "lang": null, "title": "Na tisoče študentov in učiteljev po Atenah, Solunu in Patrasu v Grčiji protestir"}
+[webkit/sl] news 8: {"kind": "news", "vis": "globe", "img": false, "audio": true, "place": "Bouches-du-Rhône", "country": "France", "lang": null, "title": "V poplavah, ki jih je povzročil nevihta Adam, so v Bouches-du-Rhôneju v Franciji"}
+[webkit/sl] content ok: True, topics: 220, with audio: 220

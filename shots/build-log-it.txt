@@ -1,32 +1,32 @@
-  current events: Armed 5, International 6, Politics 3, Disasters 2, Business 1, Science 2, Health 2, Law 8; skipped 13 without a trusted source
+  current events: Armed 7, International 4, Politics 1, Disasters 2, Business 1, Science 1, Health 1, Law 6; skipped 9 without a trusted source
+    untrusted: An al-Qaeda in the Arabian Peninsula attack in Shabwah Governorate kil
+    untrusted: The Sudanese Armed Forces recaptures two strategic areas in Sudan's Bl
     untrusted: At least six people are killed and 25 others are injured when a bus co
     untrusted: Two people are killed and two others are injured by debris after a sus
     untrusted: The Israel Defense Forces (IDF) and Shin Bet say that they have killed
     untrusted: The North Sea Transition Authority (NSTA) of the United Kingdom approv
     untrusted: Italian interior minister Matteo Piantedosi announces a crackdown on t
     untrusted: A Tunisian military court sentences politician and businesswoman Olfa 
-    untrusted: Paul St-Pierre Plamondon is sworn in as the 34th premier of Quebec, Ca
-    untrusted: The death toll in the market drone attack in Abyei on the border of So
   translator ready: facebook/nllb-200-distilled-1.3B
-it: news 0 own + 16 from English; with place: 15, photo: 1, untranslated: 0
+it: news 0 own + 16 from English; with place: 14, photo: 2, untranslated: 0
+    [itn]       -                    -              Due vulnerabilità di sicurezza di alto impatto in PHP causano interruzioni a molti servizi
     [itn]       Municipio di Limoges France         L'Hôtel de Ville di Limoges è stato parzialmente distrutto da un incendio doloso mentre le
     [itn]       -                    -              L'Ufficio Internazionale dei Pesi e delle Misure vota per abolire efficacemente il secondo
     [itn]       -                    Saudi Arabia   Gli Houthi lanciano una serie di attacchi sugli aeroporti dell'Arabia Saudita, uccidendo a
-    [Armed co]  Aeroporto Internazio Saudi Arabia   Due persone vengono uccise e altre otto ferite in un attacco degli Houthi all'aeroporto in
+    [Armed co]  Stretto di Hormuz    Oman           Il Corpo delle Guardie della Rivoluzione Islamica dell'Iran riferisce che sette petroliere
     [Internat]  -                    Canada         Canada e Turchia aprono negoziati per un accordo di libero scambio durante la visita del p
     [Politics]  Atene                Greece         Migliaia di studenti e insegnanti hanno marciato attraverso Atene, Salonicco e Patrasso in
-    [Disaster]  Prefettura di Nagqu  China          Un terremoto di 7.0 Mw colpisce il Tibet, con epicentro a Nagqu.
+    [Disaster]  Bocche del Rodano (d France         Almeno quattro persone sono morte e un'altra è ferita dalle inondazioni causate dalla temp
     [Business]  -                    South Africa   Il Sudafrica taglia i prelievi sul carburante di R3.00 (US$0.18) per litro di diesel e di 
     [Science ]  Deposito geologico d Finland        Il governo finlandese concede a Posiva una licenza di esercizio per il deposito di combust
-    [Health a]  -                    France         La Francia riferisce il primo caso umano di virus Shamonda nel bestiame in un paziente dec
     [Law and ]  -                    Guatemala      Un tribunale guatemalteco ha condannato sette ex poliziotti a pene detentive fino a 60 ann
-    [Armed co]  Embassy of the Unite Saudi Arabia   Il Dipartimento di Stato degli Stati Uniti ordina ai dipendenti non di emergenza della sua
-    [Internat]  -                    Indonesia      L'Indonesia, il Pakistan, il Qatar e la Turchia firmano congiuntamente il Memorandum of Un
-    [Politics]  Parlamento della Rom Romania        Il Parlamento della Romania nomina Luca Niculescu come nuovo Primo Ministro, succedendo a 
-    [Disaster]  Toledo (Ohio)        United States  Una perdita di glicidil metacrilato da un serbatoio chimico al terminal di Toledo, Ohio, S
-    [Science ]  Centro spaziale di T Japan          JAXA lancia il veicolo spaziale Martian Moons eXploration dal Centro Spaziale Tanegashima 
+    [Armed co]  -                    El Salvador    El Salvador ha inviato 100 soldati delle forze speciali ad Haiti per aiutare nella ricerca
+    [Internat]  -                    United Arab Em La diplomatica degli Emirati Lana Nusseibeh annuncia la sua candidatura a Segretario Gener
+    [Disaster]  Prefettura di Nagqu  China          Un terremoto da 7,0 Mw colpisce il Tibet, con epicentro a Nagqu, uccidendo 16 persone e fe
+    [Law and ]  -                    Ecuador        Il leader dell'opposizione ecuadoriana e ex candidata presidenziale Luisa González è arres
+    [Armed co]  Aeroporto Internazio Saudi Arabia   Due persone vengono uccise e altre otto ferite in un attacco degli Houthi all'aeroporto in
   no shape for Lake Bled | near: ['Aberdeen Lake', 'Airag Lake', 'Aishihik Lake', 'Alakol Lake', 'Amadjuak Lake', 'Arrow Lakes', 'Aydar Lake', 'Aylmer Lake', 'Baker Lake', 'Barsakelmes Lake', 'Bear Lake', 'Big Rideau Lake']
-it: 11 articles had fresh edits, so their 3-day-old version was used
-it: 279 topics, 41 with shapes
-it: voice kokoro-im_nicola, 24 new clips, 295/295 cards with audio, voice ok: True
-it: done in 280s
+it: 45 articles had fresh edits, so their 3-day-old version was used
+it: 263 topics, 38 with shapes
+it: voice kokoro-im_nicola, 8 new clips, 279/279 cards with audio, voice ok: True
+it: done in 472s

@@ -204,7 +204,7 @@ const LANGS = {
     news: "World news", geo: "Geography", econ: "Economics", photo: "Picture of the day", history: "On this day", trend: "Trending", deep: "Deep dive", fact: "Did you know",
     like: "Like", liked: "Liked", save: "Save", saved: "Saved", share: "Share", read: "Read", post: "Post", more: "more", less: "less",
     quick_quiz: "Quick quiz", skip: "Swipe up to skip", correct: "Correct!", wrong: "Not quite.",
-    src_lbl: "Source", cap_lbl: "capital", q_capital: "What is the capital of {x}?", ex_capital: "The capital of {x} is {y}.", q_desc: "Which one is “{x}”?",
+    ax_price: "Price", ax_qty: "Quantity", lb_supply: "Supply", lb_demand: "Demand", lb_eq: "Equilibrium", ax_years: "Years", ax_money: "Savings", lb_compound: "Compound interest", lb_simple: "Simple interest", ax_tax: "Tax rate", ax_rev: "Tax revenue", ax_unemp: "Unemployment", ax_infl: "Inflation", ax_output: "Output", ax_cost: "Cost per unit", lb_shift: "Demand rises → price rises", src_lbl: "Source", cap_lbl: "capital", q_capital: "What is the capital of {x}?", ex_capital: "The capital of {x} is {y}.", q_desc: "Which one is “{x}”?",
     q_news: "Today's news: “{x}” Which topic is this story about?", q_year: "In which year did this happen? “{x}”", ex_year: "It happened in {x}.",
     t_saved: "Saved", t_removed: "Removed from saved", t_copied: "Copied", t_paused: "Paused",
     you: "You", you_lead: "Small daily swipes add up.", streak: "day streak", learned: "learned today", score: "quiz score",
@@ -228,7 +228,7 @@ const LANGS = {
     news: "Svetovne novice", geo: "Geografija", econ: "Ekonomija", photo: "Slika dneva", history: "Na današnji dan", trend: "Trendi", deep: "Poglobljeno", fact: "Ali veš",
     like: "Všeč", liked: "Všeč mi je", save: "Shrani", saved: "Shranjeno", share: "Deli", read: "Beri", post: "Objava", more: "več", less: "manj",
     quick_quiz: "Hitri kviz", skip: "Povleci gor za preskok", correct: "Pravilno!", wrong: "Ne čisto.",
-    src_lbl: "Vir", cap_lbl: "glavno mesto", q_capital: "Katera je prestolnica države {x}?", ex_capital: "Prestolnica države {x} je {y}.", q_desc: "Kaj od tega je »{x}«?",
+    ax_price: "Cena", ax_qty: "Količina", lb_supply: "Ponudba", lb_demand: "Povpraševanje", lb_eq: "Ravnovesje", ax_years: "Leta", ax_money: "Prihranki", lb_compound: "Obrestno obrestovanje", lb_simple: "Navadno obrestovanje", ax_tax: "Davčna stopnja", ax_rev: "Davčni prihodki", ax_unemp: "Brezposelnost", ax_infl: "Inflacija", ax_output: "Proizvodnja", ax_cost: "Strošek na enoto", lb_shift: "Povpraševanje zraste → cena zraste", src_lbl: "Vir", cap_lbl: "glavno mesto", q_capital: "Katera je prestolnica države {x}?", ex_capital: "Prestolnica države {x} je {y}.", q_desc: "Kaj od tega je »{x}«?",
     q_news: "Današnja novica: »{x}« O kateri temi govori?", q_year: "V katerem letu se je to zgodilo? »{x}«", ex_year: "Zgodilo se je leta {x}.",
     t_saved: "Shranjeno", t_removed: "Odstranjeno iz shranjenih", t_copied: "Kopirano", t_paused: "Ustavljeno",
     you: "Ti", you_lead: "Majhni dnevni potegi se seštevajo.", streak: "dni zapored", learned: "naučeno danes", score: "uspeh v kvizih",
@@ -252,7 +252,7 @@ const LANGS = {
     news: "Weltnachrichten", geo: "Geografie", econ: "Wirtschaft", photo: "Bild des Tages", history: "An diesem Tag", trend: "Im Trend", deep: "Im Detail", fact: "Wusstest du",
     like: "Gefällt", liked: "Gefällt mir", save: "Merken", saved: "Gemerkt", share: "Teilen", read: "Lesen", post: "Post", more: "mehr", less: "weniger",
     quick_quiz: "Schnelles Quiz", skip: "Nach oben wischen zum Überspringen", correct: "Richtig!", wrong: "Nicht ganz.",
-    src_lbl: "Quelle", cap_lbl: "Hauptstadt", q_capital: "Was ist die Hauptstadt von {x}?", ex_capital: "Die Hauptstadt von {x} ist {y}.", q_desc: "Was davon ist „{x}“?",
+    ax_price: "Preis", ax_qty: "Menge", lb_supply: "Angebot", lb_demand: "Nachfrage", lb_eq: "Gleichgewicht", ax_years: "Jahre", ax_money: "Ersparnis", lb_compound: "Zinseszins", lb_simple: "Einfacher Zins", ax_tax: "Steuersatz", ax_rev: "Steuereinnahmen", ax_unemp: "Arbeitslosigkeit", ax_infl: "Inflation", ax_output: "Produktion", ax_cost: "Stückkosten", lb_shift: "Nachfrage steigt → Preis steigt", src_lbl: "Quelle", cap_lbl: "Hauptstadt", q_capital: "Was ist die Hauptstadt von {x}?", ex_capital: "Die Hauptstadt von {x} ist {y}.", q_desc: "Was davon ist „{x}“?",
     q_news: "Heutige Nachricht: „{x}“ Um welches Thema geht es?", q_year: "In welchem Jahr geschah das? „{x}“", ex_year: "Es geschah {x}.",
     t_saved: "Gemerkt", t_removed: "Entfernt", t_copied: "Kopiert", t_paused: "Pausiert",
     you: "Du", you_lead: "Kleine tägliche Swipes summieren sich.", streak: "Tage in Folge", learned: "heute gelernt", score: "Quiz-Quote",
@@ -276,7 +276,7 @@ const LANGS = {
     news: "Noticias del mundo", geo: "Geografía", econ: "Economía", photo: "Imagen del día", history: "Un día como hoy", trend: "Tendencia", deep: "En profundidad", fact: "Sabías que",
     like: "Me gusta", liked: "Te gusta", save: "Guardar", saved: "Guardado", share: "Compartir", read: "Leer", post: "Post", more: "más", less: "menos",
     quick_quiz: "Quiz rápido", skip: "Desliza hacia arriba para saltar", correct: "¡Correcto!", wrong: "Casi.",
-    src_lbl: "Fuente", cap_lbl: "capital", q_capital: "¿Cuál es la capital de {x}?", ex_capital: "La capital de {x} es {y}.", q_desc: "¿Cuál de estos es «{x}»?",
+    ax_price: "Precio", ax_qty: "Cantidad", lb_supply: "Oferta", lb_demand: "Demanda", lb_eq: "Equilibrio", ax_years: "Años", ax_money: "Ahorros", lb_compound: "Interés compuesto", lb_simple: "Interés simple", ax_tax: "Tipo impositivo", ax_rev: "Recaudación", ax_unemp: "Desempleo", ax_infl: "Inflación", ax_output: "Producción", ax_cost: "Coste por unidad", lb_shift: "Sube la demanda → sube el precio", src_lbl: "Fuente", cap_lbl: "capital", q_capital: "¿Cuál es la capital de {x}?", ex_capital: "La capital de {x} es {y}.", q_desc: "¿Cuál de estos es «{x}»?",
     q_news: "Noticia de hoy: «{x}» ¿De qué tema trata?", q_year: "¿En qué año ocurrió esto? «{x}»", ex_year: "Ocurrió en {x}.",
     t_saved: "Guardado", t_removed: "Eliminado de guardados", t_copied: "Copiado", t_paused: "En pausa",
     you: "Tú", you_lead: "Pequeños deslizamientos diarios suman.", streak: "días seguidos", learned: "aprendido hoy", score: "aciertos",
@@ -300,7 +300,7 @@ const LANGS = {
     news: "Actualité mondiale", geo: "Géographie", econ: "Économie", photo: "Image du jour", history: "Ce jour-là", trend: "Tendance", deep: "En détail", fact: "Le savais-tu",
     like: "J'aime", liked: "Aimé", save: "Garder", saved: "Gardé", share: "Partager", read: "Lire", post: "Post", more: "plus", less: "moins",
     quick_quiz: "Quiz rapide", skip: "Glisse vers le haut pour passer", correct: "Correct !", wrong: "Pas tout à fait.",
-    src_lbl: "Source", cap_lbl: "capitale", q_capital: "Quelle est la capitale de {x} ?", ex_capital: "La capitale de {x} est {y}.", q_desc: "Lequel est « {x} » ?",
+    ax_price: "Prix", ax_qty: "Quantité", lb_supply: "Offre", lb_demand: "Demande", lb_eq: "Équilibre", ax_years: "Années", ax_money: "Épargne", lb_compound: "Intérêts composés", lb_simple: "Intérêts simples", ax_tax: "Taux d'imposition", ax_rev: "Recettes fiscales", ax_unemp: "Chômage", ax_infl: "Inflation", ax_output: "Production", ax_cost: "Coût unitaire", lb_shift: "La demande monte → le prix monte", src_lbl: "Source", cap_lbl: "capitale", q_capital: "Quelle est la capitale de {x} ?", ex_capital: "La capitale de {x} est {y}.", q_desc: "Lequel est « {x} » ?",
     q_news: "Actu du jour : « {x} » De quel sujet parle-t-elle ?", q_year: "En quelle année est-ce arrivé ? « {x} »", ex_year: "C'est arrivé en {x}.",
     t_saved: "Gardé", t_removed: "Retiré", t_copied: "Copié", t_paused: "En pause",
     you: "Toi", you_lead: "Les petits swipes quotidiens s'additionnent.", streak: "jours d'affilée", learned: "appris aujourd'hui", score: "réussite aux quiz",
@@ -324,7 +324,7 @@ const LANGS = {
     news: "Notizie dal mondo", geo: "Geografia", econ: "Economia", photo: "Immagine del giorno", history: "Accadde oggi", trend: "Di tendenza", deep: "Approfondimento", fact: "Lo sapevi",
     like: "Mi piace", liked: "Ti piace", save: "Salva", saved: "Salvato", share: "Condividi", read: "Leggi", post: "Post", more: "altro", less: "meno",
     quick_quiz: "Quiz veloce", skip: "Scorri in su per saltare", correct: "Giusto!", wrong: "Non proprio.",
-    src_lbl: "Fonte", cap_lbl: "capitale", q_capital: "Qual è la capitale di {x}?", ex_capital: "La capitale di {x} è {y}.", q_desc: "Quale di questi è «{x}»?",
+    ax_price: "Prezzo", ax_qty: "Quantità", lb_supply: "Offerta", lb_demand: "Domanda", lb_eq: "Equilibrio", ax_years: "Anni", ax_money: "Risparmi", lb_compound: "Interesse composto", lb_simple: "Interesse semplice", ax_tax: "Aliquota", ax_rev: "Gettito fiscale", ax_unemp: "Disoccupazione", ax_infl: "Inflazione", ax_output: "Produzione", ax_cost: "Costo unitario", lb_shift: "Sale la domanda → sale il prezzo", src_lbl: "Fonte", cap_lbl: "capitale", q_capital: "Qual è la capitale di {x}?", ex_capital: "La capitale di {x} è {y}.", q_desc: "Quale di questi è «{x}»?",
     q_news: "Notizia di oggi: «{x}» Di quale argomento parla?", q_year: "In che anno è successo? «{x}»", ex_year: "È successo nel {x}.",
     t_saved: "Salvato", t_removed: "Rimosso dai salvati", t_copied: "Copiato", t_paused: "In pausa",
     you: "Tu", you_lead: "Piccoli swipe quotidiani fanno la differenza.", streak: "giorni di fila", learned: "imparato oggi", score: "risposte giuste",
@@ -557,7 +557,7 @@ function visFor(c, topic) {
     if (!c.img) return "globe";
     if (c.coords) return "locator";
   }
-  if (topic && CHARTS[topic]) return "chart";
+  if (topic && (CHARTS[topic] || VIZ[topic])) return "chart";
   return null;
 }
 
@@ -703,6 +703,9 @@ async function runGlobe(slide, c, run) {
   const start = [target[0] + so[0], Math.max(-55, Math.min(60, target[1] * 0.3 + so[1]))];
   const cap = c.capital && c.capital.coords ? c.capital : null; // countries: after the outline, fly on to the capital
   const capLbl = cap ? t("cap_lbl").toUpperCase() : ""; // (inside the frame loop "t" is the animation time)
+  // on about half of the countries the globe dives on into the capital and shows a postcard photo of it
+  const wantPic = !!(cap && cap.img && seed % 2 === 0); let picImg = null, picAt = null;
+  if (wantPic) loadImg(cap.img).then(i => { picImg = i; }).catch(() => {});
   let zoomK = 1.9;
   if (hit) { const b = d3.geoBounds(hit), span = Math.max(Math.abs(b[1][0] - b[0][0]) * Math.cos(target[1] * Math.PI / 180), Math.abs(b[1][1] - b[0][1])); zoomK = Math.max(1.4, Math.min(2.5, 24 / Math.max(span, 1))); }
   const base = Math.min(w, h) * 0.42, proj = d3.geoOrthographic().clipAngle(90).precision(0.4), grat = d3.geoGraticule10();
@@ -761,13 +764,13 @@ async function runGlobe(slide, c, run) {
     g.fillStyle = sh; g.beginPath(); path({ type: "Sphere" }); g.fill();
     drawLabels(g, labelA);
   };
-  const t0 = vclock(performance.now()), DUR = REDUCED ? 1 : 4200, DUR2 = REDUCED ? 1 : 2200, DUR3 = REDUCED ? 1 : 2400, GAP3 = REDUCED ? 0 : 700;
+  const t0 = vclock(performance.now()), DUR = REDUCED ? 1 : 4200, DUR2 = REDUCED ? 1 : 2200, DUR3 = REDUCED ? 1 : 2400, GAP3 = REDUCED ? 0 : 700, DUR4 = REDUCED ? 1 : 2000, GAP4 = REDUCED ? 0 : 900;
   let last = 0, shapeK = null; // shapeK: extra zoom so the country's real outline fills ~half the screen
   const frame = rnow => {
     if (run !== visRun) return;
     if (VIS_PAUSED) { requestAnimationFrame(frame); return; } // paused by a tap: hold the picture
     const now = vclock(rnow);
-    const settled = now - t0 > DUR + (shapeK && shapeK > 1.05 ? DUR2 : 0) + (cap && shapeK ? GAP3 + DUR3 : 0);
+    const settled = now - t0 > DUR + (shapeK && shapeK > 1.05 ? DUR2 : 0) + (cap && shapeK ? GAP3 + DUR3 + (wantPic ? GAP4 + DUR4 + 600 : 0) : 0);
     if (settled && now - last < 45) { requestAnimationFrame(frame); return; } // after the intro only the pulse moves: ~22 fps saves battery
     last = now;
     const t = Math.max(0, Math.min(1, (now - t0) / DUR)), k = ease(t);
@@ -784,12 +787,13 @@ async function runGlobe(slide, c, run) {
     if (t2 > 0) { scale *= 1 + (shapeK - 1) * ease(t2); proj.scale(scale); }
     const shapeDone = t >= 1 && shapeK !== null && (shapeK <= 1.05 || t2 >= 1);
     const t3 = cap && shapeDone ? Math.max(0, Math.min(1, (now - t0 - DUR - (shapeK > 1.05 ? DUR2 : 0) - GAP3) / DUR3)) : 0;
-    if (t3 > 0) { // glide towards the capital and come a little closer
-      const e3 = ease(t3), dl = ((cap.coords[0] - target[0] + 540) % 360) - 180;
-      proj.rotate([-(target[0] + dl * .55 * e3), -(target[1] + (cap.coords[1] - target[1]) * .55 * e3)]);
-      scale *= 1 + .4 * e3; proj.scale(scale);
+    const t4 = wantPic && t3 >= 1 ? Math.max(0, Math.min(1, (now - t0 - DUR - (shapeK > 1.05 ? DUR2 : 0) - GAP3 - DUR3 - GAP4) / DUR4)) : 0;
+    if (t3 > 0) { // glide towards the capital and come a little closer (and, for some, right down to the city)
+      const e3 = ease(t3), e4 = ease(t4), fr = .55 * e3 + .45 * e4, dl = ((cap.coords[0] - target[0] + 540) % 360) - 180;
+      proj.rotate([-(target[0] + dl * fr), -(target[1] + (cap.coords[1] - target[1]) * fr)]);
+      scale *= (1 + .4 * e3) * (1 + 1.6 * e4); proj.scale(scale);
     }
-    const done = t >= 1 && (shapeK <= 1.05 || t2 >= 1) && (!cap || !shapeK || t3 >= 1);
+    const done = t >= 1 && (shapeK <= 1.05 || t2 >= 1) && (!cap || !shapeK || t3 >= 1) && (!wantPic || t4 >= 1);
     if (done && fine && w10state !== "loading") {
       // settled: draw the detailed map once (1:10m for everything on screen), then only repaint the marker on top of it
       if (!cache) {
@@ -816,8 +820,9 @@ async function runGlobe(slide, c, run) {
           lx += (ax - lx) * e2; ly += (ay - ly) * e2;
         }
         lx = Math.max(16, Math.min(w - 76 - x.measureText(label).width, lx)); // never cut off at the screen edge
-        x.fillText(label, lx, ly);
-        x.font = '500 12px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = `rgba(244,245,247,${a * .7})`; x.fillText(coordTxt, lx, ly + 17);
+        const la = a * (1 - (picAt ? Math.min(1, (now - picAt) / 500) : 0)); // the postcard takes the name's place
+        x.fillStyle = `rgba(255,255,255,${la})`; x.fillText(label, lx, ly);
+        x.font = '500 12px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = `rgba(244,245,247,${la * .7})`; x.fillText(coordTxt, lx, ly + 17);
       }
     }
     if (t3 > 0) { // the capital: a star and its name
@@ -835,6 +840,20 @@ async function runGlobe(slide, c, run) {
         x.fillStyle = `rgba(255,255,255,${a3})`; x.fillText(cap.name, cx2, cy2);
         x.font = '700 10px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = `rgba(200,245,96,${a3})`;
         x.fillText(capLbl, cx2, cy2 + 14);
+        if (t4 > .55 && picImg) { // postcard of the capital, tilted a little, above the star
+          if (picAt === null) picAt = now;
+          const pa = REDUCED ? 1 : Math.min(1, (now - picAt) / 550), pe = ease(pa);
+          const ar = picImg.width / picImg.height || 1.5, maxH = Math.max(90, cp[1] - 60 - 96);
+          let pw = Math.min(w * .64, maxH * ar), ph = pw / ar; if (ph > maxH) { ph = maxH; pw = ph * ar; }
+          const pcx = w / 2 - 8, pcy = 96 + ph / 2 + 4;
+          x.save(); x.globalAlpha = pe; x.translate(pcx, pcy + (1 - pe) * 24); x.rotate(-.04 * pe); x.scale(.92 + .08 * pe, .92 + .08 * pe);
+          x.shadowColor = "rgba(0,0,0,.55)"; x.shadowBlur = 24; x.shadowOffsetY = 8;
+          x.fillStyle = "#f6f4ee"; x.fillRect(-pw / 2 - 7, -ph / 2 - 7, pw + 14, ph + 34);
+          x.shadowColor = "transparent";
+          x.drawImage(picImg, -pw / 2, -ph / 2, pw, ph);
+          x.font = '700 13px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = "#1a1c22"; x.textAlign = "center";
+          x.fillText(cap.name, 0, ph / 2 + 19); x.restore();
+        }
       }
     }
     if (t < 1 || !REDUCED) requestAnimationFrame(frame); // keep the marker pulsing while the card is on screen
@@ -887,6 +906,7 @@ function chartData(topic) {
   return chartCache[key];
 }
 async function runChart(slide, c, run) {
+  if (VIZ[c.en || c.name]) return runViz(slide, c, run, VIZ[c.en || c.name]);
   const topic = c.en || c.name, [, reg, unit] = CHARTS[topic];
   const data = await chartData(topic); if (run !== visRun) return;
   if (data.length < 5) { // no data: fall back to a clip, and give the card back its big word
@@ -939,6 +959,215 @@ async function runChart(slide, c, run) {
     if (t < 1 || peakAt === null || now - peakAt < 650) requestAnimationFrame(frame);
   };
   requestAnimationFrame(frame);
+}
+
+/* more ways to show economics: rankings, comparisons, a counting number, and animated textbook diagrams */
+const EU8 = "DEU;FRA;ITA;ESP;POL;AUT;HRV;SVN";
+const VIZ = {
+  "Gross domestic product": { type: "rank", ind: "NY.GDP.MKTP.CD", unit: "$", codes: "USA;CHN;DEU;JPN;IND;GBR;FRA;SVN" },
+  "G7": { type: "rank", ind: "NY.GDP.MKTP.CD", unit: "$", codes: "USA;JPN;DEU;GBR;FRA;ITA;CAN" },
+  "G20": { type: "rank", ind: "NY.GDP.MKTP.CD", unit: "$", codes: "USA;CHN;DEU;JPN;IND;BRA;RUS;ZAF" },
+  "BRICS": { type: "rank", ind: "NY.GDP.MKTP.CD", unit: "$", codes: "CHN;IND;BRA;RUS;ZAF;EGY;ETH;IRN;ARE" },
+  "ASEAN": { type: "rank", ind: "NY.GDP.MKTP.CD", unit: "$", codes: "IDN;THA;SGP;PHL;VNM;MYS;MMR;KHM" },
+  "Mercosur": { type: "rank", ind: "NY.GDP.MKTP.CD", unit: "$", codes: "BRA;ARG;PRY;URY;BOL" },
+  "African Union": { type: "rank", ind: "NY.GDP.MKTP.CD", unit: "$", codes: "NGA;EGY;ZAF;DZA;MAR;KEN;ETH;GHA" },
+  "European Union": { type: "rank", ind: "NY.GDP.MKTP.CD", unit: "$", codes: EU8 },
+  "Unemployment": { type: "rank", ind: "SL.UEM.TOTL.ZS", unit: "%", codes: "ESP;GRC;ITA;FRA;SVN;DEU;POL;CZE" },
+  "Government debt": { type: "rank", ind: "GC.DOD.TOTL.GD.ZS", unit: "%", codes: "JPN;GRC;ITA;USA;FRA;GBR;DEU;SVN" },
+  "Tourism": { type: "rank", ind: "ST.INT.ARVL", unit: "n", codes: "FRA;ESP;USA;ITA;TUR;MEX;GBR;HRV;SVN" },
+  "Population ageing": { type: "rank", ind: "SP.POP.65UP.TO.ZS", unit: "%", codes: "JPN;ITA;DEU;SVN;USA;CHN;IND;NGA" },
+  "Renewable energy": { type: "rank", ind: "EG.FEC.RNEW.ZS", unit: "%", codes: "NOR;SWE;BRA;AUT;SVN;DEU;CHN;USA" },
+  "Purchasing power parity": { type: "rank", ind: "NY.GDP.PCAP.PP.CD", unit: "$", codes: "LUX;SGP;USA;DEU;SVN;CHN;IND;NGA" },
+  "Middle class": { type: "rank", ind: "NY.GDP.PCAP.PP.CD", unit: "$", codes: "USA;DEU;SVN;POL;CHN;BRA;IND;NGA" },
+  "Gini coefficient": { type: "rank", ind: "SI.POV.GINI", unit: "n", codes: "ZAF;BRA;USA;CHN;ITA;DEU;SVN" },
+  "OPEC": { type: "rank", ind: "NY.GDP.PETR.RT.ZS", unit: "%", codes: "IRQ;KWT;SAU;LBY;DZA;ARE;NGA;IRN" },
+  "Petroleum": { type: "rank", ind: "NY.GDP.PETR.RT.ZS", unit: "%", codes: "IRQ;SAU;KWT;NOR;RUS;CAN;USA;NGA" },
+  "Inflation": { type: "compare", ind: "FP.CPI.TOTL.ZG", unit: "%", codes: ["SVN", "EMU", "USA"], years: "2000:2025" },
+  "Recession": { type: "compare", ind: "NY.GDP.MKTP.KD.ZG", unit: "%", codes: ["WLD", "USA", "EMU"], years: "2000:2025" },
+  "Economy of Slovenia": { type: "compare", ind: "NY.GDP.PCAP.PP.CD", unit: "$", codes: ["SVN", "EUU", "HRV"], years: "1995:2025" },
+  "Minimum wage": { type: "compare", ind: "SL.UEM.TOTL.ZS", unit: "%", codes: ["SVN", "EUU", "USA"], years: "2000:2025" },
+  "Economy of China": { type: "counter", ind: "NY.GDP.MKTP.CD", unit: "$", reg: "CHN", years: "1980:2025" },
+  "Economy of India": { type: "counter", ind: "NY.GDP.MKTP.CD", unit: "$", reg: "IND", years: "1980:2025" },
+  "Remittance": { type: "counter", ind: "BX.TRF.PWKR.CD.DT", unit: "$", reg: "WLD", years: "1990:2025" },
+  "Foreign direct investment": { type: "counter", ind: "BX.KLT.DINV.CD.WD", unit: "$", reg: "WLD", years: "1990:2025" },
+  "World Bank": { type: "counter", ind: "NY.GDP.MKTP.CD", unit: "$", reg: "WLD", years: "1970:2025" },
+  "Supply and demand": { type: "concept", kind: "sd" }, "Price elasticity of demand": { type: "concept", kind: "sd" },
+  "Invisible hand": { type: "concept", kind: "sd" },
+  "Compound interest": { type: "concept", kind: "compound" }, "Index fund": { type: "concept", kind: "compound" },
+  "Laffer curve": { type: "concept", kind: "laffer" }, "Progressive tax": { type: "concept", kind: "laffer" },
+  "Phillips curve": { type: "concept", kind: "phillips" },
+  "Economies of scale": { type: "concept", kind: "scale" }, "Containerization": { type: "concept", kind: "scale" },
+};
+const ISO3TO2 = { USA: "US", CHN: "CN", DEU: "DE", JPN: "JP", IND: "IN", GBR: "GB", FRA: "FR", SVN: "SI", ITA: "IT", CAN: "CA", BRA: "BR", RUS: "RU", ZAF: "ZA",
+  EGY: "EG", ETH: "ET", IRN: "IR", ARE: "AE", IDN: "ID", THA: "TH", SGP: "SG", PHL: "PH", VNM: "VN", MYS: "MY", MMR: "MM", KHM: "KH", ARG: "AR", PRY: "PY",
+  URY: "UY", BOL: "BO", NGA: "NG", DZA: "DZ", MAR: "MA", KEN: "KE", GHA: "GH", ESP: "ES", POL: "PL", AUT: "AT", HRV: "HR", GRC: "GR", CZE: "CZ", TUR: "TR",
+  MEX: "MX", NOR: "NO", SWE: "SE", LUX: "LU", IRQ: "IQ", KWT: "KW", SAU: "SA", LBY: "LY" };
+const placeName = code => (code === "EMU" ? t("euro_area") : code === "WLD" ? t("world") : code === "EUU" ? "EU" : (() => { try { return new Intl.DisplayNames([LANG], { type: "region" }).of(ISO3TO2[code] || code); } catch { return code; } })());
+const wbCache = {};
+function wb(path) {
+  if (!wbCache[path]) wbCache[path] = getJSON(`https://api.worldbank.org/v2/${path}`).then(r => (Array.isArray(r) && Array.isArray(r[1]) ? r[1] : []).filter(d => d.value !== null && d.value !== undefined)).catch(() => { delete wbCache[path]; return []; });
+  return wbCache[path];
+}
+const VCOL = ["#c8f560", "#ffc65c", "#7cc4ff", "#ff8fa3"];
+function vizFrame(x, w, h, title, sub) { // shared background, title and source line
+  x.fillStyle = "#07080c"; x.fillRect(0, 0, w, h);
+  const bg = x.createRadialGradient(w * .8, h * .12, 20, w * .8, h * .12, w); bg.addColorStop(0, "rgba(255,198,92,.14)"); bg.addColorStop(1, "rgba(255,198,92,0)"); x.fillStyle = bg; x.fillRect(0, 0, w, h);
+  x.font = '700 15px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = "rgba(244,245,247,.92)"; x.fillText(title, 18, 92);
+  if (sub) { x.font = '500 11px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = "rgba(244,245,247,.5)"; x.fillText(sub, 18, 110); }
+}
+function vizLoop(run, draw, until) {
+  const t0 = vclock(performance.now());
+  const frame = rnow => {
+    if (run !== visRun) return;
+    if (VIS_PAUSED) { requestAnimationFrame(frame); return; }
+    const ms = REDUCED ? 1e9 : vclock(rnow) - t0;
+    draw(ms);
+    if (ms < until) requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+}
+const easeIO = t => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2), clamp01 = v => Math.max(0, Math.min(1, v));
+
+async function runViz(slide, c, run, spec) {
+  if (spec.type === "concept") return runConcept(slide, c, run, spec.kind);
+  let rows = [], series = [];
+  if (spec.type === "rank") {
+    rows = (await wb(`country/${spec.codes}/indicator/${spec.ind}?format=json&per_page=100&mrnev=1`)).map(d => ({ code: d.countryiso3code, v: +d.value, y: d.date })).sort((a, b) => b.v - a.v);
+  } else if (spec.type === "compare") {
+    series = await Promise.all(spec.codes.map(cd => wb(`country/${cd}/indicator/${spec.ind}?format=json&per_page=200&date=${spec.years}`).then(r => ({ code: cd, pts: r.map(d => [+d.date, +d.value]).sort((a, b) => a[0] - b[0]) }))));
+    series = series.filter(s => s.pts.length > 4);
+  } else {
+    series = [{ code: spec.reg, pts: (await wb(`country/${spec.reg}/indicator/${spec.ind}?format=json&per_page=200&date=${spec.years}`)).map(d => [+d.date, +d.value]).sort((a, b) => a[0] - b[0]) }];
+  }
+  if (run !== visRun) return;
+  if ((spec.type === "rank" && rows.length < 3) || (spec.type !== "rank" && (!series.length || series[0].pts.length < 5))) { c.vis = null; return runVideo(slide, c, run); }
+  const { x, w, h } = makeCanvas(slide), src = t("data_src");
+  if (spec.type === "rank") {
+    const yr = rows.map(r => r.y).sort().pop(), max = Math.max(...rows.map(r => Math.abs(r.v))) || 1;
+    const T = 128, rowH = Math.min(30, (h * .54 - T) / rows.length), L = 112, R = w - 92;
+    vizLoop(run, ms => {
+      vizFrame(x, w, h, c.name, `${yr} · ${src}`);
+      rows.forEach((r, i) => {
+        const p = easeIO(clamp01((ms - 250 - i * 170) / 900)), y = T + i * rowH, me = r.code === "SVN";
+        x.font = `${me ? 800 : 600} 12.5px "Familjen Grotesk", system-ui, sans-serif`; x.textAlign = "right";
+        x.fillStyle = me ? "#c8f560" : "rgba(244,245,247,.82)"; x.fillText(placeName(r.code), L - 10, y + rowH * .62);
+        x.textAlign = "left";
+        const bw = Math.max(2, (R - L) * Math.abs(r.v) / max * p);
+        const g = x.createLinearGradient(L, 0, L + bw, 0); g.addColorStop(0, me ? "rgba(200,245,96,.55)" : "rgba(255,198,92,.35)"); g.addColorStop(1, me ? "#c8f560" : "#ffc65c");
+        x.fillStyle = g; x.beginPath(); x.roundRect ? x.roundRect(L, y + rowH * .18, bw, rowH * .64, 5) : x.rect(L, y + rowH * .18, bw, rowH * .64); x.fill();
+        if (p > .05) { x.globalAlpha = p; x.font = '700 12px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = "#fff"; x.fillText(fmtVal(r.v * p, spec.unit), L + bw + 7, y + rowH * .62); x.globalAlpha = 1; }
+      });
+    }, 250 + rows.length * 170 + 1000);
+    return;
+  }
+  if (spec.type === "counter") {
+    const pts = series[0].pts, last = pts[pts.length - 1], first = pts[0];
+    const lo = Math.min(...pts.map(q => q[1])), hi = Math.max(...pts.map(q => q[1]));
+    const L = 18, R = w - 84, T2 = h * .30, B2 = h * .50;
+    vizLoop(run, ms => {
+      const p = easeIO(clamp01(ms / 2600));
+      vizFrame(x, w, h, c.name, `${placeName(spec.reg)} · ${src}`);
+      const yr = Math.round(first[0] + (last[0] - first[0]) * p), v = first[1] + (last[1] - first[1]) * p;
+      x.font = '800 46px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = "#ffc65c"; x.fillText(fmtVal(v, spec.unit), L, h * .2);
+      x.font = '600 14px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = "rgba(244,245,247,.7)"; x.fillText(String(yr), L, h * .2 + 24);
+      const n = Math.max(1, Math.round(p * (pts.length - 1)));
+      const X = i => L + (R - L) * i / (pts.length - 1), Y = v2 => B2 - (B2 - T2) * (v2 - lo) / ((hi - lo) || 1);
+      const ar = x.createLinearGradient(0, T2, 0, B2); ar.addColorStop(0, "rgba(255,198,92,.35)"); ar.addColorStop(1, "rgba(255,198,92,0)");
+      x.fillStyle = ar; x.beginPath(); x.moveTo(X(0), B2); for (let i = 0; i <= n; i++) x.lineTo(X(i), Y(pts[i][1])); x.lineTo(X(n), B2); x.fill();
+      x.strokeStyle = "#ffc65c"; x.lineWidth = 2.5; x.beginPath(); for (let i = 0; i <= n; i++) (i ? x.lineTo(X(i), Y(pts[i][1])) : x.moveTo(X(i), Y(pts[i][1]))); x.stroke();
+      x.fillStyle = "#fff"; x.beginPath(); x.arc(X(n), Y(pts[n][1]), 4.5, 0, 7); x.fill();
+      x.font = '500 11px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = "rgba(244,245,247,.45)"; x.fillText(first[0], L, B2 + 18); x.fillText(last[0], R - 26, B2 + 18);
+    }, 2800);
+    return;
+  }
+  // compare: a few lines drawn together, each in its own colour
+  const all = series.flatMap(s => s.pts), y0 = Math.min(...all.map(q => q[0])), y1 = Math.max(...all.map(q => q[0]));
+  let lo = Math.min(0, ...all.map(q => q[1])), hi = Math.max(...all.map(q => q[1])); hi += (hi - lo) * .12;
+  const L = 46, R = w - 84, T = 150, B = h * .52, X = yr => L + (R - L) * (yr - y0) / ((y1 - y0) || 1), Y = v => B - (B - T) * (v - lo) / ((hi - lo) || 1);
+  vizLoop(run, ms => {
+    const p = easeIO(clamp01(ms / 3400)), cut = y0 + (y1 - y0) * p;
+    vizFrame(x, w, h, c.name, src);
+    let lx = 18; x.font = '700 12px "Familjen Grotesk", system-ui, sans-serif';
+    series.forEach((s, i) => { const nm = placeName(s.code); x.fillStyle = VCOL[i]; x.fillRect(lx, 124, 14, 4); x.fillText(nm, lx + 19, 130); lx += x.measureText(nm).width + 36; });
+    x.strokeStyle = "rgba(255,255,255,.08)"; x.lineWidth = 1; x.font = '500 11px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = "rgba(244,245,247,.45)";
+    [0, .5, 1].map(f => lo + (hi - lo) * f).forEach(v => { x.beginPath(); x.moveTo(L, Y(v)); x.lineTo(R, Y(v)); x.stroke(); x.fillText(fmtVal(v, spec.unit), 4, Y(v) + 4); });
+    if (lo < 0) { x.strokeStyle = "rgba(255,255,255,.25)"; x.beginPath(); x.moveTo(L, Y(0)); x.lineTo(R, Y(0)); x.stroke(); }
+    x.fillText(y0, L, B + 18); x.fillText(y1, R - 26, B + 18);
+    series.forEach((s, i) => {
+      const vis = s.pts.filter(q => q[0] <= cut); if (vis.length < 2) return;
+      x.strokeStyle = VCOL[i]; x.lineWidth = i ? 2.2 : 3.2; x.lineJoin = "round"; x.beginPath();
+      vis.forEach((q, k) => (k ? x.lineTo(X(q[0]), Y(q[1])) : x.moveTo(X(q[0]), Y(q[1])))); x.stroke();
+      const e = vis[vis.length - 1]; x.fillStyle = VCOL[i]; x.beginPath(); x.arc(X(e[0]), Y(e[1]), 4, 0, 7); x.fill();
+      if (p >= 1) { x.font = '700 11px "Familjen Grotesk", system-ui, sans-serif'; x.fillText(fmtVal(e[1], spec.unit), X(e[0]) + 7, Y(e[1]) + 4 + i * 2); }
+    });
+  }, 3600);
+}
+
+// textbook diagrams, drawn step by step
+function runConcept(slide, c, run, kind) {
+  const { x, w, h } = makeCanvas(slide);
+  const L = 54, R = w - 90, T = 140, B = h * .53, X = u => L + (R - L) * u, Y = v => B - (B - T) * v;
+  const axes = (xl, yl) => {
+    x.strokeStyle = "rgba(244,245,247,.55)"; x.lineWidth = 1.5; x.beginPath(); x.moveTo(L, T - 10); x.lineTo(L, B); x.lineTo(R + 8, B); x.stroke();
+    x.font = '600 12px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = "rgba(244,245,247,.7)";
+    x.fillText(xl, R - x.measureText(xl).width + 8, B + 20); x.save(); x.translate(L - 14, T + 4); x.rotate(-Math.PI / 2); x.textAlign = "right"; x.fillText(yl, 0, 0); x.restore();
+  };
+  const curve = (f, p, col, wd = 3, u0 = .04, u1 = .96, dash) => {
+    x.strokeStyle = col; x.lineWidth = wd; x.setLineDash(dash || []); x.beginPath();
+    const end = u0 + (u1 - u0) * p; for (let u = u0; u <= end + 1e-9; u += .01) { const v = f(u); u === u0 ? x.moveTo(X(u), Y(v)) : x.lineTo(X(u), Y(v)); } x.stroke(); x.setLineDash([]);
+  };
+  const tag = (txt, u, v, col, a = 1) => { x.globalAlpha = a; x.font = '700 12.5px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = col; x.fillText(txt, X(u), Y(v)); x.globalAlpha = 1; };
+  const dot = (u, v, col, a = 1) => { x.globalAlpha = a; x.fillStyle = col; x.beginPath(); x.arc(X(u), Y(v), 6, 0, 7); x.fill(); x.strokeStyle = "#07080c"; x.lineWidth = 2; x.stroke(); x.globalAlpha = 1; };
+  const guide = (u, v, a) => { x.globalAlpha = a * .7; x.strokeStyle = "rgba(244,245,247,.6)"; x.lineWidth = 1; x.setLineDash([4, 4]); x.beginPath(); x.moveTo(X(u), Y(v)); x.lineTo(X(u), B); x.moveTo(X(u), Y(v)); x.lineTo(L, Y(v)); x.stroke(); x.setLineDash([]); x.globalAlpha = 1; };
+  const draws = {
+    sd: ms => {
+      const p1 = easeIO(clamp01(ms / 1500)), p2 = clamp01((ms - 1600) / 500), p3 = easeIO(clamp01((ms - 2600) / 1600));
+      axes(t("ax_qty"), t("ax_price"));
+      const S = u => .08 + .84 * u, D = (u, sh = 0) => .92 - .84 * (u - sh);
+      curve(S, p1, "#7cc4ff"); curve(u => D(u), p1, "#ffc65c", p3 > 0 ? 2 : 3, .04, .96, p3 > 0 ? [6, 5] : null);
+      tag(t("lb_supply"), .8, .92, "#7cc4ff", p1); tag(t("lb_demand"), .74, .2, "#ffc65c", p1);
+      dot(.5, .5, "#fff", p2); guide(.5, .5, p2 * (1 - p3));
+      if (p3 > 0) {
+        const sh = .2 * p3; curve(u => D(u, sh), 1, "#ffc65c", 3, .04 + sh, .96);
+        const ue = .5 + sh / 2; dot(ue, S(ue), "#c8f560"); guide(ue, S(ue), p3);
+        tag(t("lb_shift"), .06, 1.04, "#c8f560", p3);
+      } else tag(t("lb_eq"), .53, .44, "#fff", p2);
+    },
+    compound: ms => {
+      axes(t("ax_years"), t("ax_money"));
+      const N = 11, max = Math.pow(1.07, 30);
+      for (let i = 0; i < N; i++) {
+        const yrs = i * 3, p = easeIO(clamp01((ms - i * 230) / 600)), v = Math.pow(1.07, yrs) / max * p, bw = (R - L) / N * .62, bx = L + (R - L) * (i + .2) / N;
+        const g = x.createLinearGradient(0, Y(v), 0, B); g.addColorStop(0, "#c8f560"); g.addColorStop(1, "rgba(200,245,96,.25)");
+        x.fillStyle = g; x.fillRect(bx, Y(v), bw, B - Y(v));
+        x.font = '500 10.5px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = "rgba(244,245,247,.5)"; x.fillText(yrs, bx + bw / 2 - 5, B + 14);
+      }
+      const p2 = easeIO(clamp01((ms - 2700) / 900));
+      curve(u => (1 + .07 * 30 * u) / max, p2, "#ffc65c", 2.5, 0, 1, [6, 5]);
+      tag(t("lb_compound") + " · 7 %", .04, 1.06, "#c8f560", clamp01(ms / 600)); tag("- - " + t("lb_simple"), .04, .97, "#ffc65c", p2);
+    },
+    laffer: ms => {
+      axes(t("ax_tax"), t("ax_rev")); const f = u => 4 * u * (1 - u) * .9;
+      const p1 = easeIO(clamp01(ms / 1600)); curve(f, p1, "#ffc65c", 3, 0, 1);
+      const p2 = clamp01((ms - 1700) / 2200), u = .1 + .8 * (p2 < .5 ? easeIO(p2 * 2) * .5 : .5 + (easeIO((p2 - .5) * 2)) * .4);
+      if (p2 > 0) { dot(u, f(u), "#c8f560"); guide(u, f(u), 1); x.font = '700 12px "Familjen Grotesk", system-ui, sans-serif'; x.fillStyle = "#c8f560"; x.fillText(Math.round(u * 100) + " %", X(u) - 12, B + 34); }
+      if (ms > 2700) { x.globalAlpha = clamp01((ms - 2700) / 400); x.strokeStyle = "rgba(255,255,255,.4)"; x.setLineDash([3, 4]); x.beginPath(); x.moveTo(X(.5), Y(.9)); x.lineTo(X(.5), B); x.stroke(); x.setLineDash([]); x.globalAlpha = 1; }
+    },
+    phillips: ms => {
+      axes(t("ax_unemp"), t("ax_infl")); const f = u => .06 + .78 / (1 + 7 * u);
+      curve(f, easeIO(clamp01(ms / 1700)), "#7cc4ff", 3, .02, .98);
+      const p2 = clamp01((ms - 1800) / 2200), u = .1 + .7 * easeIO(p2);
+      if (p2 > 0) { dot(u, f(u), "#c8f560"); guide(u, f(u), 1); }
+    },
+    scale: ms => {
+      axes(t("ax_output"), t("ax_cost")); const f = u => .12 + .78 / (1 + 6 * u);
+      curve(f, easeIO(clamp01(ms / 1700)), "#c8f560", 3, .02, .98);
+      const p2 = clamp01((ms - 1800) / 2200), u = .06 + .84 * easeIO(p2);
+      if (p2 > 0) { dot(u, f(u), "#ffc65c"); guide(u, f(u), 1); }
+    },
+  };
+  const draw = draws[kind] || draws.sd;
+  vizLoop(run, ms => { vizFrame(x, w, h, c.name, ""); draw(ms); }, 4600);
 }
 
 /* real clips from Wikimedia Commons (only formats the phone can play) */

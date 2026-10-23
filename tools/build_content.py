@@ -589,6 +589,10 @@ def add_capital(c, country):
     if not co: return
     name = re.sub(r"\s*\(.*?\)$", "", CAP_LOC.get(en) or en).split(",")[0].strip()
     c["capital"] = {"name": name, "coords": co}
+    im = good_image(s or {})        # usually a skyline, the main square or a landmark: shown as a postcard on the globe
+    if im:
+        th = im["thumb"]
+        c["capital"]["img"] = re.sub(r"/\d+px-", "/640px-", th) if re.search(r"/\d+px-", th) else im["img"]
 
 # ---------- build ----------
 def main():
@@ -647,7 +651,7 @@ def main():
         lt = titles.get(t)
         if not lt: continue
         old = prev.get(t)
-        if old and old.get("_v") == 3 and old.get("_at", 0) > time.time() - 7 * 86400:
+        if old and old.get("_v") == 4 and old.get("_at", 0) > time.time() - 7 * 86400:
             for k in ("ftype", "geom", "bbox"): old.pop(k, None)
             f = find_feature(t)                      # shapes are cheap: always use the newest matching rules
             if f: old.update(f)
@@ -663,7 +667,7 @@ def main():
         first = re.sub(r"\s*\(.*?\)", "", c["title"]).split()[0].lower() if c["title"] else ""
         c["sayTitle"] = not (len(first) >= 3 and first[:max(3, len(first) - 2)] in c["text"][:80].lower())
         c["say"] = for_speech(f"{c['title']}. {c['text']}" if c["sayTitle"] else c["text"])
-        c["_at"] = time.time(); c["_v"] = 3
+        c["_at"] = time.time(); c["_v"] = 4
         topics.append(c)
         time.sleep(0.05)
     prev_file.write_text(json.dumps(topics, ensure_ascii=False), encoding="utf-8")
